@@ -28,5 +28,12 @@ export const products = {
       .then(function (response) {
         return response.json();
       });
+  },
+
+  getProductCategoryName(id){
+    return fetch(`${config.apiUrl}/categories/${id}?ws_key=${config.apiKey}&${config.dataType}`)
+      .then(function (response) {
+        return response.json();
+      });
   }
 }

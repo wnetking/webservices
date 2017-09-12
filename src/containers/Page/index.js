@@ -1,41 +1,19 @@
 import React, {Component} from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-import {
-  Container, Row, Col, Card, CardImg, CardText, CardBlock,
-  CardTitle, CardSubtitle, Button
-} from 'reactstrap';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {Container, Row, Col} from 'reactstrap';
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 
 import Header from '../Header/'
-import renderHTML from 'react-render-html';
-import {products} from '../../utils/products/'
-import {images} from '../../utils/images/'
+import ProductList from '../../components/ProductList'
+import Product from '../Product/'
+
+import * as productsActions from '../../actions/productsActions'
 
 class Page extends Component {
-  state = {
-    data    : [],
-    fetching: true
-  }
-
-  componentDidMount() {
-    products.all().then(data => {
-      this.setState({
-        data    : data,
-        fetching: false
-      });
-    });
-  }
-
-
   render() {
-    let {data, fetching} = this.state;
-
-    if (fetching && data.length) {
-      return (<div>Loading... </div>)
-    }
+    let {productsActions} = this.props
+    let {productList, productPage} = this.props.productsState
 
     return (
       <Router>
@@ -43,28 +21,10 @@ class Page extends Component {
           <Header />
           <Container>
             <Route exact path="/" render={()=>(
-              <Row>
-              {data.map((item, key) => (
-                <Col xs="4" key={key} className="mb-4">
-                  <Card>
-                    <CardImg top width="100%" src={images.productImage(item.id, item.associations.images[0].id)} alt={item.name}/>
-                    <CardBlock>
-                      <CardTitle>
-                        <Link to={`/${item.id}-${item.link_rewrite}`}>{item.name}</Link>
-                      </CardTitle>
-                      <CardSubtitle>Price ${parseFloat(item.price).toFixed(2)}</CardSubtitle>
-                      {renderHTML(item.description_short)}
-                    </CardBlock>
-                  </Card>
-                </Col>
-              ))}
-              </Row>
-            )}/>
+              <ProductList data={productList} productsActions={productsActions}/>)
+            }/>
             <Route path="/:id-:name" render={({ match })=>(
-              <Row>
-                <Col>{match.params.id}</Col>
-                <Col>{match.params.name}</Col>
-              </Row>
+              <Product match={match} data={productPage} productsActions={productsActions}/>
             )}/>
           </Container>
         </main>
@@ -72,4 +32,18 @@ class Page extends Component {
     );
   }
 }
-export default Page;
+
+function mapStateToProps({productsReducer, imagesReducer}) {
+  return {
+    productsState: productsReducer,
+    images       : imagesReducer
+  }
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    productsActions: bindActionCreators(productsActions, dispatch),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Page);
+;

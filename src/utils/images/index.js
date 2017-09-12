@@ -5,10 +5,10 @@ export const images = {
 
   },
   getLogo(){
-    return `${config.apiUrl}/images/general/header/?ws_key=${config.apiKey}`;
+    return `${config.apiUrl}images/general/header/?ws_key=${config.apiKey}`;
   },
 
   productImage(productId, imageId){
-    return `${config.apiUrl}/images/products/${productId}/${imageId}/?ws_key=${config.apiKey}`
+    return `${config.apiUrl}images/products/${productId}/${imageId}/?ws_key=${config.apiKey}`
   }
 }

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
+import {Link} from 'react-router-dom'
+
 import {images} from '../utils/images/'
 
 export default class NavBar extends Component {
@@ -22,16 +24,16 @@ export default class NavBar extends Component {
     return (
       <Navbar className="my-3" color="faded" light toggleable>
         <NavbarToggler right onClick={this.toggle}/>
-        <NavbarBrand href="/">
+        <Link to="/" className="navbar-brand">
           <img src={images.getLogo()} alt="logo"/>
+        </Link>
+        <NavbarBrand href="/">
+
         </NavbarBrand>
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">Github</NavLink>
+              <NavLink href="#">Text</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
