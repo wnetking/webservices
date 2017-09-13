@@ -8,11 +8,11 @@ export const products = {
       fetch(`${config.apiUrl}/products/?ws_key=${config.apiKey}&${config.dataType}`)
         .then((response) => {return response.json();})
         .then(data => {
-          data.products.forEach((item, index)=> {
+          data.products.forEach((item)=> {
             this.one(item.id).then(item => {
               returnData.push(item.product);
 
-              if (index === data.products.length - 1) {
+              if (returnData.length === data.products.length) {
                 resolve(returnData);
               }
             })

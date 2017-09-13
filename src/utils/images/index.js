@@ -10,5 +10,8 @@ export const images = {
 
   productImage(productId, imageId){
     return `${config.apiUrl}images/products/${productId}/${imageId}/?ws_key=${config.apiKey}`
+  },
+  getManufacturersImg(id){
+    return `${config.apiUrl}images/manufacturers/${id}/?ws_key=${config.apiKey}`
   }
 }
