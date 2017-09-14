@@ -1,20 +1,20 @@
 import{
-  FETCH_MANUFACTURER_DATA, MANUFACTURER_DATA_REQUEST
-} from '../constants/manufacturer'
+  FETCH_COMBINATION_DATA, COMBINATION_DATA_REQUEST
+} from '../constants/combinations'
 
 const initState = {
   data    : null,
   fetching: true
 }
 
-export default function manufacturersReducer(state = initState, action) {
+export default function combinationsReducer(state = initState, action) {
   switch (action.type) {
-    case MANUFACTURER_DATA_REQUEST:
+    case COMBINATION_DATA_REQUEST:
       return {
         ...state,
         ...action.payload
       }
-    case FETCH_MANUFACTURER_DATA:
+    case FETCH_COMBINATION_DATA:
       return {
         ...state,
         ...action.payload

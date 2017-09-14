@@ -22,18 +22,17 @@ export default class NavBar extends Component {
 
   render() {
     return (
-      <Navbar className="my-3" color="faded" light toggleable>
+      <Navbar className="mb-5 px-5" color="faded" light toggleable>
         <NavbarToggler right onClick={this.toggle}/>
         <Link to="/" className="navbar-brand">
           <img src={images.getLogo()} alt="logo"/>
         </Link>
         <NavbarBrand href="/">
-
         </NavbarBrand>
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="#">Text</NavLink>
+              <NavLink href="#"></NavLink>
             </NavItem>
           </Nav>
         </Collapse>

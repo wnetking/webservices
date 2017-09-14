@@ -1,8 +1,14 @@
 import {combineReducers} from 'redux'
 import productsReducer from './products'
 import manufacturersReducer from './manufacturer'
+import featuresReducer from './features'
+import combinationsReducer from './combinations'
 import imagesReducer from './images'
 
 export default  combineReducers({
-  productsReducer, imagesReducer, manufacturersReducer
+  productsReducer,
+  imagesReducer,
+  manufacturersReducer,
+  featuresReducer,
+  combinationsReducer
 })

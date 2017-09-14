@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
 import Header from '../Header/'
+import Footer from '../Footer/'
 import ProductList from '../../components/ProductList'
 import Product from '../Product/'
 
@@ -27,6 +28,7 @@ class Page extends Component {
               <Product match={match} data={productPage} productsActions={productsActions}/>
             )}/>
           </Container>
+          <Footer />
         </main>
       </Router>
     );

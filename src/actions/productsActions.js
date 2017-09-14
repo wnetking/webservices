@@ -4,7 +4,9 @@ import {
   FETCH_PRODUCT_PAGE_DATA_REQUEST,
   FETCH_PRODUCT_ON_CATEGORY,
   FETCH_PRODUCT_ON_CATEGORY_REQUEST,
-  FETCH_PRODUCT_PAGE_DATA_RESET
+  FETCH_PRODUCT_PAGE_DATA_RESET,
+  FETCH_PRODUCT_OPTIONS,
+  FETCH_PRODUCT_OPTIONS_VALUE
 } from '../constants'
 
 import {products} from '../utils/products/'
@@ -93,5 +95,35 @@ export function resetFetchOnCategory() {
         fetching: true
       }
     }
+  }
+}
+
+export function fetchProductOption() {
+  return (dispatch) => {
+    dispatch({
+      type   : FETCH_PRODUCT_OPTIONS,
+      payload: {
+        productOptions: {
+          data    : null,
+          name    : null,
+          fetching: false
+        }
+      }
+    })
+  }
+}
+
+export function fetchProductOptionValue() {
+  return (dispatch) => {
+    dispatch({
+      type   : FETCH_PRODUCT_OPTIONS_VALUE,
+      payload: {
+        productOptionValues: {
+          data    : null,
+          name    : null,
+          fetching: false
+        }
+      }
+    })
   }
 }

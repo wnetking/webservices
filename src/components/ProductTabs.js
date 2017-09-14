@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import renderHTML from 'react-render-html'
 
 import ManufactureInfo from  './ManufactureInfo'
+import Features from  './Features'
 
 class ProductTabs extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ class ProductTabs extends Component {
             <Row>
               <Col sm="12">
                 <ManufactureInfo id_manufacturer={id_manufacturer}/>
+                <Features />
               </Col>
             </Row>
           </TabPane>

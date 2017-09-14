@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
 import {getInfo} from '../actions/manufacturersActions'
+import {images} from '../utils/images/'
 
 class ManufactureInfo extends Component {
   componentDidMount() {
@@ -14,13 +15,17 @@ class ManufactureInfo extends Component {
   }
 
   render() {
-    let {fetching, data} = this.props
+    let {fetching, data} = this.props.manufacturers
+
     return (
       <div>
         {fetching ?
           <div>Loading ...</div>
           :
-          null
+          <div>
+            <p>{data.name}</p>
+            <img src={images.getManufacturersImg(data.id)} alt=""/>
+          </div>
         }
       </div>
     )
