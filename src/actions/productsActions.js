@@ -100,6 +100,7 @@ export function resetFetchOnCategory() {
 
 export function fetchProductOption() {
   return (dispatch) => {
+    console.log('FETCH_PRODUCT_OPTIONS')
     dispatch({
       type   : FETCH_PRODUCT_OPTIONS,
       payload: {
@@ -115,6 +116,7 @@ export function fetchProductOption() {
 
 export function fetchProductOptionValue() {
   return (dispatch) => {
+    console.log('FETCH_PRODUCT_OPTIONS_VALUE')
     dispatch({
       type   : FETCH_PRODUCT_OPTIONS_VALUE,
       payload: {

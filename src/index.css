@@ -9,3 +9,15 @@ body {
   top: 20px;
   left: 20px;
 }
+
+main {
+  min-height: 100vh;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.border-top-2 {
+  border-top: 2px solid rgba(0, 0, 0, 0.125);
+}

@@ -1,10 +1,13 @@
-import config from "../config.json"
+import GET from '../GET'
+let get      = new GET('product_features');
+let getValue = new GET('product_feature_values');
+let P        = Promise;
 
 export const features = {
   getAll(array){
     let returnData = [];
 
-    return new Promise((resolve, reject) => {
+    return new P((resolve, reject) => {
       array.forEach(item => {
         this.getFeaturesName(item.id).then(data => {
           this.getFeaturesValue(item.id_feature_value).then(d=> {
@@ -23,15 +26,10 @@ export const features = {
   },
 
   getFeaturesName(id){
-    return fetch(`${config.apiUrl}/product_features/${id}?ws_key=${config.apiKey}&${config.dataType}`)
-      .then(response => {
-        return response.json();
-      }).then(data => data.product_feature.name);
+    return get.one(id).then(d => d.product_feature.name);
   },
+
   getFeaturesValue(id){
-    return fetch(`${config.apiUrl}/product_feature_values/${id}?ws_key=${config.apiKey}&${config.dataType}`)
-      .then(response => {
-        return response.json();
-      }).then(data => data.product_feature_value.value);
+    return getValue.one(id).then(data => data.product_feature_value.value);
   },
 }

@@ -1,10 +1,8 @@
-import config from "../config.json"
+import GET from '../GET'
+let get = new GET('manufacturers');
 
 export const manufacturer = {
   getInfo(id){
-    return fetch(`${config.apiUrl}/manufacturers/${id}?ws_key=${config.apiKey}&${config.dataType}`)
-      .then(response => {
-        return response.json();
-      });
+    return get.one(id);
   }
 }
