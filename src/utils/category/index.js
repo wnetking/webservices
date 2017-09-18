@@ -1,11 +1,9 @@
-import config from "../config.json"
-import { products } from '../products/'
+import {products} from '../products/'
 import GET from '../GET'
 let get = new GET('categories');
-let P = Promise;
+let P   = Promise;
 
 export const category = {
-
   getProductsByCategoryId(id) {
     let returnData = [];
 
@@ -36,8 +34,10 @@ export const category = {
 
   all() {
     return get.collections().then(d => d.filter(item => {
-      if (parseInt(item.active, 10) === 1 && item.link_rewrite !== 'root' && item.link_rewrite !== 'home' && parseInt(item.level_depth) === 3) {
+      if (parseInt(item.active, 10) === 1 && item.link_rewrite !== 'root' && item.link_rewrite !== 'home' && parseInt(item.level_depth, 10) <= 3) {
         return true;
+      } else {
+        return false;
       }
     }))
   }

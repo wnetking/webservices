@@ -9,7 +9,10 @@ export function getInfo(id) {
     dispatch({
       type   : MANUFACTURER_DATA_REQUEST,
       payload: {
-        fetching: true
+        info: {
+          data    : null,
+          fetching: true,
+        }
       }
     })
 
@@ -17,7 +20,40 @@ export function getInfo(id) {
       dispatch({
         type   : FETCH_MANUFACTURER_DATA,
         payload: {
-          data    : data.manufacturer,
+          info: {
+            data    : data.manufacturer,
+            fetching: false,
+          }
+        }
+      })
+    });
+  }
+}
+
+export function reset() {
+  return {
+    type   : MANUFACTURER_DATA_REQUEST,
+    payload: {
+      fetching: true
+    }
+  }
+}
+
+export function getAll() {
+  return (dispatch) => {
+    dispatch({
+      type   : MANUFACTURER_DATA_REQUEST,
+      payload: {
+        data    : null,
+        fetching: true
+      }
+    })
+
+    manufacturer.all().then(data => {
+      dispatch({
+        type   : FETCH_MANUFACTURER_DATA,
+        payload: {
+          data    : data,
           fetching: false
         }
       })

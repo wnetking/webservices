@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {
-  Row, Col, Badge
-} from 'reactstrap';
+import {Row, Col} from 'reactstrap';
 import ProductMiniature from './ProductMiniature'
 
 import {fetchOnCategory, resetFetchOnCategory} from '../actions/productsActions'
@@ -47,6 +45,8 @@ class ProductsOnCategory extends Component {
                             <ProductMiniature item={item}/>
                           </Col>
                         )
+                      } else {
+                        return null;
                       }
                     }
                   })}

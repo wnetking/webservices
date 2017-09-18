@@ -1,48 +1,50 @@
-import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
+import React, {Component} from 'react';
+import {Row, Col} from 'reactstrap';
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import * as productsActions from '../actions/productsActions'
-
 import ProductMiniature from './ProductMiniature'
 
 class ProductList extends Component {
   componentDidMount() {
-    let { productsActions } = this.props
-    let { fetching } = this.props.productsState.productList
+    let {productsActions} = this.props
 
-    if (fetching && typeof this.props.products === 'undefined') {
+    if (typeof this.props.products === 'undefined') {
       productsActions.fetchAll();
-    } else if (fetching && typeof this.props.products !== 'undefined') {
-      let { fetching, data } = this.props.category
+    } else if (typeof this.props.products !== 'undefined') {
+      productsActions.fetchSelected(this.props.products);
+    }
+  }
 
-      if (!fetching) {
-        productsActions.fetchSelected(this.props.products);
-        console.log('selected')
+  componentWillReceiveProps(nextProps) {
+    let {productsActions} = this.props
+
+    if (typeof nextProps.products !== 'undefined'
+      && typeof this.props.products !== 'undefined') {
+      if (!this.equel(nextProps.products, this.props.products)) {
+        productsActions.fetchSelected(nextProps.products);
       }
     }
   }
 
-  componentDidUpdate() {
-    // let { productsActions } = this.props
-    // let { fetching } = this.props.productsState.productList
-
-    // if (!fetching && typeof this.props.products === 'undefined') {
-    //   productsActions.fetchAll();
-    // } else if (!fetching && typeof this.props.products !== 'undefined') {
-    //   let { fetching, data } = this.props.category
-
-    //   if (!fetching) {
-    //     productsActions.fetchSelected(this.props.products);
-    //     console.log('selected')
-    //   }
-    // }
+  equel = (arr, arr2) => {
+    if (arr.length !== arr2.length) return false
+    var on = 0;
+    for (var i = 0; i < arr.length; i++) {
+      for (var j = 0; j < arr2.length; j++) {
+        if (arr[i] === arr2[j]) {
+          on++
+          break
+        }
+      }
+    }
+    return on === arr.length ? true : false
   }
 
 
   render() {
-    let { fetching, data } = this.props.productsState.productList
+    let {fetching, data} = this.props.productsState.productList
 
     return (
 
@@ -54,7 +56,7 @@ class ProductList extends Component {
           :
           data.map((item, key) => (
             <Col xs="3" key={key} className="mb-4">
-              <ProductMiniature item={item} />
+              <ProductMiniature item={item}/>
             </Col>
           ))
         }
@@ -64,10 +66,10 @@ class ProductList extends Component {
 }
 
 
-function mapStateToProps({ productsReducer, categoryReducer }) {
+function mapStateToProps({productsReducer, categoryReducer}) {
   return {
     productsState: productsReducer,
-    category: categoryReducer
+    category     : categoryReducer
   }
 }
 function mapDispatchToProps(dispatch) {

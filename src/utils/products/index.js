@@ -1,4 +1,3 @@
-import config from "../config.json"
 import GET from '../GET'
 let get = new GET('products');
 let getCategory = new GET('categories');

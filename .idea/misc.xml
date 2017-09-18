@@ -82,4 +82,7 @@
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
+  <component name="StylelintService">
+    <option name="executable" value="\stylelint.cmd" />
+  </component>
 </project>

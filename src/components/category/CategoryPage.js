@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
+import React, {Component} from 'react';
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 import renderHTML from 'react-render-html'
+import {Jumbotron} from 'reactstrap';
 
-import { images } from '../../utils/images/'
+import * as productsActions from '../../actions/productsActions'
+
+import {images} from '../../utils/images/'
 import ProductList from '../ProductList'
 
 class CategoryPage extends Component {
   componentDidUpdate() {
     window.scrollTo(0, 0)
   }
+
   getCurrentData = () => {
-    let { data } = this.props.category
+    let {data} = this.props.category
 
     if (data !== null) {
       return data.filter(item => {
@@ -21,19 +26,8 @@ class CategoryPage extends Component {
     }
   }
 
-  // componentDidUpdate() {
-  //   let {fetching, data} = this.props.data
-  //   let {productsActions} = this.props
-
-  //   if (!fetching) {
-  //     if (parseInt(this.props.match.params.id, 10) !== parseInt(data.id, 10)) {
-  //       productsActions.fetchOne(this.props.match.params.id);
-  //     }
-  //   }
-  // }
-
   render() {
-    let { fetching } = this.props.category
+    let {fetching} = this.props.category
 
     return (
       <div>
@@ -41,11 +35,14 @@ class CategoryPage extends Component {
           <div>Loading ...</div>
           :
           <div>
-            <h2>{this.getCurrentData()[0].name}</h2>
-            <img src={images.categoryImage(this.getCurrentData()[0].id)} alt={this.getCurrentData()[0].name} />
-            {renderHTML(this.getCurrentData()[0].description)}
-            {console.log(this.getCurrentData()[0])}
-            <ProductList products={this.getCurrentData()[0].associations.products} />
+            <Jumbotron>
+              <h1 className="display-3">{this.getCurrentData()[0].name}</h1>
+              <div className="row">
+                <img className="mr-2" src={images.categoryImage(this.getCurrentData()[0].id)} alt={this.getCurrentData()[0].name}/>
+                <div>{renderHTML(this.getCurrentData()[0].description)}</div>
+              </div>
+            </Jumbotron>
+            <ProductList products={this.getCurrentData()[0].associations.products}/>
           </div>
         }
       </div>
@@ -53,11 +50,18 @@ class CategoryPage extends Component {
   }
 }
 
-function mapStateToProps({ categoryReducer }) {
+function mapStateToProps({productsReducer, categoryReducer}) {
   return {
-    category: categoryReducer
+    category     : categoryReducer,
+    productsState: productsReducer,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    productsActions: bindActionCreators(productsActions, dispatch),
   }
 }
 
 
-export default connect(mapStateToProps)(CategoryPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryPage);

@@ -29,8 +29,10 @@ export default class ImageSlider extends Component {
             <img key={key} width="100%" src={images.productImage(productId, item.id)} alt={altText}/>
           ))}
         </div>
-        <button onClick={this.prev}>Prev</button>
-        <button onClick={this.next}>Next</button>
+        <div className="d-flex justify-content-between">
+          <button onClick={this.prev}>Prev</button>
+          <button onClick={this.next}>Next</button>
+        </div>
       </div>
     )
   }

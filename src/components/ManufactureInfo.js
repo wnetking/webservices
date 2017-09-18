@@ -15,7 +15,7 @@ class ManufactureInfo extends Component {
   }
 
   render() {
-    let {fetching, data} = this.props.manufacturers
+    let {fetching, data} = this.props.manufacturers.info
 
     return (
       <div>
@@ -31,6 +31,7 @@ class ManufactureInfo extends Component {
     )
   }
 }
+
 function mapStateToProps({productsReducer, manufacturersReducer}) {
   return {
     productPage  : productsReducer.productPage,
@@ -40,7 +41,7 @@ function mapStateToProps({productsReducer, manufacturersReducer}) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getInfo: bindActionCreators(getInfo, dispatch),
+    getInfo: bindActionCreators(getInfo, dispatch)
   }
 }
 

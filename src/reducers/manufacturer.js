@@ -4,7 +4,11 @@ import{
 
 const initState = {
   data    : null,
-  fetching: true
+  fetching: true,
+  info: {
+    data    : null,
+    fetching: true
+  }
 }
 
 export default function manufacturersReducer(state = initState, action) {

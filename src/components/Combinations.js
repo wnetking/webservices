@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {Label, Input} from 'reactstrap';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {getAll} from '../actions/combinationsActions'
@@ -29,7 +28,7 @@ class Combinations extends Component {
   }
 
   render() {
-    let {fetching, data} = this.props.combinations
+    let {fetching} = this.props.combinations
     return (
       <div>
         {fetching ?
