@@ -12,6 +12,7 @@ import {CmsPage} from '../../components/cms/'
 import {CategoryPage} from '../../components/category/'
 import Manufacturers from '../../components/manufacturers/Manufacturers'
 import Stores from '../../components/Stores'
+import ImageSlider from '../../components/imageslider/ImageSlider'
 
 import * as productsActions from '../../actions/productsActions'
 
@@ -29,6 +30,7 @@ class Page extends Component {
           <Header />
           <Route exact path="/" render={() => (
               <div className="flex-grow-1">
+                <ImageSlider />
                 <Container className="flex-grow-1 mb-5">
                   <h2 className="text-center mb-4">All Products</h2>
                   <ProductList />
@@ -41,7 +43,7 @@ class Page extends Component {
               </div>
               )
             }/>
-          <Container className="flex-grow-1">
+          <Container className="flex-grow-1 mt-5">
             <Route path="/:id-:name" render={({ match }) => (
               <Product match={match} data={productPage} productsActions={productsActions} />
             )}/>

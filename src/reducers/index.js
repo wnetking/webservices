@@ -5,6 +5,7 @@ import featuresReducer from './features'
 import combinationsReducer from './combinations'
 import categoryReducer from './category'
 import contactsReducer from './contacts'
+import imagesliderReducer from './imageslider'
 import storesReducer from './stores'
 import cmsReducer from './cms'
 import imagesReducer from './images'
@@ -18,5 +19,6 @@ export default combineReducers({
   cmsReducer,
   categoryReducer,
   contactsReducer,
-  storesReducer
+  storesReducer,
+  imagesliderReducer
 })

@@ -22,7 +22,7 @@ export default class NavBar extends Component {
 
   render() {
     return (
-      <Navbar className="mb-5 px-5" color="faded" light toggleable>
+      <Navbar className="px-5" color="faded" light toggleable>
         <NavbarToggler right onClick={this.toggle}/>
         <Link to="/" className="navbar-brand">
           <img src={images.getLogo()} alt="logo"/>

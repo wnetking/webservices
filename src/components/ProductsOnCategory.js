@@ -45,9 +45,9 @@ class ProductsOnCategory extends Component {
                             <ProductMiniature item={item}/>
                           </Col>
                         )
-                      } else {
-                        return null;
                       }
+                    } else {
+                      return null;
                     }
                   })}
                 </Row>

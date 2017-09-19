@@ -27,3 +27,54 @@ footer .list-group-item {
   padding-right: 0;
   border: none;
 }
+
+.image-slider figure {
+  position: relative;
+  margin-bottom: 0;
+}
+
+.image-slider figcaption {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #fff;
+}
+
+.image-slider .caption-description {
+  max-width: 500px;
+}
+
+.image-slider {
+  position: relative;
+}
+
+.image-slider .prev, .image-slider .next {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 7%;
+  font-size: 50px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+  opacity: .5;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  text-align: center;
+}
+
+.image-slider .next {
+  right: 0;
+  left: auto;
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, .0001) 0, rgba(0, 0, 0, .5));
+  background-repeat: repeat-x;
+
+}
