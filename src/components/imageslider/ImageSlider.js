@@ -16,7 +16,6 @@ class ImageSlider extends Component {
 
   render() {
     let {fetching, data} = this.props.imageslider
-    console.log(data)
     return (
       <div className="image-slider mb-5">
         {fetching ?

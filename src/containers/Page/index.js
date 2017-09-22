@@ -11,6 +11,7 @@ import Product from '../Product/'
 import {CmsPage} from '../../components/cms/'
 import {CategoryPage} from '../../components/category/'
 import Manufacturers from '../../components/manufacturers/Manufacturers'
+import ManufacturerPage from '../../components/manufacturers/ManufacturerPage'
 import Stores from '../../components/Stores'
 import ImageSlider from '../../components/imageslider/ImageSlider'
 
@@ -49,6 +50,7 @@ class Page extends Component {
             )}/>
             <Route path="/cms/:id-:name" component={CmsPage}/>
             <Route path="/category/:id-:name" component={CategoryPage}/>
+            <Route path="/manufacturer/:id-:name" component={ManufacturerPage}/>
           </Container>
           <Footer />
         </main>

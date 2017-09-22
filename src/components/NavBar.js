@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
 import {Link} from 'react-router-dom'
 
+import CategoryNavTree from './category/CategoryNavTree'
+
 import {images} from '../utils/images/'
 
 export default class NavBar extends Component {
@@ -31,9 +33,7 @@ export default class NavBar extends Component {
         </NavbarBrand>
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink href="#"></NavLink>
-            </NavItem>
+           <CategoryNavTree />
           </Nav>
         </Collapse>
       </Navbar>

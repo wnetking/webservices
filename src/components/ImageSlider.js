@@ -23,16 +23,14 @@ export default class ImageSlider extends Component {
     let {productId, data, altText} = this.props
 
     return (
-      <div>
+      <div className="product-page-slider">
         <div className="siema">
           {data.map((item, key) => (
             <img key={key} width="100%" src={images.productImage(productId, item.id)} alt={altText}/>
           ))}
         </div>
-        <div className="d-flex justify-content-between">
-          <button onClick={this.prev}>Prev</button>
-          <button onClick={this.next}>Next</button>
-        </div>
+        <button className="prev" onClick={this.prev}>&laquo;</button>
+        <button className="next" onClick={this.next}>&raquo;</button>
       </div>
     )
   }

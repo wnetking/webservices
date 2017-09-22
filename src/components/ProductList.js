@@ -47,7 +47,6 @@ class ProductList extends Component {
     let {fetching, data} = this.props.productsState.productList
 
     return (
-
       <Row>
         {fetching || data === null ?
           <Col>
@@ -55,7 +54,7 @@ class ProductList extends Component {
           </Col>
           :
           data.map((item, key) => (
-            <Col xs="3" key={key} className="mb-4">
+            <Col xs="4" key={key} className="mb-4">
               <ProductMiniature item={item}/>
             </Col>
           ))

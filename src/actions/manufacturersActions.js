@@ -30,6 +30,34 @@ export function getInfo(id) {
   }
 }
 
+export function getOne(id) {
+  return (dispatch) => {
+    dispatch({
+      type   : MANUFACTURER_DATA_REQUEST,
+      payload: {
+        page: {
+          data    : null,
+          fetching: true,
+        }
+      }
+    })
+
+    manufacturer.getInfo(id).then(data => {
+      console.log(data)
+
+      dispatch({
+        type   : FETCH_MANUFACTURER_DATA,
+        payload: {
+          page: {
+            data    : data.manufacturer,
+            fetching: false
+          }
+        }
+      })
+    });
+  }
+}
+
 export function reset() {
   return {
     type   : MANUFACTURER_DATA_REQUEST,

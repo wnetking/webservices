@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
+import {Link} from 'react-router-dom'
 import {Row, Col} from 'reactstrap';
 import {getAll} from '../../actions/manufacturersActions'
 
@@ -39,7 +40,9 @@ class Manufacturers extends Component {
                   </div>
                   <CardBlock>
                     <CardSubtitle className="text-center">
-                      {item.name}
+                      <Link to={`/manufacturer/${item.id}-${item.link_rewrite}`}>
+                       {item.name}
+                      </Link>
                     </CardSubtitle>
                   </CardBlock>
                 </Card>

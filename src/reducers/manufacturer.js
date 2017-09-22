@@ -5,7 +5,11 @@ import{
 const initState = {
   data    : null,
   fetching: true,
-  info: {
+  info    : {
+    data    : null,
+    fetching: true
+  },
+  page    : {
     data    : null,
     fetching: true
   }

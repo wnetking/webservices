@@ -12,7 +12,7 @@ class CategoryLinks extends Component {
 
     getAll();
   }
-
+  
   render() {
     let { fetching, data } = this.props.category
 
