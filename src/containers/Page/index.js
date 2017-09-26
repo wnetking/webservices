@@ -31,16 +31,16 @@ class Page extends Component {
           <Header />
           <Route exact path="/" render={() => (
               <div className="flex-grow-1">
-                <ImageSlider />
+                {/* <ImageSlider /> */}
                 <Container className="flex-grow-1 mb-5">
                   <h2 className="text-center mb-4">All Products</h2>
-                  <ProductList />
+                  <ProductList limit={6} categoryID={null} manufacturerID={null}/>
                 </Container>
-                <Stores />
-                <Container className="flex-grow-1">
+                {/* <Stores /> */}
+                {/* <Container className="flex-grow-1">
                   <h2 className="text-center mb-4">Brands</h2>
                   <Manufacturers/>
-                </Container>
+                </Container> */}
               </div>
               )
             }/>

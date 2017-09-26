@@ -8,13 +8,9 @@ import ProductMiniature from './ProductMiniature'
 
 class ProductList extends Component {
   componentDidMount() {
-    let {productsActions} = this.props
+    let {productsActions, limit, categoryID, manufacturerID} = this.props
 
-    if (typeof this.props.products === 'undefined') {
-      productsActions.fetchAll();
-    } else if (typeof this.props.products !== 'undefined') {
-      productsActions.fetchSelected(this.props.products);
-    }
+    productsActions.getFilterProductsList(limit,categoryID,manufacturerID);
   }
 
   componentWillReceiveProps(nextProps) {

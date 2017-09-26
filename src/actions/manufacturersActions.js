@@ -21,7 +21,7 @@ export function getInfo(id) {
         type   : FETCH_MANUFACTURER_DATA,
         payload: {
           info: {
-            data    : data.manufacturer,
+            data    : data,
             fetching: false,
           }
         }
