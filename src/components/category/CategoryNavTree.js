@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Link} from 'react-router-dom'
 import { Nav, NavItem} from 'reactstrap';
-import {getAll} from '../../actions/categoryActions'
 
 
 class CategoryNavTree extends Component {
@@ -34,13 +33,12 @@ class CategoryNavTree extends Component {
 
 function mapStateToProps({categoryReducer}) {
   return {
-    category: categoryReducer,
+    category: categoryReducer.categoryList,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getAll: bindActionCreators(getAll, dispatch),
   }
 }
 

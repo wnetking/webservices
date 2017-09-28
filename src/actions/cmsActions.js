@@ -4,7 +4,7 @@ import{
 
 import cms from '../utils/cms/'
 
-export function getAll(array) {
+export function getCmsData(id) {
   return (dispatch) => {
     dispatch({
       type   : CMS_DATA_REQUEST,
@@ -13,14 +13,38 @@ export function getAll(array) {
       }
     })
 
-    cms.all(array).then(data => {
+    cms.getCmsData(id).then(data => {
       dispatch({
         type   : FETCH_CMS_DATA,
         payload: {
-          data    : data,
+          data    : data.content,
           fetching: false
         }
       })
     });
+  }
+}
+
+export function getCmsList() {
+  return (dispatch) => {
+    dispatch({
+      type   : CMS_DATA_REQUEST,
+      payload: {
+        cmsLinks: {
+          fetching: true
+        }
+      }
+    })
+    cms.getCmsList().then(d => {
+      dispatch({
+        type   : FETCH_CMS_DATA,
+        payload: {
+          cmsLinks: {
+            data    : d,
+            fetching: false
+          }
+        }
+      })
+    })
   }
 }

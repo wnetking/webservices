@@ -9,6 +9,7 @@ import ProductsOnCategory from '../../components/ProductsOnCategory'
 import ProductTabs from '../../components/ProductTabs'
 import Combinations from '../../components/Combinations'
 
+
 export default class Product extends Component {
   componentDidMount() {
     let {productsActions} = this.props

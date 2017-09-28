@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink} from 'reactstrap';
+import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav} from 'reactstrap';
 import {Link} from 'react-router-dom'
 
 import CategoryNavTree from './category/CategoryNavTree'

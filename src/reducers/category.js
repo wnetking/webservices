@@ -4,7 +4,11 @@ import{
 
 const initState = {
   data    : null,
-  fetching: true
+  fetching: true,
+  categoryList : {
+    data: null,
+    fetching: true
+  }
 }
 
 export default function categoryReducer(state = initState, action) {

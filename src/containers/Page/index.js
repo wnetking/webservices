@@ -34,7 +34,7 @@ class Page extends Component {
                 {/* <ImageSlider /> */}
                 <Container className="flex-grow-1 mb-5">
                   <h2 className="text-center mb-4">All Products</h2>
-                  <ProductList limit={6} categoryID={null} manufacturerID={null}/>
+                  <ProductList limit={6} categoryID={null} manufacturerID={null} />
                 </Container>
                 {/* <Stores /> */}
                 {/* <Container className="flex-grow-1">

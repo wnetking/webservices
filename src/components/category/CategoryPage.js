@@ -3,31 +3,30 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import renderHTML from 'react-render-html'
 import {Jumbotron} from 'reactstrap';
-
-import * as productsActions from '../../actions/productsActions'
-
-import {images} from '../../utils/images/'
 import ProductList from '../ProductList'
+import {getCategoryData} from '../../actions/categoryActions'
+import {images} from '../../utils/images/'
 
 class CategoryPage extends Component {
+  componentDidMount() {
+    let {getCategoryData} = this.props
+
+    getCategoryData(this.props.match.params.id);
+  }
   componentDidUpdate() {
+    let {fetching, data} = this.props.category
+    let {getCategoryData} = this.props
+
+    if (!fetching) {
+      if (parseInt(this.props.match.params.id, 10) !== parseInt(data.id, 10)) {
+        getCategoryData(this.props.match.params.id);
+      }
+    }
     window.scrollTo(0, 0)
   }
 
-  getCurrentData = () => {
-    let {data} = this.props.category
-
-    if (data !== null) {
-      return data.filter(item => {
-        return parseInt(item.id, 10) === parseInt(this.props.match.params.id, 10)
-      })
-    } else {
-      return null
-    }
-  }
-
   render() {
-    let {fetching} = this.props.category
+    let {fetching,data} = this.props.category
 
     return (
       <div>
@@ -36,13 +35,15 @@ class CategoryPage extends Component {
           :
           <div>
             <Jumbotron>
-              <h1 className="display-3">{this.getCurrentData()[0].name}</h1>
+              <h1 className="display-3">{data.name}</h1>
               <div className="row">
-                <img className="mr-2" src={images.categoryImage(this.getCurrentData()[0].id)} alt={this.getCurrentData()[0].name}/>
-                <div>{renderHTML(this.getCurrentData()[0].description)}</div>
+                <img className="mr-2" src={images.categoryImage(data.id)} alt={data.name}/>
+                <div>{renderHTML(data.description)}</div>
               </div>
             </Jumbotron>
-            <ProductList products={this.getCurrentData()[0].associations.products}/>
+
+            <ProductList limit={null} categoryID={null} manufacturerID={null}
+              products={data.associations.products.map((item) => item.id)}/>
           </div>
         }
       </div>
@@ -59,7 +60,7 @@ function mapStateToProps({productsReducer, categoryReducer}) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    productsActions: bindActionCreators(productsActions, dispatch),
+    getCategoryData: bindActionCreators(getCategoryData, dispatch)
   }
 }
 

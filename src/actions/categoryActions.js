@@ -2,25 +2,49 @@ import {
   FETCH_CATEGORY_DATA, CATEGORY_DATA_REQUEST
 } from '../constants/category'
 
-import { category } from '../utils/category/'
+import {category} from '../utils/category/'
 
-export function getAll(array) {
+export function getCategoryData(id) {
   return (dispatch) => {
     dispatch({
-      type: CATEGORY_DATA_REQUEST,
+      type   : CATEGORY_DATA_REQUEST,
       payload: {
         fetching: true
       }
     })
 
-    category.all().then(data => {
+    category.getInfo(id).then(data => {
       dispatch({
-        type: FETCH_CATEGORY_DATA,
+        type   : FETCH_CATEGORY_DATA,
         payload: {
-          data: data,
+          data    : data.category,
           fetching: false
         }
       })
     });
+  }
+}
+
+export function getCategoryList() {
+  return (dispatch) => {
+    dispatch({
+      type   : CATEGORY_DATA_REQUEST,
+      payload: {
+        categoryList: {
+          fetching: true
+        }
+      }
+    })
+    category.getCategoryList().then(d => {
+      dispatch({
+        type   : FETCH_CATEGORY_DATA,
+        payload: {
+          categoryList: {
+            data    : d,
+            fetching: false
+          }
+        }
+      })
+    })
   }
 }

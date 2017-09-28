@@ -1,7 +1,8 @@
 import {products} from '../products/'
 import GET from '../GET'
+import config from "../config.json"
 let get = new GET('categories');
-let P   = Promise;
+let P = Promise;
 
 export const category = {
   getProductsByCategoryId(id) {
@@ -28,6 +29,7 @@ export const category = {
       }).catch(err => { reject(err) });
     })
   },
+  
   getInfo(id) {
     return get.one(id);
   },
@@ -40,5 +42,23 @@ export const category = {
         return false;
       }
     }))
+  },
+
+  getCategoryList(){
+    return fetch(`${config.apiUrl}categories/` +
+      `?display=[id,name,link_rewrite,level_depth]` +
+      `&filter[active]=[1]` +
+      `&ws_key=${config.apiKey}&${config.dataType}`)
+      .then(function (response) {
+        return response.json();
+      }).then(d => {
+        return d.categories.filter(item => {
+          if (item.link_rewrite !== 'root' && item.link_rewrite !== 'home' && parseInt(item.level_depth, 10) <= 10) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+      })
   }
 }
