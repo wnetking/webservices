@@ -33,9 +33,12 @@ class CmsPage extends Component {
         {fetching ?
           <div>Loading ...</div>
           :
-          <div>
-            {renderHTML(data.content)}
-          </div>
+          <section>
+            <h1>{data.meta_title}</h1>
+            <arcticle>
+              {renderHTML(data.content)}
+            </arcticle>
+          </section>
         }
       </div>
     )

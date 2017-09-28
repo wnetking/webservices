@@ -8,9 +8,9 @@ import ProductMiniature from './ProductMiniature'
 
 class ProductList extends Component {
   componentDidMount() {
-    let {productsActions, limit, categoryID, manufacturerID,products} = this.props
+    let {productsActions, limit, categoryID, manufacturerID, products} = this.props
 
-    productsActions.getFilterProductsList(limit,categoryID,manufacturerID,products);
+    productsActions.getFilterProductsList(limit, categoryID, manufacturerID, products);
   }
 
   render() {
@@ -23,11 +23,13 @@ class ProductList extends Component {
             <div>Loading...</div>
           </Col>
           :
-          data.map((item, key) => (
-            <Col xs="4" key={key} className="mb-4">
-              <ProductMiniature item={item}/>
-            </Col>
-          ))
+          typeof  data === "undefined" ?
+            <div>No products</div> :
+            data.map((item, key) => (
+              <Col xs="4" key={key} className="mb-4">
+                <ProductMiniature item={item}/>
+              </Col>
+            ))
         }
       </Row>
     )

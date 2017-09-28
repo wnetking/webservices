@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Link} from 'react-router-dom'
 import {Row, Col} from 'reactstrap';
-import {getAll} from '../../actions/manufacturersActions'
+import {getFilterManufacturersList} from '../../actions/manufacturersActions'
 
 import {
   Card, CardImg, CardBlock,
@@ -14,11 +14,11 @@ import {images} from '../../utils/images/'
 
 class Manufacturers extends Component {
   componentDidMount() {
-    let {getAll} = this.props
+    let {getFilterManufacturersList, limit} = this.props
     let {data} = this.props.manufacturers
 
     if (data === null) {
-      getAll();
+      getFilterManufacturersList(limit);
     }
   }
 
@@ -64,7 +64,7 @@ function mapStateToProps({manufacturersReducer}) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getAll: bindActionCreators(getAll, dispatch),
+    getFilterManufacturersList: bindActionCreators(getFilterManufacturersList, dispatch),
   }
 }
 
