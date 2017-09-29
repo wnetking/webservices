@@ -1,20 +1,20 @@
-import React, {Component} from 'react';
-import {Row, Col} from 'reactstrap';
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import React, { Component } from 'react';
+import { Row, Col } from 'reactstrap';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import * as productsActions from '../actions/productsActions'
 import ProductMiniature from './ProductMiniature'
 
 class ProductList extends Component {
   componentDidMount() {
-    let {productsActions, limit, categoryID, manufacturerID} = this.props
+    let { productsActions, limit, categoryID, manufacturerID } = this.props
 
-    productsActions.getFilterProductsList(limit,categoryID,manufacturerID);
+    productsActions.getFilterProductsList(limit, categoryID, manufacturerID);
   }
 
   componentWillReceiveProps(nextProps) {
-    let {productsActions} = this.props
+    let { productsActions } = this.props
 
     if (typeof nextProps.products !== 'undefined'
       && typeof this.props.products !== 'undefined') {
@@ -40,7 +40,7 @@ class ProductList extends Component {
 
 
   render() {
-    let {fetching, data} = this.props.productsState.productList
+    let { fetching, data } = this.props.productsState.productList
 
     return (
       <Row>
@@ -49,11 +49,19 @@ class ProductList extends Component {
             <div>Loading...</div>
           </Col>
           :
-          data.map((item, key) => (
-            <Col xs="4" key={key} className="mb-4">
-              <ProductMiniature item={item}/>
+
+          typeof data === "undefined" ?
+            <Col>
+              <div>No products</div>
             </Col>
-          ))
+            :
+            data.map((item, key) => (
+              <Col xs="4" key={key} className="mb-4">
+                <ProductMiniature item={item} />
+              </Col>
+            ))
+
+
         }
       </Row>
     )
@@ -61,10 +69,10 @@ class ProductList extends Component {
 }
 
 
-function mapStateToProps({productsReducer, categoryReducer}) {
+function mapStateToProps({ productsReducer, categoryReducer }) {
   return {
     productsState: productsReducer,
-    category     : categoryReducer
+    category: categoryReducer
   }
 }
 function mapDispatchToProps(dispatch) {

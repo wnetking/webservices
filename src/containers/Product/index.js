@@ -8,6 +8,7 @@ import ImageSlider from '../../components/ImageSlider'
 import ProductsOnCategory from '../../components/ProductsOnCategory'
 import ProductTabs from '../../components/ProductTabs'
 import Combinations from '../../components/Combinations'
+import ProductList from '../../components/ProductList'
 
 export default class Product extends Component {
   componentDidMount() {
@@ -59,7 +60,8 @@ export default class Product extends Component {
                 <ProductTabs productDesc={data.description} id_manufacturer={data.id_manufacturer}/>
               </Col>
               <Col xs="12" className="mt-5">
-                <ProductsOnCategory />
+                <ProductList limit={10} categoryID={data.id_category_default} manufacturerID={null}/>
+                {/* <ProductsOnCategory /> */}
               </Col>
             </Row>
           </Col>}

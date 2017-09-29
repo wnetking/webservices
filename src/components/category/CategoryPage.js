@@ -42,6 +42,7 @@ class CategoryPage extends Component {
                 <div>{renderHTML(this.getCurrentData()[0].description)}</div>
               </div>
             </Jumbotron>
+            {/* <ProductList limit={100} categoryID={this.props.match.params.id} manufacturerID={null}/> */}
             <ProductList products={this.getCurrentData()[0].associations.products}/>
           </div>
         }
