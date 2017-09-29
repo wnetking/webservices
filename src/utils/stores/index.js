@@ -1,6 +1,4 @@
-import GET from '../GET'
 import config from "../config.json"
-let get = new GET('stores');
 
 const stores = {
   getAllStores(){

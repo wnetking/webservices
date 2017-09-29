@@ -1,17 +1,17 @@
 import config from "../config.json"
 
-const imageslider = {
-  all() {
-    return fetch(`${config.apiUrl}homeslider_slidess/` +
-      `?display=full` +
+const general = {
+  getActiveCurrency(){
+    return fetch(`${config.apiUrl}currencies/` +
+      `?display=[name,iso_code,conversion_rate]` +
       `&filter[active]=[1]` +
       `&ws_key=${config.apiKey}&${config.dataType}`)
       .then(function (response) {
         return response.json();
       }).then(d => {
-        return d.homeslider_slidess
+        return d.currencies[0]
       })
   }
 }
 
-export default imageslider;
+export default general;

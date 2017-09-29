@@ -43,8 +43,6 @@ export function getOne(id) {
     })
 
     manufacturer.getOne(id).then(data => {
-      console.log(data)
-
       dispatch({
         type   : FETCH_MANUFACTURER_DATA,
         payload: {

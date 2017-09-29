@@ -38,6 +38,7 @@ class ProductsOnCategory extends Component {
                 <h5 className="mb-3">{data.length - 1} other products in category {name}</h5>
                 <ProductList limit={null} categoryID={null} manufacturerID={null} products={data.map((item) => item.id).filter(item => {
                   if (parseInt(item, 10) !== this.props.productPage.data.id) return item
+                  return false;
                 })}/>
               </div>
             }

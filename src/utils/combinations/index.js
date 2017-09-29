@@ -2,19 +2,16 @@ import config from "../config.json"
 
 export const combinations = {
   getAll(array){
-    let returnData = [];
+    if (Array.isArray(array)) {
+      var combinationsRequestString = array.map(item => item.id).join('|');
+    }
 
-    return new Promise((resolve, reject) => {
-      array.forEach(item => {
-        this.getCombination(item.id).then(d => {
-          returnData.push(d)
-
-          if (returnData.length === array.length) {
-            resolve(returnData);
-          }
-        }).catch(err => reject(err))
-      })
-    })
+    return fetch(`${config.apiUrl}/combinations/?display=full`+
+      `${Array.isArray(array) ? `&filter[id]=[${combinationsRequestString}]` : ``}` +
+      `&ws_key=${config.apiKey}&${config.dataType}`)
+      .then(response => {
+        return response.json();
+      }).then(data => data.combinations);
   },
 
   getCombination(id){
@@ -22,5 +19,21 @@ export const combinations = {
       .then(response => {
         return response.json();
       }).then(data => data.combination);
+  },
+
+  getOptionValues(array){
+    if (Array.isArray(array)) {
+      var valueRequestString = array.map(item => item.id).join('|');
+    }
+
+    return fetch(`${config.apiUrl}/product_option_values/` +
+      `?display=[id,name]` +
+      `${Array.isArray(array) ? `&filter[id]=[${valueRequestString}]` : ``}` +
+      `&ws_key=${config.apiKey}&${config.dataType}`)
+      .then(function (response) {
+        return response.json();
+      }).then(d => {
+        return d.product_option_values;
+      })
   }
 }

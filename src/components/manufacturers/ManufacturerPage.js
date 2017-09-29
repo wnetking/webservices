@@ -26,7 +26,7 @@ class ManufacturerPage extends Component {
           <div>
             <h1>{data.name}</h1>
             <img src={images.getManufacturersImg(data.id)} alt={data.name}/>
-            <p>{renderHTML(data.description)}</p>
+            <div>{renderHTML(data.description)}</div>
             <ProductList limit={null} categoryID={null} manufacturerID={data.id} />
           </div>
         }
