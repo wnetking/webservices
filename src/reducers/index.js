@@ -9,8 +9,10 @@ import imagesliderReducer from './imageslider'
 import storesReducer from './stores'
 import cmsReducer from './cms'
 import imagesReducer from './images'
+import generalReducer from './general'
 
 export default combineReducers({
+  generalReducer,
   productsReducer,
   imagesReducer,
   manufacturersReducer,

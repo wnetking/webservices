@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
-import {Container} from 'reactstrap';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import {Container} from 'reactstrap';
 
 import Header from '../Header/'
 import Footer from '../Footer/'
@@ -15,16 +15,17 @@ import ManufacturerPage from '../../components/manufacturers/ManufacturerPage'
 import Stores from '../../components/Stores'
 import ImageSlider from '../../components/imageslider/ImageSlider'
 
-import * as productsActions from '../../actions/productsActions'
+
+import * as generalActions from '../../actions/generalActions'
 
 class Page extends Component {
   componentWillMount() {
+    let {generalActions} = this.props
+
+    generalActions.getActiveCurrency();
   }
 
   render() {
-    let {productsActions} = this.props
-    let {productPage} = this.props.productsState
-
     return (
       <Router>
         <main className="d-flex flex-column">
@@ -34,20 +35,18 @@ class Page extends Component {
                 {/* <ImageSlider /> */}
                 <Container className="flex-grow-1 mb-5">
                   <h2 className="text-center mb-4">All Products</h2>
-                  <ProductList limit={6} categoryID={null} manufacturerID={null}/>
+                  <ProductList limit={6} categoryID={null} manufacturerID={null} />
                 </Container>
-                {/* <Stores /> */}
-                {/* <Container className="flex-grow-1">
+                <Stores />
+                <Container className="flex-grow-1">
                   <h2 className="text-center mb-4">Brands</h2>
-                  <Manufacturers/>
-                </Container> */}
+                  <Manufacturers limit={null}/>
+                </Container>
               </div>
               )
             }/>
           <Container className="flex-grow-1 mt-5">
-            <Route path="/:id-:name" render={({ match }) => (
-              <Product match={match} data={productPage} productsActions={productsActions} />
-            )}/>
+            <Route path="/:id-:name" component={Product}/>
             <Route path="/cms/:id-:name" component={CmsPage}/>
             <Route path="/category/:id-:name" component={CategoryPage}/>
             <Route path="/manufacturer/:id-:name" component={ManufacturerPage}/>
@@ -59,16 +58,16 @@ class Page extends Component {
   }
 }
 
-function mapStateToProps({productsReducer}) {
+function mapStateToProps({generalReducer}) {
   return {
-    productsState: productsReducer
+    general: generalReducer
   }
 }
+
 function mapDispatchToProps(dispatch) {
   return {
-    productsActions: bindActionCreators(productsActions, dispatch),
+    generalActions: bindActionCreators(generalActions, dispatch)
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page);
-

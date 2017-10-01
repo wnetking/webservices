@@ -8,36 +8,10 @@ import ProductMiniature from './ProductMiniature'
 
 class ProductList extends Component {
   componentDidMount() {
-    let { productsActions, limit, categoryID, manufacturerID } = this.props
+    let {productsActions, limit, categoryID, manufacturerID, products} = this.props
 
-    productsActions.getFilterProductsList(limit, categoryID, manufacturerID);
+    productsActions.getFilterProductsList(limit, categoryID, manufacturerID, products);
   }
-
-  componentWillReceiveProps(nextProps) {
-    let { productsActions } = this.props
-
-    if (typeof nextProps.products !== 'undefined'
-      && typeof this.props.products !== 'undefined') {
-      if (!this.equel(nextProps.products, this.props.products)) {
-        productsActions.fetchSelected(nextProps.products);
-      }
-    }
-  }
-
-  equel = (arr, arr2) => {
-    if (arr.length !== arr2.length) return false
-    var on = 0;
-    for (var i = 0; i < arr.length; i++) {
-      for (var j = 0; j < arr2.length; j++) {
-        if (arr[i] === arr2[j]) {
-          on++
-          break
-        }
-      }
-    }
-    return on === arr.length ? true : false
-  }
-
 
   render() {
     let { fetching, data } = this.props.productsState.productList
@@ -49,19 +23,13 @@ class ProductList extends Component {
             <div>Loading...</div>
           </Col>
           :
-
-          typeof data === "undefined" ?
-            <Col>
-              <div>No products</div>
-            </Col>
-            :
+          typeof  data === "undefined" ?
+            <div>No products</div> :
             data.map((item, key) => (
               <Col xs="4" key={key} className="mb-4">
-                <ProductMiniature item={item} />
+                <ProductMiniature item={item}/>
               </Col>
             ))
-
-
         }
       </Row>
     )

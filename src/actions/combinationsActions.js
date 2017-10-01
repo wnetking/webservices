@@ -4,7 +4,8 @@ import{
 
 import {combinations} from '../utils/combinations/'
 
-export function getAll(array) {
+
+export function getCombinationData(id) {
   return (dispatch) => {
     dispatch({
       type   : COMBINATION_DATA_REQUEST,
@@ -13,12 +14,64 @@ export function getAll(array) {
       }
     })
 
-    combinations.getAll(array).then(data => {
+    combinations.getCombination(id).then(data => {
       dispatch({
         type   : FETCH_COMBINATION_DATA,
         payload: {
           data    : data,
           fetching: false
+        }
+      })
+    });
+  }
+}
+
+export function getOptionValues(array) {
+  return (dispatch) => {
+    dispatch({
+      type   : COMBINATION_DATA_REQUEST,
+      payload: {
+        optionValues: {
+          data    : null,
+          fetching: true
+        }
+      }
+    })
+
+    combinations.getOptionValues(array).then(data => {
+      dispatch({
+        type   : FETCH_COMBINATION_DATA,
+        payload: {
+          optionValues: {
+            data    : data,
+            fetching: false
+          }
+        }
+      })
+    });
+  }
+}
+
+export function getAllCombinations(array) {
+  return (dispatch) => {
+    dispatch({
+      type   : COMBINATION_DATA_REQUEST,
+      payload: {
+        allCombinations: {
+          data    : null,
+          fetching: true
+        }
+      }
+    })
+
+    combinations.getAll(array).then(data => {
+      dispatch({
+        type   : FETCH_COMBINATION_DATA,
+        payload: {
+          allCombinations: {
+            data    : data,
+            fetching: false
+          }
         }
       })
     });

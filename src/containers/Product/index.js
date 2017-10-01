@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+
 import {
   Row, Col, Badge
 } from 'reactstrap';
@@ -7,10 +10,11 @@ import renderHTML from 'react-render-html'
 import ImageSlider from '../../components/ImageSlider'
 import ProductsOnCategory from '../../components/ProductsOnCategory'
 import ProductTabs from '../../components/ProductTabs'
-import Combinations from '../../components/Combinations'
-import ProductList from '../../components/ProductList'
+import Combinations from '../../components/combinations/Combinations'
 
-export default class Product extends Component {
+import * as productsActions from '../../actions/productsActions'
+
+class Product extends Component {
   componentDidMount() {
     let {productsActions} = this.props
     let {id} = this.props.match.params
@@ -37,6 +41,7 @@ export default class Product extends Component {
 
   render() {
     let {fetching, data} = this.props.data
+    let {combinations, general} = this.props
 
     return (
       <Row>
@@ -47,21 +52,34 @@ export default class Product extends Component {
           :
           <Col>
             <Row>
-              <Col xs="6">
-                <ImageSlider productId={data.id} data={data.associations.images} altText={data.name}/>
+              <Col xs="12" sm="6">
+                {
+                  combinations.fetching ?
+                    null :
+                    typeof combinations.data.associations.images === "undefined" ?
+                      <ImageSlider productId={data.id} data={data.associations.images} altText={data.name}/>
+                      :
+                      <ImageSlider productId={data.id} data={combinations.data.associations.images} altText={data.name}/>
+                }
               </Col>
-              <Col xs="6">
+              <Col xs="12" sm="6">
                 <h2>{data.name}</h2>
                 <Badge color="success" className="mr-2 mb-3">{data.available_now}</Badge>
                 {parseInt(data.show_condition, 10) ? <Badge color="info">{data.condition}</Badge> : null}
-                <p>Price ${parseFloat(data.price).toFixed(2)}</p>
+                <p>Price&nbsp;&nbsp;
+                  {combinations.fetching ? null :
+                    ((parseFloat(data.price) + parseFloat(combinations.data.price)) * parseFloat(general.currencies.data.conversion_rate)).toFixed(2)
+                  }
+                  &nbsp;{general.currencies.fetching ? null :
+                    general.currencies.data.iso_code
+                  }
+                </p>
                 {renderHTML(data.description_short)}
                 <Combinations />
                 <ProductTabs productDesc={data.description} id_manufacturer={data.id_manufacturer}/>
               </Col>
               <Col xs="12" className="mt-5">
-                <ProductList limit={10} categoryID={data.id_category_default} manufacturerID={null}/>
-                {/* <ProductsOnCategory /> */}
+                <ProductsOnCategory />
               </Col>
             </Row>
           </Col>}
@@ -69,3 +87,19 @@ export default class Product extends Component {
     )
   }
 }
+
+
+function mapStateToProps({productsReducer, combinationsReducer, generalReducer}) {
+  return {
+    data        : productsReducer.productPage,
+    combinations: combinationsReducer,
+    general     : generalReducer
+  }
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    productsActions: bindActionCreators(productsActions, dispatch),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

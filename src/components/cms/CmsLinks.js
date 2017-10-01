@@ -3,14 +3,14 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Link} from 'react-router-dom'
 import {ListGroup, ListGroupItem} from 'reactstrap';
-import {getAll} from '../../actions/cmsActions'
+import {getCmsList} from '../../actions/cmsActions'
 
 
 class CmsLinks extends Component {
   componentDidMount() {
-    let {getAll} = this.props
+    let {getCmsList} = this.props
 
-    getAll();
+    getCmsList();
   }
 
   render() {
@@ -43,13 +43,13 @@ class CmsLinks extends Component {
 
 function mapStateToProps({cmsReducer}) {
   return {
-    cms: cmsReducer,
+    cms: cmsReducer.cmsLinks,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getAll: bindActionCreators(getAll, dispatch),
+    getCmsList: bindActionCreators(getCmsList, dispatch),
   }
 }
 

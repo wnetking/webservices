@@ -3,14 +3,17 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Link } from 'react-router-dom'
 import { ListGroup, ListGroupItem } from 'reactstrap';
-import { getAll } from '../../actions/categoryActions'
+import { getCategoryList } from '../../actions/categoryActions'
 
 
 class CategoryLinks extends Component {
   componentDidMount() {
-    let { getAll } = this.props
+    let { getCategoryList } = this.props
+    let { data } = this.props.category
 
-    getAll();
+    if(data === null){
+      getCategoryList();
+    }
   }
   
   render() {
@@ -43,13 +46,13 @@ class CategoryLinks extends Component {
 
 function mapStateToProps({ categoryReducer }) {
   return {
-    category: categoryReducer,
+    category: categoryReducer.categoryList,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getAll: bindActionCreators(getAll, dispatch),
+    getCategoryList: bindActionCreators(getCategoryList, dispatch),
   }
 }
 

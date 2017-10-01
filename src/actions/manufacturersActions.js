@@ -42,9 +42,7 @@ export function getOne(id) {
       }
     })
 
-    manufacturer.getInfo(id).then(data => {
-      console.log(data)
-
+    manufacturer.getOne(id).then(data => {
       dispatch({
         type   : FETCH_MANUFACTURER_DATA,
         payload: {
@@ -67,7 +65,7 @@ export function reset() {
   }
 }
 
-export function getAll() {
+export function getFilterManufacturersList(limit = null) {
   return (dispatch) => {
     dispatch({
       type   : MANUFACTURER_DATA_REQUEST,
@@ -77,7 +75,7 @@ export function getAll() {
       }
     })
 
-    manufacturer.all().then(data => {
+    manufacturer.getFilterManufacturersList(limit).then(data => {
       dispatch({
         type   : FETCH_MANUFACTURER_DATA,
         payload: {

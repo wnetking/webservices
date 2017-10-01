@@ -1,9 +1,15 @@
-import GET from '../GET'
-let get = new GET('stores');
+import config from "../config.json"
 
 const stores = {
-  all() {
-    return get.collections()
+  getAllStores(){
+    return fetch(`${config.apiUrl}stores/` +
+      `?display=[id,name,latitude,longitude,address1]` +
+      `&ws_key=${config.apiKey}&${config.dataType}`)
+      .then(function (response) {
+        return response.json();
+      }).then(d => {
+        return d.stores;
+      })
   }
 }
 

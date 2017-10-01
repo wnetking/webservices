@@ -14,7 +14,7 @@ export function getAll() {
       }
     })
 
-    stores.all().then(data => {
+    stores.getAllStores().then(data => {
       dispatch({
         type   : FETCH_STORES_DATA,
         payload: {

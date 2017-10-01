@@ -9,17 +9,17 @@ import {
   FETCH_PRODUCT_OPTIONS_VALUE
 } from '../constants'
 
-import { products } from '../utils/products/'
-import { category } from '../utils/category/'
+import {products} from '../utils/products/'
+import {category} from '../utils/category/'
 
 export function fetchAll() {
   return (dispatch) => {
     products.all().then(data => {
       dispatch({
-        type: FETCH_PRODUCTS,
+        type   : FETCH_PRODUCTS,
         payload: {
           productList: {
-            data: data,
+            data    : data,
             fetching: false
           }
         }
@@ -30,10 +30,10 @@ export function fetchAll() {
 export function fetchSelected(array) {
   return (dispatch) => {
     dispatch({
-      type: FETCH_PRODUCTS,
+      type   : FETCH_PRODUCTS,
       payload: {
         productPage: {
-          data: null,
+          data    : null,
           fetching: true
         }
       }
@@ -41,10 +41,10 @@ export function fetchSelected(array) {
 
     products.selected(array).then(data => {
       dispatch({
-        type: FETCH_PRODUCTS,
+        type   : FETCH_PRODUCTS,
         payload: {
           productList: {
-            data: data,
+            data    : data,
             fetching: false
           }
         }
@@ -53,23 +53,23 @@ export function fetchSelected(array) {
   }
 }
 
-export function getFilterProductsList(limit = 6, category = null, manufacturer = null) {
+export function getFilterProductsList(limit = 6, category = null, manufacturer = null, productsArray = null) {
   return (dispatch) => {
     dispatch({
-      type: FETCH_PRODUCTS,
+      type   : FETCH_PRODUCTS,
       payload: {
         productList: {
-          data: null,
+          data    : null,
           fetching: true
         }
       }
     })
-    products.getFilterProductsList(limit, category, manufacturer).then(d => {
+    products.getFilterProductsList(limit, category, manufacturer, productsArray).then(d => {
       dispatch({
-        type: FETCH_PRODUCTS,
+        type   : FETCH_PRODUCTS,
         payload: {
           productList: {
-            data: d,
+            data    : d,
             fetching: false
           }
         }
@@ -81,10 +81,10 @@ export function getFilterProductsList(limit = 6, category = null, manufacturer =
 export function fetchOne(id) {
   return (dispatch) => {
     dispatch({
-      type: FETCH_PRODUCT_PAGE_DATA_REQUEST,
+      type   : FETCH_PRODUCT_PAGE_DATA_REQUEST,
       payload: {
         productPage: {
-          data: null,
+          data    : null,
           fetching: true
         }
       }
@@ -92,10 +92,10 @@ export function fetchOne(id) {
 
     products.one(id).then(data => {
       dispatch({
-        type: FETCH_PRODUCT_PAGE_DATA,
+        type   : FETCH_PRODUCT_PAGE_DATA,
         payload: {
           productPage: {
-            data: data.product,
+            data    : data.product,
             fetching: false
           }
         }
@@ -105,10 +105,10 @@ export function fetchOne(id) {
 }
 export function resetProductPageData() {
   return {
-    type: FETCH_PRODUCT_PAGE_DATA_RESET,
+    type   : FETCH_PRODUCT_PAGE_DATA_RESET,
     payload: {
       productPage: {
-        data: null,
+        data    : null,
         fetching: true
       }
     }
@@ -119,29 +119,27 @@ export function resetProductPageData() {
 export function fetchOnCategory(id) {
   return (dispatch) => {
     category.getInfo(id).then(catData => {
-      category.getProductsByCategoryId(id).then(data => {
-        dispatch({
-          type: FETCH_PRODUCT_ON_CATEGORY,
-          payload: {
-            productsOnCategory: {
-              data: data,
-              name: catData.category.name,
-              fetching: false
-            }
+      dispatch({
+        type   : FETCH_PRODUCT_ON_CATEGORY,
+        payload: {
+          productsOnCategory: {
+            data    : catData.category.associations.products,
+            name    : catData.category.name,
+            fetching: false
           }
-        })
-      });
+        }
+      })
     });
   }
 }
 
 export function resetFetchOnCategory() {
   return {
-    type: FETCH_PRODUCT_ON_CATEGORY_REQUEST,
+    type   : FETCH_PRODUCT_ON_CATEGORY_REQUEST,
     payload: {
       productsOnCategory: {
-        data: null,
-        name: null,
+        data    : null,
+        name    : null,
         fetching: true
       }
     }
@@ -152,11 +150,11 @@ export function fetchProductOption() {
   return (dispatch) => {
     console.log('FETCH_PRODUCT_OPTIONS')
     dispatch({
-      type: FETCH_PRODUCT_OPTIONS,
+      type   : FETCH_PRODUCT_OPTIONS,
       payload: {
         productOptions: {
-          data: null,
-          name: null,
+          data    : null,
+          name    : null,
           fetching: false
         }
       }
@@ -168,11 +166,11 @@ export function fetchProductOptionValue() {
   return (dispatch) => {
     console.log('FETCH_PRODUCT_OPTIONS_VALUE')
     dispatch({
-      type: FETCH_PRODUCT_OPTIONS_VALUE,
+      type   : FETCH_PRODUCT_OPTIONS_VALUE,
       payload: {
         productOptionValues: {
-          data: null,
-          name: null,
+          data    : null,
+          name    : null,
           fetching: false
         }
       }

@@ -3,8 +3,16 @@ import{
 } from '../constants/combinations'
 
 const initState = {
-  data    : null,
-  fetching: true
+  data        : null,
+  fetching    : true,
+  optionValues: {
+    data    : null,
+    fetching: true
+  },
+  allCombinations: {
+    data    : null,
+    fetching: true
+  }
 }
 
 export default function combinationsReducer(state = initState, action) {

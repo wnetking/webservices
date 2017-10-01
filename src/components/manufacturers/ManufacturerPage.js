@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux'
 import renderHTML from 'react-render-html'
 import {getOne} from '../../actions/manufacturersActions'
 import {images} from '../../utils/images/'
+import ProductList from '../ProductList'
 
 class ManufacturerPage extends Component {
   componentDidMount() {
@@ -25,7 +26,8 @@ class ManufacturerPage extends Component {
           <div>
             <h1>{data.name}</h1>
             <img src={images.getManufacturersImg(data.id)} alt={data.name}/>
-            <p>{renderHTML(data.description)}</p>
+            <div>{renderHTML(data.description)}</div>
+            <ProductList limit={null} categoryID={null} manufacturerID={data.id} />
           </div>
         }
       </div>
