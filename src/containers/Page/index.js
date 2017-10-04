@@ -13,7 +13,7 @@ import {CategoryPage} from '../../components/category/'
 import Manufacturers from '../../components/manufacturers/Manufacturers'
 import ManufacturerPage from '../../components/manufacturers/ManufacturerPage'
 import Stores from '../../components/Stores'
-import {SingIn,UserPage} from '../User/'
+import {SingIn,UserPage, Registration} from '../User/'
 import ImageSlider from '../../components/imageslider/ImageSlider'
 
 
@@ -38,7 +38,7 @@ class Page extends Component {
                   <h2 className="text-center mb-4">All Products</h2>
                   <ProductList limit={6} categoryID={null} manufacturerID={null} />
                 </Container>
-                <Stores />
+                {/* <Stores /> */}
                 <Container className="flex-grow-1">
                   <h2 className="text-center mb-4">Brands</h2>
                   <Manufacturers limit={null}/>
@@ -52,6 +52,7 @@ class Page extends Component {
             <Route path="/category/:id-:name" component={CategoryPage}/>
             <Route path="/manufacturer/:id-:name" component={ManufacturerPage}/>
             <Route path="/login" component={SingIn}/>
+            <Route path="/registration" component={Registration}/>
             <Route path="/user" component={UserPage}/>
           </Container>
           <Footer />
