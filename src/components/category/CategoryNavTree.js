@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { Nav, NavItem, NavDropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
+import React, {Component} from 'react';
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
+import {Nav, NavItem, NavDropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink} from 'reactstrap';
 
 
 class CategoryNavTree extends Component {
@@ -21,14 +21,14 @@ class CategoryNavTree extends Component {
   }
 
   render() {
-    let { fetching, data } = this.props.category
+    let {fetching, data} = this.props.category
 
     return (
       <div>
         {fetching ?
           <div>Loading ...</div>
           :
-          <NavDropdown className="left-auto mr-5" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+          <NavDropdown className="left-auto mr-1" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
             <DropdownToggle nav caret>
               Category
             </DropdownToggle>
@@ -42,7 +42,6 @@ class CategoryNavTree extends Component {
                   </DropdownItem>
                 ))
               }
-
             </DropdownMenu>
           </NavDropdown>
         }
@@ -51,15 +50,14 @@ class CategoryNavTree extends Component {
   }
 }
 
-function mapStateToProps({ categoryReducer }) {
+function mapStateToProps({categoryReducer}) {
   return {
     category: categoryReducer.categoryList,
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-  }
+  return {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryNavTree);

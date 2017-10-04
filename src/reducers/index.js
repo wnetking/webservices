@@ -10,6 +10,7 @@ import storesReducer from './stores'
 import cmsReducer from './cms'
 import imagesReducer from './images'
 import generalReducer from './general'
+import userReducer from './user'
 
 export default combineReducers({
   generalReducer,
@@ -22,5 +23,6 @@ export default combineReducers({
   categoryReducer,
   contactsReducer,
   storesReducer,
+  userReducer,
   imagesliderReducer
 })

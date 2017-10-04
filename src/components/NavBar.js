@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav} from 'reactstrap';
+import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem} from 'reactstrap';
 import {Link} from 'react-router-dom'
 
 import CategoryNavTree from './category/CategoryNavTree'
-
+import {LoginLink} from './user/'
 import {images} from '../utils/images/'
 
 export default class NavBar extends Component {
@@ -11,7 +11,7 @@ export default class NavBar extends Component {
     super(props);
 
     this.toggle = this.toggle.bind(this);
-    this.state  = {
+    this.state = {
       isOpen: false
     };
   }
@@ -33,7 +33,8 @@ export default class NavBar extends Component {
         </NavbarBrand>
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
-           <CategoryNavTree />
+            <CategoryNavTree />
+            <LoginLink />
           </Nav>
         </Collapse>
       </Navbar>
