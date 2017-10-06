@@ -9,8 +9,11 @@ try {
 
   if (count($existCustomer->customers->customer) > 0) {
     $jsonstring = json_encode(array(
-    'message' => 'User with email ' . $_GET["email"] . ' exist'
-    ), JSON_PRETTY_PRINT);
+    'isLogin' => false,
+    'message' => [
+    'show' => true,
+    'text' => 'User with email ' . $_GET["email"] . ' exist'
+    ]), JSON_PRETTY_PRINT);
 
     echo $jsonstring;
     exit;
@@ -25,6 +28,11 @@ try {
   $xml->customer->email = $_GET["email"];
 
   // Others
+
+  if (isset($GET["birthday"])) {
+    $xml->customer->birthday = $GET["birthday"];
+  }
+
   if (isset($GET["id_lang"])) {
     $xml->customer->id_lang = $GET["id_lang"];
   }
@@ -37,9 +45,9 @@ try {
   if (isset($GET["id_group"])) {
     $xml->customer->id_default_group = $_GET["id_group"]; // Customers
   }
-  if (isset($GET["id_group"])) {
-    $xml->customer->active = 1;
-  }
+  
+  $xml->customer->active = 1;
+
   if (isset($GET["newsletter"])) {
     $xml->customer->newsletter = $_GET["newsletter"];
   }
@@ -69,7 +77,8 @@ try {
   $id_customer = $xml->customer->id;
 
   $jsonstring = json_encode(array(
-  'id_customer' => (int)$id_customer
+  'isLogin' => true,
+  'user_id' => (int)$id_customer
   ), JSON_PRETTY_PRINT);
 
   echo $jsonstring;

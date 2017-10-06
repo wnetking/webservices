@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 
 import CategoryNavTree from './category/CategoryNavTree'
 import {LoginLink} from './user/'
+import {CartLink} from './cart/'
 import {images} from '../utils/images/'
 
 export default class NavBar extends Component {
@@ -35,6 +36,7 @@ export default class NavBar extends Component {
           <Nav className="ml-auto" navbar>
             <CategoryNavTree />
             <LoginLink />
+            <CartLink />
           </Nav>
         </Collapse>
       </Navbar>

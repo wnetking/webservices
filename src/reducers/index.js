@@ -11,6 +11,7 @@ import cmsReducer from './cms'
 import imagesReducer from './images'
 import generalReducer from './general'
 import userReducer from './user'
+import cartReducer from './cart'
 
 export default combineReducers({
   generalReducer,
@@ -24,5 +25,6 @@ export default combineReducers({
   contactsReducer,
   storesReducer,
   userReducer,
+  cartReducer,
   imagesliderReducer
 })

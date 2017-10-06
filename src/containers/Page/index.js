@@ -13,17 +13,22 @@ import {CategoryPage} from '../../components/category/'
 import Manufacturers from '../../components/manufacturers/Manufacturers'
 import ManufacturerPage from '../../components/manufacturers/ManufacturerPage'
 import Stores from '../../components/Stores'
-import {SingIn,UserPage, Registration} from '../User/'
+import {SingIn, UserPage, Registration} from '../User/'
+import {CartPage} from '../Cart/'
 import ImageSlider from '../../components/imageslider/ImageSlider'
 
 
 import * as generalActions from '../../actions/generalActions'
+import {requestLogin} from '../../actions/userActions'
+
 
 class Page extends Component {
   componentWillMount() {
-    let {generalActions} = this.props
+    let {generalActions, requestLogin} = this.props
 
     generalActions.getActiveCurrency();
+    requestLogin();
+    
   }
 
   render() {
@@ -54,6 +59,7 @@ class Page extends Component {
             <Route path="/login" component={SingIn}/>
             <Route path="/registration" component={Registration}/>
             <Route path="/user" component={UserPage}/>
+            <Route path="/cart" component={CartPage}/>
           </Container>
           <Footer />
         </main>
@@ -70,7 +76,8 @@ function mapStateToProps({generalReducer}) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    generalActions: bindActionCreators(generalActions, dispatch)
+    generalActions : bindActionCreators(generalActions, dispatch),
+    requestLogin   : bindActionCreators(requestLogin, dispatch)
   }
 }
 

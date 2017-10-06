@@ -11,6 +11,7 @@ import ImageSlider from '../../components/ImageSlider'
 import ProductsOnCategory from '../../components/ProductsOnCategory'
 import ProductTabs from '../../components/ProductTabs'
 import Combinations from '../../components/combinations/Combinations'
+import AddToCart from '../../components/cart/AddToCart'
 
 import * as productsActions from '../../actions/productsActions'
 
@@ -76,6 +77,7 @@ class Product extends Component {
                 </p>
                 {renderHTML(data.description_short)}
                 <Combinations />
+                <AddToCart product_id={data.id}/>
                 <ProductTabs productDesc={data.description} id_manufacturer={data.id_manufacturer}/>
               </Col>
               <Col xs="12" className="mt-5">
