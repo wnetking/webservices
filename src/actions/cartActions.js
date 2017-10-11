@@ -85,7 +85,6 @@ export function fetchCartOnLoad() {
             data: d
           }
         })
-        console.log(d);
       })
     }
   }
@@ -94,9 +93,6 @@ export function fetchCartOnLoad() {
 export function getCartItemData(id_product, id_product_attribute, quantity) {
   return (dispatch, getState) => {
     cart.getCartItemData(id_product, id_product_attribute, quantity).then(d => {
-
-      console.log([].concat(getState().cartReducer.cartItems, d));
-
       dispatch({
         type: CART_ITEM_DATA_REQUEST,
         payload: {

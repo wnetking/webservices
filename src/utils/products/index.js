@@ -34,5 +34,17 @@ export const products = {
     }).then(d => {
       return d.products;
     })
+  },
+
+  getProductInfo(id){
+    return fetch(`${config.apiUrl}/products/` +
+    `?display=[id_default_image,price,wholesale_price,name,show_price,link_rewrite]` +
+    `&filter[active]=[1]&filter[id]=${id}` +
+    `&ws_key=${config.apiKey}&${config.dataType}`)
+    .then(function (response) {
+      return response.json();
+    }).then(d => {
+      return d.products;
+    })
   }
 }

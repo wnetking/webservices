@@ -1,5 +1,6 @@
 import config from "../config.json"
 import { combinations } from '../combinations'
+import { products } from '../products/'
 let { getCombination, getOptionValues } = combinations
 
 const cart = {
@@ -45,12 +46,17 @@ const cart = {
     return new Promise((resolve, reject) => {
       getCombination(id_product_attribute).then(d => {
         getOptionValues(d.associations.product_option_values).then(data => {
-          let img = typeof d.associations.images === "undefined" ? [] : d.associations.images.slice()
-          resolve([{
-            images: img,
-            product_option_values: data,
-            quantity: quantity
-          }])
+          products.getProductInfo(id_product).then(product_d => {
+            let img = typeof d.associations.images === "undefined" ?
+             [{ id: product_d[0].id_default_image }] : d.associations.images.slice();
+            resolve([{
+              images: img,
+              product_option_values: data,
+              quantity: quantity,
+              id_product: id_product,
+              product_info: product_d
+            }])
+          })
         })
       }).catch(reject);
     });
