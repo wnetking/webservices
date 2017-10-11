@@ -26,9 +26,9 @@ class Contacts extends Component {
               {
                 data.map((item, key) => (
                   <ListGroupItem key={key}>
-                    <ListGroupItemHeading>{item.name}</ListGroupItemHeading>
+                    <ListGroupItemHeading>{item.name[0].value}</ListGroupItemHeading>
                     <ListGroupItemText>
-                      {item.description}
+                      {item.description[0].value}
                     </ListGroupItemText>
                     <a href={`mailto:${item.email}`}>{item.email}</a>
                   </ListGroupItem>

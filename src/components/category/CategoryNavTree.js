@@ -36,8 +36,8 @@ class CategoryNavTree extends Component {
               {
                 data.map((item, key) => (
                   <DropdownItem key={key}>
-                    <Link className="nav-link" to={`/category/${item.id}-${item.link_rewrite}`}>
-                      {item.name}
+                    <Link className="nav-link" to={`/category/${item.id}-${item.link_rewrite[0].value}`}>
+                      {item.name[0].value}
                     </Link>
                   </DropdownItem>
                 ))

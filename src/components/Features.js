@@ -26,8 +26,8 @@ class Features extends Component {
             {
               data.map((item, key)=>(
                 <tr key={key}>
-                  <td>{item.name}</td>
-                  <td>{item.value}</td>
+                  <td>{item.name[0].value}</td>
+                  <td>{item.value[0].value}</td>
                 </tr>
               ))
             }

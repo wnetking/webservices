@@ -27,8 +27,8 @@ class CmsLinks extends Component {
               {
                 data.map((item, key) => (
                   <ListGroupItem key={key}>
-                    <Link to={`/cms/${item.id}-${item.link_rewrite}`}>
-                      {item.meta_title}
+                    <Link to={`/cms/${item.id}-${item.link_rewrite[0].value}`}>
+                      {item.meta_title[0].value}
                     </Link>
                   </ListGroupItem>
                 ))

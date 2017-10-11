@@ -1,7 +1,9 @@
 import config from "../config.json"
+import { combinations } from '../combinations'
+let { getCombination, getOptionValues } = combinations
 
 const cart = {
-  addProduct(data){
+  addProduct(data) {
     return fetch(`${config.postRequest.url}updateCart.php?` +
       `update_cart=${data.cart_id}` +
       `&id_currency=${data.id_currency}` +
@@ -15,10 +17,10 @@ const cart = {
         return res.json();
       })
   },
-  addCart(data){
+  addCart(data) {
     return fetch(`${config.postRequest.url}addCart.php?` +
       `id_currency=${data.id_currency}` +
-      `&id_customer=${data.id_customer}` +
+      `${typeof data.id_customer === "undefined" ? `` : `&id_customer=${data.id_customer}`}` +
       `&id_lang=${data.id_lang}` +
       `&id_product=${data.id_product}` +
       `&id_product_attribute=${data.id_product_attribute}` +
@@ -28,15 +30,30 @@ const cart = {
         return res.json();
       })
   },
-  userCartExist(user_id = 1){
+  userCartExist(user_id = 1) {
     return fetch(`${config.apiUrl}carts/?display=[id]&filter[id_customer]=${user_id}&ws_key=${config.apiKey}&${config.dataType}`)
       .then(res => res.json())
       .then(d => typeof d.carts === "undefined" ? false : d.carts[0])
   },
-  getCart(id){
+  getCart(id) {
     return fetch(`${config.apiUrl}carts/${id}?ws_key=${config.apiKey}&${config.dataType}`)
       .then(res => res.json())
       .then(d => d.cart);
+  },
+
+  getCartItemData(id_product, id_product_attribute, quantity = 0) {
+    return new Promise((resolve, reject) => {
+      getCombination(id_product_attribute).then(d => {
+        getOptionValues(d.associations.product_option_values).then(data => {
+          let img = typeof d.associations.images === "undefined" ? [] : d.associations.images.slice()
+          resolve([{
+            images: img,
+            product_option_values: data,
+            quantity: quantity
+          }])
+        })
+      }).catch(reject);
+    });
   }
 }
 

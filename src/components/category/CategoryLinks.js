@@ -30,8 +30,8 @@ class CategoryLinks extends Component {
               {
                 data.map((item, key) => (
                   <ListGroupItem key={key}>
-                    <Link to={`/category/${item.id}-${item.link_rewrite}`}>
-                      {item.name}
+                    <Link to={`/category/${item.id}-${item.link_rewrite[0].value}`}>
+                      {item.name[0].value}
                     </Link>
                   </ListGroupItem>
                 ))

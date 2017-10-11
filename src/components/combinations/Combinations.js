@@ -54,7 +54,7 @@ class Combinations extends Component {
     if (!optionValues.fetching) {
       optionValues.data.forEach(item => {
         if (item.id === parseInt(id, 10)) {
-          returnData = item.name;
+          returnData = item.name[0].value;
         }
       })
     }

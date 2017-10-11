@@ -58,15 +58,15 @@ class Product extends Component {
                   combinations.fetching ?
                     null :
                     typeof combinations.data.associations.images === "undefined" ?
-                      <ImageSlider productId={data.id} data={data.associations.images} altText={data.name}/>
+                      <ImageSlider productId={data.id} data={data.associations.images} altText={data.name[0].value}/>
                       :
-                      <ImageSlider productId={data.id} data={combinations.data.associations.images} altText={data.name}/>
+                      <ImageSlider productId={data.id} data={combinations.data.associations.images} altText={data.name[0].value}/>
                 }
               </Col>
               <Col xs="12" sm="6">
-                <h2>{data.name}</h2>
-                <Badge color="success" className="mr-2 mb-3">{data.available_now}</Badge>
-                {parseInt(data.show_condition, 10) ? <Badge color="info">{data.condition}</Badge> : null}
+                <h2>{data.name[0].value}</h2>
+                <Badge color="success" className="mr-2 mb-3">{data.available_now[0].value}</Badge>
+                {parseInt(data.show_condition, 10) ? <Badge color="info">{data.condition[0].value}</Badge> : null}
                 <p>Price&nbsp;&nbsp;
                   {combinations.fetching ? null :
                     ((parseFloat(data.price) + parseFloat(combinations.data.price)) * parseFloat(general.currencies.data.conversion_rate)).toFixed(2)
@@ -75,10 +75,10 @@ class Product extends Component {
                     general.currencies.data.iso_code
                   }
                 </p>
-                {renderHTML(data.description_short)}
+                {renderHTML(data.description_short[0].value)}
                 <Combinations />
                 <AddToCart product_id={data.id}/>
-                <ProductTabs productDesc={data.description} id_manufacturer={data.id_manufacturer}/>
+                <ProductTabs productDesc={data.description[0].value} id_manufacturer={data.id_manufacturer}/>
               </Col>
               <Col xs="12" className="mt-5">
                 <ProductsOnCategory />

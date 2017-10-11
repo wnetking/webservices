@@ -26,7 +26,7 @@ class ProductList extends Component {
           typeof  data === "undefined" ?
             <div>No products</div> :
             data.map((item, key) => (
-              <Col xs="6" sm="4" xl="3" key={key} className="mb-4">
+              <Col xs="12" sm="6" md="4" xl="3" key={key} className="mb-4">
                 <ProductMiniature item={item}/>
               </Col>
             ))

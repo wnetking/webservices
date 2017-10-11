@@ -20,9 +20,9 @@ const user = {
       `email=${data.get("email")}&passwd=${data.get("passwd")}` +
       `&lastname=${data.get("lastname")}&firstname=${data.get("firstname")}` +
       `${typeof data.get("birthday") === "" ? `` : `&birthday=${data.get("birthday")}`}` +
-      `${typeof data.get("id_gender") === null ? `` : `&id_gender=${data.get("id_gender")}`}` +
-      `${typeof data.get("optin") === null ? `` : `&optin=${data.get("optin")}`}` +
-      `${typeof data.get("newsletter") === null ? `` : `&newsletter=${data.get("newsletter")}`}`
+      `${data.get("id_gender") === null ? `` : `&id_gender=${data.get("id_gender")}`}` +
+      `${data.get("optin") === null ? `` : `&optin=${data.get("optin")}`}` +
+      `${data.get("newsletter") === null ? `` : `&newsletter=${data.get("newsletter")}`}`
     )
       .then(function (res) {
         return res.json();
