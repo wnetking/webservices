@@ -15,18 +15,30 @@ try {
   $xml = $webService->get($opt);
 
   if (isset($xml->cart->associations->cart_rows->cart_row)) {
-    $index = 0;
-    foreach ($xml->cart->associations->cart_rows->cart_row as $value) {
-      ++$index;
-
-      if ($value->id_product == $_GET["id_product"]) {
-        updateProductOnCart($value);
-        break;
-      } else if (count($xml->cart->associations->cart_rows->cart_row) == $index) {
-        addProductToCart($xml);
-        break;
+    if($_GET['quantity'] != 0){
+      $index = 0;
+      foreach ($xml->cart->associations->cart_rows->cart_row as $value) {
+        ++$index;
+  
+        if ($value->id_product == $_GET["id_product"] && $value->id_product_attribute == $_GET["id_product_attribute"]) {
+          updateProductOnCart($value);
+          break;
+        } else if (count($xml->cart->associations->cart_rows->cart_row) == $index) {
+          addProductToCart($xml);
+          break;
+        }
+      }
+    }else{
+      $index = 0;
+      foreach ($xml->cart->associations->cart_rows->cart_row as $value) {
+        if ($value->id_product == $_GET["id_product"]) {
+          unset($xml->cart->associations->cart_rows->cart_row[$index]);
+          break;
+        }
+        ++$index;
       }
     }
+
   } else {
     addProductToCart($xml);
   }
@@ -71,22 +83,16 @@ function updateProductOnCart(&$row)
 
 function addNoRequiredFields(&$xml)
 {
-  if (isset($_GET["id_address"])) {
-    $xml->cart->id_address_delivery = $_GET["id_address"];
+  if (isset($_GET["id_address_delivery"])) {
+    $xml->cart->id_address_delivery = $_GET["id_address_delivery"];
   }
-  if (isset($_GET["id_address"])) {
-    $xml->cart->id_address_invoice = $_GET["id_address"];
+  if (isset($_GET["id_address_delivery"])) {
+    $xml->cart->id_address_invoice = $_GET["id_address_delivery"];
   }
   if (isset($_GET["id_customer"])) {
     $xml->cart->id_customer = $_GET["id_customer"];
   }
   if (isset($_GET["id_carrier"])) {
     $xml->cart->carrier = $_GET["id_carrier"];
-  }
-  if (isset($_GET["date_now"])) {
-    $xml->cart->date_add = $_GET["date_now"];
-  }
-  if (isset($_GET["date_now"])) {
-    $xml->cart->date_upd = $_GET["date_now"];
   }
 }
