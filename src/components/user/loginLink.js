@@ -7,6 +7,7 @@ import {connect} from 'react-redux'
 class LoginLink extends Component {
   render() {
     let {login} = this.props.userState
+    
     return (
       <NavItem>
         {login.isLogin ?

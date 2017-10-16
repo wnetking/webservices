@@ -40,18 +40,18 @@ class Page extends Component {
               <div className="flex-grow-1">
                 {/* <ImageSlider /> */}
                 <Container className="flex-grow-1 mb-5">
-                  <h2 className="text-center mb-4">All Products</h2>
-                  <ProductList limit={6} categoryID={null} manufacturerID={null} />
+                  {/* <h2 className="text-center mb-4">All Products</h2> */}
+                  {/* <ProductList limit={6} categoryID={null} manufacturerID={null} /> */}
                 </Container>
                 {/* <Stores /> */}
                 <Container className="flex-grow-1">
-                  <h2 className="text-center mb-4">Brands</h2>
-                  <Manufacturers limit={null}/>
+                  {/* <h2 className="text-center mb-4">Brands</h2> */}
+                  {/* <Manufacturers limit={null}/> */}
                 </Container>
               </div>
               )
             }/>
-          <Container className="flex-grow-1 mt-5">
+          {/* <Container className="flex-grow-1 mt-5">
             <Route path="/:id-:name" component={Product}/>
             <Route path="/cms/:id-:name" component={CmsPage}/>
             <Route path="/category/:id-:name" component={CategoryPage}/>
@@ -61,7 +61,7 @@ class Page extends Component {
             <Route path="/user" component={UserPage}/>
             <Route path="/cart" component={CartPage}/>
           </Container>
-          <Footer />
+          <Footer /> */}
         </main>
       </Router>
     );

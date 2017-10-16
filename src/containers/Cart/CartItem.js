@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Media } from 'reactstrap';
-import { images } from '../../utils/images/'
+import { images } from '../../api/images/'
 // import {getCartItemData} from '../../actions/cartActions'
 
 

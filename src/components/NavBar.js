@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import CategoryNavTree from './category/CategoryNavTree'
 import {LoginLink} from './user/'
 import {CartLink} from './cart/'
-import {images} from '../utils/images/'
+import {images} from '../api/images/'
 
 export default class NavBar extends Component {
   constructor(props) {

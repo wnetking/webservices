@@ -2,7 +2,7 @@ import{
   FETCH_GENERAL_DATA, GENERAL_DATA_REQUEST
 } from '../constants/general'
 
-import general from '../utils/general'
+import general from '../api/general'
 
 
 export function getActiveCurrency() {

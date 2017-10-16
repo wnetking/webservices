@@ -3,7 +3,7 @@ import{
 } from '../constants/stores'
 
 
-import stores from '../utils/stores/'
+import stores from '../api/stores/'
 
 export function getAll() {
   return (dispatch) => {

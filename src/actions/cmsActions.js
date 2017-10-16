@@ -2,7 +2,7 @@ import{
   FETCH_CMS_DATA, CMS_DATA_REQUEST
 } from '../constants/cms'
 
-import cms from '../utils/cms/'
+import cms from '../api/cms/'
 
 export function getCmsData(id) {
   return (dispatch) => {

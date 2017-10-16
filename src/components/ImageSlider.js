@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Siema from 'siema';
-import { images } from '../utils/images/'
+import { images } from '../api/images/'
 
 export default class ImageSlider extends Component {
   componentDidMount() {

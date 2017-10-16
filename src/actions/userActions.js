@@ -2,8 +2,8 @@ import{
   FETCH_USER_DATA, USER_LOGIN_REQUEST, USER_REGISTRATION_REQUEST, USER_LOGOUT
 } from '../constants/user'
 
-import user from '../utils/user/'
-import localStorage from '../utils/localStorage/'
+import user from '../api/user/'
+import localStorage from '../api/localStorage/'
 
 export function loginUser(data) {
   return (dispatch) => {

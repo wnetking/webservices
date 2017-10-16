@@ -10,7 +10,7 @@ import {
   CardSubtitle
 } from 'reactstrap';
 
-import {images} from '../../utils/images/'
+import {images} from '../../api/images/'
 
 class Manufacturers extends Component {
   componentDidMount() {

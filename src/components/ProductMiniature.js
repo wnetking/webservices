@@ -5,7 +5,7 @@ import {
 } from 'reactstrap';
 import {Link} from 'react-router-dom'
 
-import {images} from '../utils/images/'
+import {images} from '../api/images/'
 
 
 export default function ProductMiniature({item}) {

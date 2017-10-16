@@ -3,7 +3,7 @@ import{
 } from '../constants/contacts'
 
 
-import contacts from '../utils/contacts/'
+import contacts from '../api/contacts/'
 
 export function getAll(array) {
   return (dispatch) => {

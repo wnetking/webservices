@@ -9,8 +9,8 @@ import {
   FETCH_PRODUCT_OPTIONS_VALUE
 } from '../constants'
 
-import {products} from '../utils/products/'
-import {category} from '../utils/category/'
+import {products} from '../api/products/'
+import category from '../api/category/'
 
 export function fetchAll() {
   return (dispatch) => {

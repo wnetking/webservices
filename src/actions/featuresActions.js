@@ -2,7 +2,7 @@ import{
   FETCH_FEATURES_DATA, FEATURES_DATA_REQUEST
 } from '../constants/features'
 
-import {features} from '../utils/features/'
+import {features} from '../api/features/'
 
 export function getAll(array) {
   return (dispatch) => {

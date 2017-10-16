@@ -2,7 +2,7 @@ import {
   FETCH_CATEGORY_DATA, CATEGORY_DATA_REQUEST
 } from '../constants/category'
 
-import {category} from '../utils/category/'
+import category from '../api/category/'
 
 export function getCategoryData(id) {
   return (dispatch) => {

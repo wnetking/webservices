@@ -2,7 +2,7 @@ import{
   FETCH_MANUFACTURER_DATA, MANUFACTURER_DATA_REQUEST
 } from '../constants/manufacturer'
 
-import {manufacturer} from '../utils/manufacturers/'
+import {manufacturer} from '../api/manufacturers/'
 
 export function getInfo(id) {
   return (dispatch) => {

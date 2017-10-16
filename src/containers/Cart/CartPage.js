@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { Link, Redirect } from 'react-router-dom'
 import { Col, Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import CartItem from './CartItem'
-import { images } from '../../utils/images/'
+import { images } from '../../api/images/'
 import { addProductToCart } from '../../actions/cartActions'
 import { getCartItemData } from '../../actions/cartActions'
 

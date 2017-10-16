@@ -2,7 +2,7 @@ import{
   FETCH_COMBINATION_DATA, COMBINATION_DATA_REQUEST
 } from '../constants/combinations'
 
-import {combinations} from '../utils/combinations/'
+import {combinations} from '../api/combinations/'
 
 
 export function getCombinationData(id) {

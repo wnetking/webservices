@@ -2,7 +2,7 @@ import{
   CMS_IMAGE_SLIDER_REQUEST, FETCH_IMAGE_SLIDER_DATA
 } from '../constants/imageslider'
 
-import imageslider from '../utils/imageslider/'
+import imageslider from '../api/imageslider/'
 
 export function getAll() {
   return (dispatch) => {

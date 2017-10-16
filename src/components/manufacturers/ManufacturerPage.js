@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import renderHTML from 'react-render-html'
 import {getOne} from '../../actions/manufacturersActions'
-import {images} from '../../utils/images/'
+import {images} from '../../api/images/'
 import ProductList from '../ProductList'
 
 class ManufacturerPage extends Component {

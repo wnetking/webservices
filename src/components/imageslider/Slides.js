@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Siema from 'siema';
 import renderHTML from 'react-render-html'
-import config from "../../utils/config.json"
+import config from "../../api/config.json"
 
 export default class Slides extends Component {
   componentDidMount() {

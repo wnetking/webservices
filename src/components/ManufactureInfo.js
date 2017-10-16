@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
 import {getInfo} from '../actions/manufacturersActions'
-import {images} from '../utils/images/'
+import {images} from '../api/images/'
 
 class ManufactureInfo extends Component {
   componentDidMount() {

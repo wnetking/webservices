@@ -5,7 +5,7 @@ import renderHTML from 'react-render-html'
 import {Jumbotron} from 'reactstrap';
 import ProductList from '../ProductList'
 import {getCategoryData} from '../../actions/categoryActions'
-import {images} from '../../utils/images/'
+import {images} from '../../api/images/'
 
 class CategoryPage extends Component {
   componentDidMount() {

@@ -1,6 +1,11 @@
 import {createStore, applyMiddleware, compose} from 'redux'
-import indexReducer from '../reducers'
+import createSagaMiddleware from 'redux-saga'
 import thunk from 'redux-thunk'
+
+import rootReducer from 'modules/rootReducer'
+import rootSagas from 'modules/rootSagas'
+
+const sagaMiddleware = createSagaMiddleware()
 
 function configureStore(initialState) {
   /* eslint-disable no-underscore-dangle */
@@ -17,12 +22,17 @@ function configureStore(initialState) {
   );
 
   const store = createStore(
-    indexReducer,
+    
+    rootReducer,
     initialState,
-    enhancer
+    applyMiddleware(sagaMiddleware),
+    // enhancer
   )
   /* eslint-enable */
+  sagaMiddleware.run(rootSagas)
+  
   return store;
 }
+
 
 export default configureStore;

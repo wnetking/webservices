@@ -2,9 +2,9 @@ import {
   FETCH_CART_DATA, CART_DATA_REQUEST, CART_ITEM_DATA_REQUEST
 } from '../constants/cart'
 
-import localStorage from '../utils/localStorage/'
-import cart from '../utils/cart/'
-import help from '../utils/helper'
+import localStorage from '../api/localStorage/'
+import cart from '../api/cart/'
+import help from '../api/helper'
 
 
 export function addProductToCart(id) {
