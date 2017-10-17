@@ -1,6 +1,6 @@
 import config from "../config.json"
 import { combinations } from '../combinations'
-import { products } from '../products/'
+import products  from '../products/'
 let { getCombination, getOptionValues } = combinations
 
 const cart = {

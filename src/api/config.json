@@ -1,10 +1,10 @@
 {
-  "shopUrl": "http://prestashop-react/",
-  "apiUrl": "http://prestashop-react/api/",
+  "shopUrl": "http://192.168.9.37/prestashop_react/",
+  "apiUrl": "http://192.168.9.37/prestashop_react/api/",
   "apiKey": "SCTRFVQB144CVD57CW1VTKGWPQNXK6CE",
   "dataType": "output_format=JSON",
   "routeSuffix": "",
   "postRequest" : {
-    "url" : "http://prestashop-react/en/module/pwa/ajax?"
+    "url" : "http://192.168.9.37/prestashop_react/en/module/pwa/ajax?"
   }
 }

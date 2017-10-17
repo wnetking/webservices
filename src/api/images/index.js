@@ -1,6 +1,6 @@
 import config from "../config.json"
 
-export const images = {
+const images = {
   getProductImages(id) {
 
   },
@@ -20,3 +20,5 @@ export const images = {
     return `${config.apiUrl}images/manufacturers/${id}/?ws_key=${config.apiKey}`
   }
 }
+
+export default images;

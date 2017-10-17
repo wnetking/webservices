@@ -3,7 +3,7 @@ import config from "../config.json"
 let get = new GET('products');
 let getCategory = new GET('categories');
 
-export const products = {
+const products = {
   all() {
     return get.collections();
   },
@@ -48,3 +48,5 @@ export const products = {
     })
   }
 }
+
+export default products;

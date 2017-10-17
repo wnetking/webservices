@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap": "^4.0.0-beta",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",
     "react-addons-transition-group": "^15.6.0",
@@ -13,7 +13,7 @@
     "react-render-html": "^0.5.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.13",
-    "reactstrap": "^4.8.0",
+    "reactstrap": "^5.0.0-alpha.3",
     "redux": "^3.7.2",
     "redux-saga": "^0.15.6",
     "redux-thunk": "^2.2.0",

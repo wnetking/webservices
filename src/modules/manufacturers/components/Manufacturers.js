@@ -3,48 +3,49 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Link} from 'react-router-dom'
 import {Row, Col} from 'reactstrap';
-import {getFilterManufacturersList} from '../../actions/manufacturersActions'
-
 import {
-  Card, CardImg, CardBlock,
-  CardSubtitle
+  Card, CardImg, CardBody,
+  CardSubtitle,Alert
 } from 'reactstrap';
 
-import {images} from '../../api/images/'
+import {fetchListRequest} from '../actions'
+import Api from 'api'
 
 class Manufacturers extends Component {
   componentDidMount() {
-    let {getFilterManufacturersList, limit} = this.props
-    let {data} = this.props.manufacturers
+    let {fetchListRequest, limit,manufacturers} = this.props
+    let {data} = manufacturers
 
     if (data === null) {
-      getFilterManufacturersList(limit);
+      fetchListRequest(limit);
     }
   }
 
   render() {
-    let {fetching, data} = this.props.manufacturers
+    let {fetching, data, error} = this.props.manufacturers
 
     return (
 
       <div>
-        {fetching ?
-          <div>Loading ...</div>
+        { error.status ? 
+          <Alert color="danger">{error.message}</Alert> :
+          fetching ?
+          <Alert color="info">Loading ...</Alert>
           :
           <Row>
             {data.map((item, key) => (
               <Col xs="12" md="3" className="mb-4" key={key}>
                 <Card>
                   <div className="text-center pt-4">
-                    <CardImg top height="40px" src={images.getManufacturersImg(item.id)} alt={item.name}/>
+                    <CardImg top height="40px" src={Api.images.getManufacturersImg(item.id)} alt={item.name}/>
                   </div>
-                  <CardBlock>
+                  <CardBody>
                     <CardSubtitle className="text-center">
                       <Link to={`/manufacturer/${item.id}-${item.link_rewrite}`}>
                        {item.name}
                       </Link>
                     </CardSubtitle>
-                  </CardBlock>
+                  </CardBody>
                 </Card>
               </Col>
             ))}
@@ -56,15 +57,15 @@ class Manufacturers extends Component {
 }
 
 
-function mapStateToProps({manufacturersReducer}) {
+function mapStateToProps({manufacturers}) {
   return {
-    manufacturers: manufacturersReducer
+    manufacturers: manufacturers
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getFilterManufacturersList: bindActionCreators(getFilterManufacturersList, dispatch),
+    fetchListRequest: bindActionCreators(fetchListRequest, dispatch),
   }
 }
 

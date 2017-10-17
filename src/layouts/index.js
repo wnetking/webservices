@@ -6,6 +6,9 @@ import {Container} from 'reactstrap';
 
 import Header from 'partials/header'
 import Home from './home'
+import {CartPage} from 'modules/cart/components'
+import {SingIn,Registration} from 'modules/user/components'
+import {ManufacturerPage} from 'modules/manufacturers/components'
 
 class Layout extends Component {
   componentWillMount() {
@@ -21,11 +24,12 @@ class Layout extends Component {
             {/* <Route path="/:id-:name" component={Product}/>
             <Route path="/cms/:id-:name" component={CmsPage}/>
             <Route path="/category/:id-:name" component={CategoryPage}/>
+            
+            <Route path="/user" component={UserPage}/>*/}
             <Route path="/manufacturer/:id-:name" component={ManufacturerPage}/>
-            <Route path="/login" component={SingIn}/>
             <Route path="/registration" component={Registration}/>
-            <Route path="/user" component={UserPage}/>
-            <Route path="/cart" component={CartPage}/> */}
+            <Route path="/cart" component={CartPage}/> 
+            <Route path="/login" component={SingIn}/>
           </Container>
           {/* <Footer /> */}
         </main>

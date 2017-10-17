@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux'
 import {Link, Redirect} from 'react-router-dom'
 import {Col, Button, Form, FormGroup, Label, Input, Alert} from 'reactstrap';
 
-import {loginUser, logoutUser} from '../../actions/userActions'
+// import {loginUser, logoutUser} from '../../actions/userActions'
 
 class UserPage extends Component {
   handleSubmit = (e) => {
@@ -32,15 +32,15 @@ class UserPage extends Component {
 }
 
 
-function mapStateToProps({userReducer}) {
+function mapStateToProps({user}) {
   return {
-    userState: userReducer
+    user: user
   }
 }
 function mapDispatchToProps(dispatch) {
   return {
-    loginUser : bindActionCreators(loginUser, dispatch),
-    logoutUser: bindActionCreators(logoutUser, dispatch),
+    // loginUser : bindActionCreators(loginUser, dispatch),
+    // logoutUser: bindActionCreators(logoutUser, dispatch),
   }
 }
 
