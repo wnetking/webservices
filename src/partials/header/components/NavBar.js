@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {CategoryNavTree} from 'modules/category/components'
 import {LoginLink} from 'modules/user/components'
 import {CartLink} from 'modules/cart/components'
-import {images} from 'api/images'
+import App from 'api'
 
 export default class NavBar extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ export default class NavBar extends Component {
       <Navbar className="px-5" color="faded" light toggleable>
         <NavbarToggler right onClick={this.toggle}/>
         <Link to="/" className="navbar-brand">
-          <img src={images.getLogo()} alt="logo"/>
+          <img src={Api.images.getLogo()} alt="logo"/>
         </Link>
         <NavbarBrand href="/">
         </NavbarBrand>
