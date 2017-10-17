@@ -13,7 +13,7 @@ function* userLogin() {
 }
 
 function* saga() {
-  yield takeLatest(t.FETCH_REQUESTED, userLogin);
+  yield takeLatest(t.LOGIN_REQUESTED, userLogin);
 }
 
 export default saga;

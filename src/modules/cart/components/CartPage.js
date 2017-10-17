@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Link, Redirect } from 'react-router-dom'
-import { Col, Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
+// import { Col, Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import CartItem from './CartItem'
-import { images } from '../../api/images/'
-import { addProductToCart } from '../../actions/cartActions'
-import { getCartItemData } from '../../actions/cartActions'
+import Api from 'api'
+// import { addProductToCart } from '../../actions/cartActions'
+// import { getCartItemData } from '../../actions/cartActions'
 
 class CartPage extends Component {
     // componentDidMount() {
@@ -52,16 +52,16 @@ class CartPage extends Component {
     }
 }
 
-function mapStateToProps({ userReducer, cartReducer }) {
+function mapStateToProps({ user, cart }) {
     return {
-        userState: userReducer,
-        cart: cartReducer
+        user: user,
+        cart: cart
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        getCartItemData: bindActionCreators(getCartItemData, dispatch),
+        // getCartItemData: bindActionCreators(getCartItemData, dispatch),
     }
 }
 

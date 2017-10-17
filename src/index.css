@@ -105,10 +105,19 @@ footer .list-group-item {
   background-repeat: repeat-x;
 }
 
+
 .product-page-slider .next {
   right: 0;
   left: auto;
   background-image: linear-gradient(90deg, rgba(0, 0, 0, .0001) 0, rgba(0, 0, 0, .5));
   background-repeat: repeat-x;
-  
+}
+
+header{
+  background-color: #fff;
+  box-shadow:  0 0 10px #ccc;
+}
+
+main{
+  background-color: #fafafa;
 }

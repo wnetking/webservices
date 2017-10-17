@@ -2,7 +2,7 @@ import GET from '../GET'
 import config from "../config.json"
 let get = new GET('manufacturers');
 
-export const manufacturer = {
+const manufacturer = {
   getInfo(id){
     return fetch(`${config.apiUrl}/manufacturers/` +
       `?display=[id,name]&filter[id]=[${id}]` +
@@ -13,7 +13,10 @@ export const manufacturer = {
   },
 
   getOne(id){
-    return get.one(id);
+    return fetch(`${config.apiUrl}/manufacturers/${id}/?ws_key=${config.apiKey}&${config.dataType}`)
+    .then(function (response) {
+      return response.json();
+    }).then(d => d.manufacturer)
   },
 
   getFilterManufacturersList(limit = null){
@@ -29,3 +32,5 @@ export const manufacturer = {
       })
   }
 }
+
+export default manufacturer;

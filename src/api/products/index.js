@@ -3,12 +3,13 @@ import config from "../config.json"
 let get = new GET('products');
 let getCategory = new GET('categories');
 
-export const products = {
+const products = {
   all() {
     return get.collections();
   },
   one(id) {
-    return get.one(id);
+    return fetch(`${config.apiUrl}/products/${id}/?ws_key=${config.apiKey}&${config.dataType}`)
+          .then(res => res.json()).then(d => d.product)
   },
   selected(array) {
     return get.selected(array);
@@ -48,3 +49,5 @@ export const products = {
     })
   }
 }
+
+export default products;

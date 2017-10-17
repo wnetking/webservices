@@ -10,25 +10,25 @@ import {
 } from '../constants/'
 
 const initState = {
-  productPage        : {
-    data    : null,
+  productPage: {
+    data: null,
     fetching: true
   },
-  productList        : {
-    data    : null,
+  productList: {
+    data: null,
     fetching: true
   },
-  productsOnCategory : {
-    data    : null,
-    name    : null,
+  productsOnCategory: {
+    data: null,
+    name: null,
     fetching: true
   },
-  productOptions     : {
-    data    : null,
+  productOptions: {
+    data: null,
     fetching: true
   },
   productOptionValues: {
-    data    : null,
+    data: null,
     fetching: true
   }
 }

@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
-import {getInfo} from '../actions/manufacturersActions'
-import {images} from '../api/images/'
+// import {getInfo} from '../actions/manufacturersActions'
+// import {images} from '../api/images/'
 
 class ManufactureInfo extends Component {
   componentDidMount() {
@@ -34,8 +34,8 @@ class ManufactureInfo extends Component {
 
 function mapStateToProps({productsReducer, manufacturersReducer}) {
   return {
-    productPage  : productsReducer.productPage,
-    manufacturers: manufacturersReducer
+    // productPage  : productsReducer.productPage,
+    // manufacturers: manufacturersReducer
   }
 }
 

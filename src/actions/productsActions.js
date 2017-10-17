@@ -53,31 +53,6 @@ export function fetchSelected(array) {
   }
 }
 
-export function getFilterProductsList(limit = 6, category = null, manufacturer = null, productsArray = null) {
-  return (dispatch) => {
-    dispatch({
-      type   : FETCH_PRODUCTS,
-      payload: {
-        productList: {
-          data    : null,
-          fetching: true
-        }
-      }
-    })
-    products.getFilterProductsList(limit, category, manufacturer, productsArray).then(d => {
-      dispatch({
-        type   : FETCH_PRODUCTS,
-        payload: {
-          productList: {
-            data    : d,
-            fetching: false
-          }
-        }
-      })
-    })
-  }
-}
-
 export function fetchOne(id) {
   return (dispatch) => {
     dispatch({

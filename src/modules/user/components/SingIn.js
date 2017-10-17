@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux'
 import { Link, Redirect } from 'react-router-dom'
 import { Col, Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 
-import { loginUser } from '../../actions/userActions'
+// import { loginUser } from '../../actions/userActions'
 
 class SingIn extends Component {
   handleSubmit = (e) => {
@@ -16,7 +16,7 @@ class SingIn extends Component {
   }
 
   render() {
-    let { login } = this.props.userState
+    let { login } = this.props.user
 
     return (
       <Form onSubmit={this.handleSubmit} id="login-form" style={{ "maxWidth": 500 }} className="mx-auto">
@@ -54,14 +54,14 @@ class SingIn extends Component {
 }
 
 
-function mapStateToProps({ userReducer }) {
+function mapStateToProps({ user }) {
   return {
-    userState: userReducer
+    user: user
   }
 }
 function mapDispatchToProps(dispatch) {
   return {
-    loginUser: bindActionCreators(loginUser, dispatch),
+    // loginUser: bindActionCreators(loginUser, dispatch),
   }
 }
 

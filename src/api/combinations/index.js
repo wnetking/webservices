@@ -1,6 +1,6 @@
 import config from "../config.json"
 
-export const combinations = {
+const combinations = {
   getAll(array){
     if (Array.isArray(array)) {
       var combinationsRequestString = array.map(item => item.id).join('|');
@@ -37,3 +37,4 @@ export const combinations = {
       })
   }
 }
+export default combinations;
