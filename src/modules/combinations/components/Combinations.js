@@ -37,7 +37,7 @@ class Combinations extends Component {
 
     return (
       <div>
-        {fetching ?
+        {fetching  ?
           <Placeholder isOpen={this.state.dropdownOpen} toggle={this.toggle} />
           :
           <div>

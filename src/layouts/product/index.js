@@ -7,7 +7,7 @@ import renderHTML from 'react-render-html'
 // import ImageSlider from '../../components/ImageSlider'
 // import ProductsOnCategory from '../../components/ProductsOnCategory'
 // import ProductTabs from '../../components/ProductTabs'
-import {Combinations} from 'modules/combinations/components'
+import {Combinations, ImageSlider} from 'modules/combinations/components'
 // import AddToCart from '../../components/cart/AddToCart'
 
 // import * as productsActions from '../../actions/productsActions'
@@ -46,15 +46,7 @@ class Product extends Component {
           <Col>
             <Row>
               <Col xs="12" sm="6">
-                Product
-                {/* {
-                  combinations.fetching ?
-                    null :
-                    typeof combinations.data.associations.images === "undefined" ?
-                      <ImageSlider productId={data.id} data={data.associations.images} altText={data.name[0].value} />
-                      :
-                      <ImageSlider productId={data.id} data={combinations.data.associations.images} altText={data.name[0].value} />
-                } */}
+                <ImageSlider />
               </Col>
               <Col xs="12" sm="6">
                 {/* <h2>{data.name[0].value}</h2> */}

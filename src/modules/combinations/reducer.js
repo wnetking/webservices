@@ -29,7 +29,6 @@ export default function reducer(state = initState, action) {
         ...{
           fetching: true
         }
-        // ...action.payload
       }
     case t.FETCH_COMBINATION_SUCCEEDED:
       return {
@@ -41,17 +40,6 @@ export default function reducer(state = initState, action) {
         ...state,
         ...action.payload
       }
-
-    case t.FETCH_OPTION_REQUESTED:
-      return {
-        ...state,
-        ...{
-          options: {
-            fetching: true
-          }
-        }
-        // ...action.payload
-      }
     case t.FETCH_OPTION_SUCCEEDED:
       return {
         ...state,
@@ -61,17 +49,6 @@ export default function reducer(state = initState, action) {
       return {
         ...state,
         ...action.payload
-      }
-
-    case t.FETCH_ALL_REQUESTED:
-      return {
-        ...state,
-        ...{
-          all: {
-            fetching: true
-          }
-        }
-        // ...action.payload
       }
     case t.FETCH_ALL_SUCCEEDED:
       return {
@@ -87,6 +64,7 @@ export default function reducer(state = initState, action) {
       return {
         ...state,
         ...{
+          fetching: true,
           product: {
             fetching: true,
             data: null

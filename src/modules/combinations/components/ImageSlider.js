@@ -1,40 +1,29 @@
-import React, { Component } from 'react';
-import Siema from 'siema';
-import { images } from '../api/images/'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-export default class ImageSlider extends Component {
-  componentDidMount() {
-    this.siema = new Siema({ perPage: 1 });
-  }
+import {Images,ImagePlaceholder} from 'modules/combinations/components'
 
-  componentWillUnmount() {
-    this.siema.destroy()
-  }
-
-  prev = () => {
-    this.siema.prev()
-  }
-
-  next = () => {
-    this.siema.next()
-  }
-
-  render() {
-    let { productId, data, altText } = this.props
+class ImageSlider extends Component {
+  render () {
+    let { data, product, fetching} = this.props.combinations
 
     return (
-      <div className="product-page-slider">
-        <div className="siema">
-          {typeof data === "undefined" ?
-            null :
-            data.map((item, key) => (
-              <img key={key} width="100%" src={images.productImage(productId, item.id)} alt={altText} />
-            ))
-          }
-        </div>
-        <button className="prev" onClick={this.prev}>&laquo;</button>
-        <button className="next" onClick={this.next}>&raquo;</button>
+      <div className='product-page-slider'>
+        {fetching ?
+           <ImagePlaceholder /> :
+           typeof data.associations.images === 'undefined' ?
+             <Images data={product.data.associations.images} id={data.id_product} />
+             :
+             <Images data={data.associations.images} id={data.id_product} />}
       </div>
     )
   }
 }
+
+function mapStateToProps ({ combinations }) {
+  return {
+    combinations: combinations
+  }
+}
+
+export default connect(mapStateToProps)(ImageSlider)
