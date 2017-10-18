@@ -121,3 +121,9 @@ header{
 main{
   background-color: #fafafa;
 }
+
+.loading{
+  background-image: url(./img/ajax-loader.gif);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
