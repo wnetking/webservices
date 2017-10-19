@@ -25,7 +25,7 @@ class Images extends Component {
         <div className='siema'>
           {
             this.props.data.map((item, key) => (
-              <img key={key} width='100%'src={Api.images.productImage(this.props.id, item.id)} alt={''} />)
+              <img key={key} width='100%' src={Api.images.productImage(this.props.id, item.id)} alt={''} />)
             )
           }
         </div>

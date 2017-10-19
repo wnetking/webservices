@@ -5,6 +5,7 @@ import user from './user';
 import productlist from './productlist';
 import manufacturers from './manufacturers';
 import combinations from './combinations';
+import currencies from './currencies';
 
 export default function* rootSagas() {
   yield all([
@@ -13,5 +14,6 @@ export default function* rootSagas() {
       fork(productlist.saga),
       fork(combinations.saga),
       fork(manufacturers.saga),
+      fork(currencies.saga),
   ]);
 }

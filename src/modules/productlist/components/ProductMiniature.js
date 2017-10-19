@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardImg, CardBody, CardSubtitle, Badge} from 'reactstrap'
+import { Card, CardImg, CardBody, CardSubtitle, Badge } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import Api from 'api'
 

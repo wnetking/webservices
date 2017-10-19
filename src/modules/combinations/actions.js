@@ -28,7 +28,7 @@ export const fetchCombinationFailed = (err) => ({
 export const fetchOptionRequest = (array) => ({
   type: t.FETCH_OPTION_REQUESTED,
   payload: {
-    array: array
+    array: array,
   }
 })
 

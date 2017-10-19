@@ -27,7 +27,11 @@ export default function reducer(state = initState, action) {
       return {
         ...state,
         ...{
-          fetching: true
+          fetching: true,
+          error: {
+            status: false,
+            message: null
+          }
         }
       }
     case t.FETCH_COMBINATION_SUCCEEDED:
@@ -68,6 +72,10 @@ export default function reducer(state = initState, action) {
           product: {
             fetching: true,
             data: null
+          },
+          error: {
+            status: false,
+            message: null
           }
         }
       }
