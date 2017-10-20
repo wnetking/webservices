@@ -3,9 +3,9 @@ import config from "../config.json"
 const currencies = {
   getAll(){
     return fetch(`${config.apiUrl}/currencies/?display=full
-    filter[active]=1
+    &filter[active]=1
     &ws_key=${config.apiKey}&${config.dataType}`.replace(/\s+/g, ''))
-    .then(res => res.json()).then(d => d.product)
+    .then(res => res.json()).then(d => d.currencies)
   }
 }
 

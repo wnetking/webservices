@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+// import { bindActionCreators } from 'redux'
 import { Media } from 'reactstrap';
-import Api from 'api'
+// import Api from 'api'
 // import {getCartItemData} from '../../actions/cartActions'
 
 

@@ -2,15 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 
-// import {getInfo} from '../actions/manufacturersActions'
-// import {images} from '../api/images/'
+import {fetchInfoRequest} from '../actions'
+import Api from 'api'
 
 class ManufactureInfo extends Component {
   componentDidMount() {
-    let {productPage, id_manufacturer} = this.props
+    let {combinations, fetchInfoRequest} = this.props
 
-    if (productPage.data !== null) {
-      this.props.getInfo(id_manufacturer);
+    if (combinations.product.data !== null) {
+      fetchInfoRequest(combinations.product.data.id_manufacturer);
     }
   }
 
@@ -24,7 +24,7 @@ class ManufactureInfo extends Component {
           :
           <div>
             <p>{data.name}</p>
-            <img src={images.getManufacturersImg(data.id)} alt=""/>
+            <img src={Api.images.getManufacturersImg(data.id)} alt="Manufacturer"/>
           </div>
         }
       </div>
@@ -32,16 +32,16 @@ class ManufactureInfo extends Component {
   }
 }
 
-function mapStateToProps({productsReducer, manufacturersReducer}) {
+function mapStateToProps({ manufacturers , combinations}) {
   return {
-    // productPage  : productsReducer.productPage,
-    // manufacturers: manufacturersReducer
+    manufacturers: manufacturers,
+    combinations: combinations
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getInfo: bindActionCreators(getInfo, dispatch)
+    fetchInfoRequest: bindActionCreators(fetchInfoRequest, dispatch)
   }
 }
 

@@ -5,6 +5,7 @@ import cart from './cart'
 import manufacturers from './manufacturers'
 import combinations from './combinations'
 import currencies from './currencies'
+import product from './product'
 import productlist from './productlist'
 
 export default combineReducers({
@@ -15,4 +16,5 @@ export default combineReducers({
   [manufacturers.constants.NAME]: manufacturers.reducer,
   [combinations.constants.NAME]: combinations.reducer,
   [currencies.constants.NAME]: currencies.reducer,
+  [product.constants.NAME]: product.reducer,
 });

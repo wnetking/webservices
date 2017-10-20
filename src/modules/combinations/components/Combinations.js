@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { ButtonDropdown, DropdownToggle, Alert } from 'reactstrap';
+import { ButtonDropdown, Alert } from 'reactstrap';
 import { Dropdown, Placeholder, Toggle } from 'modules/combinations/components'
 import { fetchProductRequest, fetchCombinationRequest } from '../actions'
 
@@ -44,9 +44,9 @@ class Combinations extends Component {
         fetching  ?
           <Placeholder isOpen={this.state.dropdownOpen} toggle={this.toggle} />
           :
-          parseInt(product.data.is_virtual) || product.data.type === 'pack'  ? null:
+          parseInt(product.data.is_virtual, 10) || product.data.type === 'pack'  ? null:
           <div>
-            <p>Quantity: { parseInt(product.data.is_virtual) ? 
+            <p>Quantity: { parseInt(product.data.is_virtual, 10) ? 
             product.data.quantity : data.quantity}</p>
             <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className="mb-4">
               <Toggle data={data} options={options} />

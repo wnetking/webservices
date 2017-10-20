@@ -55,3 +55,34 @@ export const fetchOneFailed = (err) => ({
     }
   }
 })
+
+
+export const fetchInfoRequest = (id) => ({
+  type: t.FETCH_INFO_REQUESTED,
+  payload: {
+    id: id
+  }
+})
+
+export const fetchInfoSuccess = (d) => ({
+  type: t.FETCH_INFO_SUCCEEDED,
+  payload: {
+    info: {
+      data: d,
+      fetching: false
+    }
+  }
+})
+
+export const fetchInfoFailed = (err) => ({
+  type: t.FETCH_INFO_SUCCEEDED,
+  payload: {
+    info: {
+      fetching: false,
+      error: {
+        status: true,
+        message: err
+      }
+    }
+  }
+})

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {NavItem} from 'reactstrap';
 import {Link} from 'react-router-dom'
-import {bindActionCreators} from 'redux'
+// import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 // import {fetchCartOnLoad} from '../../actions/cartActions'
 

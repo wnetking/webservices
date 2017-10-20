@@ -7,6 +7,7 @@ import helper from './helper'
 import combinations from './combinations'
 import manufacturer from './manufacturers'
 import currencies from './currencies'
+import features from './features'
 import localStorage from './localStorage'
 
 export default {
@@ -20,4 +21,5 @@ export default {
   helper,
   combinations,
   currencies,
+  features
 }

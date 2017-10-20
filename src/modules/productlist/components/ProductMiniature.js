@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CardImg, CardBody, CardSubtitle, Badge } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import {Price} from 'modules/productlist/components'
 import Api from 'api'
 
 export default function ProductMiniature ({item}) {
@@ -18,8 +19,7 @@ export default function ProductMiniature ({item}) {
           </Link>
         </CardSubtitle>
         <Badge>
-          $
-          {parseFloat(item.price).toFixed(2)}
+          <Price price={item.price}/>
         </Badge>
       </CardBody>
     </Card>

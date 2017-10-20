@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom'
 import {CategoryNavTree} from 'modules/category/components'
 import {LoginLink} from 'modules/user/components'
 import {CartLink} from 'modules/cart/components'
+import {CurrrenciesSelector} from 'modules/currencies/components'
+
 import Api from 'api'
 
 export default class NavBar extends Component {
@@ -35,6 +37,7 @@ export default class NavBar extends Component {
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <CategoryNavTree /> 
+            <CurrrenciesSelector />
             <LoginLink /> 
             <CartLink />
           </Nav>

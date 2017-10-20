@@ -18,7 +18,7 @@ class ManufacturerPage extends Component {
   }
 
   render () {
-    let {fetching, data, error} = this.props.manufacturers.manufacturerPage
+    let {fetching, data} = this.props.manufacturers.manufacturerPage
 
     return (
       <div>

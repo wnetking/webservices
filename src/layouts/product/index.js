@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { Row, Col, Badge } from 'reactstrap'
+// import { bindActionCreators } from 'redux'
+import { Row, Col} from 'reactstrap'
 // import ProductsOnCategory from '../../components/ProductsOnCategory'
 // import ProductTabs from '../../components/ProductTabs'
 import { Combinations, ImageSlider } from 'modules/combinations/components'
-import { Badges, Name, Description } from 'modules/product/components'
+import { Badges, Name, Description, ProductTabs, Price } from 'modules/product/components'
 // import AddToCart from '../../components/cart/AddToCart'
 
 class Product extends Component {
   render () {
-    let { fetching, product } = this.props.combinations
+    let { product } = this.props.combinations
 
     return (
       <Row>
@@ -22,20 +22,11 @@ class Product extends Component {
           <Col xs='12' sm='6'>
             <Name data={product.data}/>
             <Badges data={product.data}/>
-             
-          
-          {/* <p>Price&nbsp;&nbsp
-            {combinations.fetching ? null :
-              ((parseFloat(data.price) + parseFloat(combinations.data.price)) * parseFloat(general.currencies.data.conversion_rate)).toFixed(2)
-            }
-            &nbsp;{general.currencies.fetching ? null :
-              general.currencies.data.iso_code
-            }
-          </p> */}
+            <h2><Price /></h2>
             <Description data={product.data} type='short'/>
             <Combinations id={this.props.match.params.id} />
           {/* <AddToCart product_id={data.id} /> */}
-          {/* <ProductTabs productDesc={data.description[0].value} id_manufacturer={data.id_manufacturer} /> */}
+            <ProductTabs />
           </Col>
           <Col xs='12' className='mt-5'>
           {/* <ProductsOnCategory /> */}

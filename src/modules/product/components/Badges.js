@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Badge } from 'reactstrap'
 
 const Badges = ({data}) => {
@@ -7,10 +7,10 @@ const Badges = ({data}) => {
       {data === null ?
          <div>
            <Badge color='success' className='mr-2 mb-3'>
-             placeholder
+             Lorem
            </Badge>
            <Badge color='info' className='mr-2 mb-3'>
-             placeholder
+             impus
            </Badge>
          </div>
          :
@@ -37,7 +37,7 @@ const Badges = ({data}) => {
               </Badge> : null}
            {data.type === 'pack' ?
               <Badge color='primary' className='mr-2 mb-3'>
-                Is Virtual
+                Pack
               </Badge> : null}
          </div>}
     </div>

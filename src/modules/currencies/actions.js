@@ -23,3 +23,10 @@ export const failed = (err) => ({
     }
   }
 })
+
+export const setActive = (id) => ({
+  type: t.SET_ACTIVE,
+  payload: {
+    active: id
+  }
+})

@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
-import {Link, Redirect} from 'react-router-dom'
-import {Col, Button, Form, FormGroup, Label, Input, Alert} from 'reactstrap';
+// import {bindActionCreators} from 'redux'
+import {Redirect} from 'react-router-dom'
+import {Button} from 'reactstrap';
 
 // import {loginUser, logoutUser} from '../../actions/userActions'
 

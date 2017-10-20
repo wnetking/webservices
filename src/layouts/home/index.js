@@ -12,7 +12,7 @@ class Home extends Component {
         <Container className='flex-grow-1 mb-5'>
           <h2 className="text-center mb-4">Best Sellers</h2>
           {<ProductList
-             limit={6}
+             limit={8}
              categoryID={null}
              manufacturerID={null}
              products={null} />}

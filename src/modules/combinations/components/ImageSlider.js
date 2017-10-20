@@ -11,7 +11,7 @@ class ImageSlider extends Component {
       <div className='product-page-slider'>
         {fetching ?
            <ImagePlaceholder /> :
-           parseInt(product.data.is_virtual) || product.data.type === 'pack'  ?
+           parseInt(product.data.is_virtual, 10) || product.data.type === 'pack'  ?
            product.fetching ? <ImagePlaceholder />:
            <Images data={product.data.associations.images} id={product.data.id} /> :
          

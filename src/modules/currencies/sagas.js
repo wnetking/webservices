@@ -8,7 +8,6 @@ function * fetch (action) {
     const data = yield call(Api.currencies.getAll,null)
 
     yield put(actions.success(data))
-
   } catch (e) {
     yield put(actions.failed(e.message))
   }

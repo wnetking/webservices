@@ -29,6 +29,11 @@ export default function reducer(state = initState, action) {
                 ...state,
                 ...action.payload
             }
+        case t.SET_ACTIVE:
+            return {
+                ...state,
+                ...action.payload
+            }    
         default:
             return state
     }

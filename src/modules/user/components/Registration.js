@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+// import {bindActionCreators} from 'redux'
 import {Link, Redirect} from 'react-router-dom'
 import {Col, Button, Form, FormGroup, Label, Input, FormText, Alert} from 'reactstrap';
 

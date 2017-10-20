@@ -1,6 +1,5 @@
 import React from 'react';
 import { ButtonDropdown, DropdownToggle } from 'reactstrap';
-import Api from 'api'
 
 const Placeholder = ({ dropdownOpen, toggle }) => {
   return (<div>

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { Link, Redirect } from 'react-router-dom'
+// import { bindActionCreators } from 'redux'
+// import { Link, Redirect } from 'react-router-dom'
 // import { Col, Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 import CartItem from './CartItem'
-import Api from 'api'
+// import Api from 'api'
 // import { addProductToCart } from '../../actions/cartActions'
 // import { getCartItemData } from '../../actions/cartActions'
 
@@ -30,6 +30,7 @@ class CartPage extends Component {
             if (cart.data.associations.cart_rows.length && cart.cartItems.length === 0) {
                 cart.data.associations.cart_rows.map((item, key) => {
                     getCartItemData(item.id_product, item.id_product_attribute, item.quantity);
+                    return true;
                 })
             }
         }

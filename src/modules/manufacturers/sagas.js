@@ -22,8 +22,20 @@ function* fetchOne (action) {
   }
 }
 
+function* fetchInfo (action) {
+  try {
+    const data = yield call(Api.manufacturer.getInfo, action.payload.id)
+
+    yield put(actions.fetchInfoSuccess(data))
+
+  } catch (e) {
+    yield put(actions.fetchInfoFailed(e.message))
+  }
+}
+
 function* saga () {
   yield takeLatest(t.FETCH_ONE_REQUESTED, fetchOne)
+  yield takeLatest(t.FETCH_INFO_REQUESTED, fetchInfo)
   yield takeEvery(t.FETCH_REQUESTED, fetch)
 }
 
