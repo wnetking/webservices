@@ -17,7 +17,6 @@ class SubCat extends Component {
 
   render() {
     let { fetching, data } = this.props.category.subCat
-    let { category } = this.props.category
     let { active } = this.props.languages
 
     return (

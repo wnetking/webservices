@@ -55,7 +55,8 @@ class CategoryPage extends Component {
                   <SubCat /> : null
               }
               <h3>Products</h3>
-              <ProductList limit={null} categoryID={null} manufacturerID={null} products={data.associations.products.map((item) => item.id)} />
+              <ProductList limit={null} categoryID={null} manufacturerID={null}
+                products={data.associations.products.map((item) => item.id)} />
             </div>}
       </div>
     )
