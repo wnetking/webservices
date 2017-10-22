@@ -1,7 +1,7 @@
 import React from 'react'
 import { Badge } from 'reactstrap'
 
-const Badges = ({data}) => {
+const Badges = ({data, active}) => {
   return (
     <div>
       {data === null ?
@@ -17,7 +17,7 @@ const Badges = ({data}) => {
          <div>
            {parseInt(data.available_for_order, 10) ?
               <Badge color='success' className='mr-2 mb-3'>
-                {data.available_now[0].value}
+                {data.available_now[active].value}
               </Badge> : null}
            {parseInt(data.show_condition, 10) ?
               <Badge color='dark' className='mr-2 mb-3'>

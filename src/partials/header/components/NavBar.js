@@ -6,6 +6,7 @@ import {CategoryNavTree} from 'modules/category/components'
 import {LoginLink} from 'modules/user/components'
 import {CartLink} from 'modules/cart/components'
 import {CurrrenciesSelector} from 'modules/currencies/components'
+import {LanguagesSelector} from 'modules/languages/components'
 
 import Api from 'api'
 
@@ -38,6 +39,7 @@ export default class NavBar extends Component {
           <Nav className="ml-auto" navbar>
             <CategoryNavTree /> 
             <CurrrenciesSelector />
+            <LanguagesSelector/>
             <LoginLink /> 
             <CartLink />
           </Nav>

@@ -13,7 +13,7 @@ class Features extends Component {
 
   render () {
     let {fetching, data} = this.props.product.features
-
+    let {active} = this.props.languages
     return (
       <div>
         {fetching ?
@@ -26,10 +26,10 @@ class Features extends Component {
                {data.map((item, key) => (
                   <tr key={key}>
                     <td>
-                      {item.name[0].value}
+                      {item.name[active].value}
                     </td>
                     <td>
-                      {item.value[0].value}
+                      {item.value[active].value}
                     </td>
                   </tr>
                 ))}
@@ -40,10 +40,11 @@ class Features extends Component {
   }
 }
 
-function mapStateToProps ({product, combinations}) {
+function mapStateToProps ({product, combinations, languages}) {
   return {
     product: product,
-    combinations: combinations
+    combinations: combinations,
+    languages: languages
   }
 }
 

@@ -12,7 +12,7 @@ const images = {
     return `${config.apiUrl}images/products/${productId}/${imageId}/?ws_key=${config.apiKey}`
   },
 
-  categoryImage(id) {
+  getCategoryImage(id) {
     return `${config.apiUrl}images/categories/${id}?ws_key=${config.apiKey}`
   },
 

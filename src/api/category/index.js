@@ -30,8 +30,8 @@ const category = {
     })
   },
 
-  getInfo(id) {
-    return get.one(id)
+  getOne(id) {
+    return get.one(id).then(d => d.category)
   },
 
   all() {
@@ -54,6 +54,25 @@ const category = {
       }).then(d => {
       return d.categories.filter(item => parseInt(item.level_depth, 10) > 1 ? true : false)
     })
+  },
+
+  getCatsData(array){
+    if( Array.isArray(array)){
+      var request = array.join('|');
+
+      return fetch(`${config.apiUrl}/categories/
+      ?display=[id,name,link_rewrite]
+      &filter[active]=[1]
+      &filter[id]=[${request}]
+      &ws_key=${config.apiKey}&${config.dataType}`.replace(/\s+/g, ''))
+      .then(function (response) {
+        return response.json();
+      }).then(d => {
+        return d.categories;
+      })
+    }
+
+   
   }
 }
 

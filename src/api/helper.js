@@ -27,7 +27,7 @@ const helper = {
     if (!data.fetching) {
       data.data.forEach(item => {
         if (item.id === parseInt(id, 10)) {
-          returnData = item.name[0].value;
+          returnData = item.name;
         }
       })
     }

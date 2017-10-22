@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import classnames from 'classnames';
-import renderHTML from 'react-render-html'
 
 import {TabContent, TabPane, Nav, NavItem, NavLink, Row, Col} from 'reactstrap';
 import { ManufactureInfo } from 'modules/manufacturers/components'
-import {Features} from 'modules/product/components'
+import {Features, Description} from 'modules/product/components'
 
 class ProductTabs extends Component {
   constructor(props) {
@@ -26,6 +25,7 @@ class ProductTabs extends Component {
   }
   render() {
     let {product} = this.props.combinations
+    let {active} = this.props.languages
     
     return (
       <div>
@@ -48,7 +48,7 @@ class ProductTabs extends Component {
             <TabPane tabId="1">
               <Row>
                 <Col sm="12">
-                  {renderHTML(product.data.description[0].value)}
+                  <Description data={product.data} active={active}/>
                 </Col>
               </Row>
            </TabPane>
@@ -67,9 +67,10 @@ class ProductTabs extends Component {
   }
 }
 
-function mapStateToProps ({ combinations }) {
+function mapStateToProps ({ combinations, languages }) {
   return {
-    combinations: combinations
+    combinations: combinations,
+    languages: languages
   }
 }
 

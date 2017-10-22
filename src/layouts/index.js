@@ -10,6 +10,7 @@ import Product from './product'
 import {CartPage} from 'modules/cart/components'
 import {SingIn,Registration} from 'modules/user/components'
 import {ManufacturerPage} from 'modules/manufacturers/components'
+import {CategoryPage} from 'modules/category/components'
 
 class Layout extends Component {
   componentWillMount() {
@@ -24,10 +25,12 @@ class Layout extends Component {
           <Container className="flex-grow-1 mt-5">
             {/* 
             <Route path="/cms/:id-:name" component={CmsPage}/>
-            <Route path="/category/:id-:name" component={CategoryPage}/>
+            
             
             <Route path="/user" component={UserPage}/>*/}
+            
             <Route path="/product/:id-:name" component={Product}/>
+            <Route path="/category/:id-:name" component={CategoryPage}/>
             <Route path="/manufacturer/:id-:name" component={ManufacturerPage}/>
             <Route path="/registration" component={Registration}/>
             <Route path="/cart" component={CartPage}/> 

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Name = ({data}) => {
+const Name = ({data, active}) => {
   return(
     <h2>{data === null ? 'Product name' : 
-    data.name[0].value}</h2>
+    data.name[active].value}</h2>
   )
 }
 

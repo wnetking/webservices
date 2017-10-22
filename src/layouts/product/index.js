@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 // import { bindActionCreators } from 'redux'
 import { Row, Col} from 'reactstrap'
 // import ProductsOnCategory from '../../components/ProductsOnCategory'
-// import ProductTabs from '../../components/ProductTabs'
 import { Combinations, ImageSlider } from 'modules/combinations/components'
 import { Badges, Name, Description, ProductTabs, Price } from 'modules/product/components'
 // import AddToCart from '../../components/cart/AddToCart'
@@ -11,7 +10,7 @@ import { Badges, Name, Description, ProductTabs, Price } from 'modules/product/c
 class Product extends Component {
   render () {
     let { product } = this.props.combinations
-
+    let {active} = this.props.languages
     return (
       <Row>
         <Col>
@@ -20,16 +19,17 @@ class Product extends Component {
             <ImageSlider />
           </Col>
           <Col xs='12' sm='6'>
-            <Name data={product.data}/>
-            <Badges data={product.data}/>
+            <Name data={product.data} active={active}/>
+            <Badges data={product.data} active={active}/>
             <h2><Price /></h2>
-            <Description data={product.data} type='short'/>
+            <Description data={product.data} type='short' active={active}/>
             <Combinations id={this.props.match.params.id} />
           {/* <AddToCart product_id={data.id} /> */}
             <ProductTabs />
           </Col>
           <Col xs='12' className='mt-5'>
           {/* <ProductsOnCategory /> */}
+
           </Col>
         </Row>
         </Col>
@@ -38,9 +38,10 @@ class Product extends Component {
   }
 }
 
-function mapStateToProps ({ combinations }) {
+function mapStateToProps ({ combinations, languages }) {
   return {
-    combinations: combinations
+    combinations: combinations,
+    languages: languages
   }
 }
 

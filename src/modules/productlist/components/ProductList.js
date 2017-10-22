@@ -8,64 +8,65 @@ import ProductMiniature from './ProductMiniature'
 import Api from 'api'
 
 class ProductList extends Component {
-  componentDidMount () {
-    let {fetchRequest, limit, categoryID, manufacturerID, products} = this.props
-    let { data, props} = this.props.productlist
+  componentDidMount() {
+    let { fetchRequest, limit, categoryID, manufacturerID, products } = this.props
+    let { data, props } = this.props.productlist
 
     if (data === null || !Api.helper.isEqualObj(props, {
-        limit: limit,
-        category: categoryID,
-        manufacturer: manufacturerID,
-        productsArray: products
-      })) {
+      limit: limit,
+      category: categoryID,
+      manufacturer: manufacturerID,
+      productsArray: products
+    })) {
       fetchRequest(limit, categoryID, manufacturerID, products)
     }
   }
 
-  render () {
+  render() {
     let { fetching, data, error } = this.props.productlist
-
+    let { active } = this.props.languages
     return (
       <Row>
         {error.status ?
-           <Alert color='danger'>
-             {error.message}
-           </Alert> :
-           fetching || data === null ?
-             <Col>
-             <Alert color='info'>
-               Loading...
+          <Alert color='danger'>
+            {error.message}
+          </Alert> :
+          fetching || data === null ?
+            <Col>
+              <Alert color='info'>
+                Loading...
              </Alert>
-             </Col>
-             :
-             typeof data === 'undefined' ?
-               <Col>
+            </Col>
+            :
+            typeof data === 'undefined' ?
+              <Col>
                 <Alert color='info'>
                   No products
                 </Alert>
-               </Col> :
-               data.map((item, key) => (
-                 <Col
-                   xs='12'
-                   sm='6'
-                   md='4'
-                   xl='3'
-                   key={key}
-                   className='mb-4'>
-                 <ProductMiniature item={item} />
-                 </Col>
-               ))}
+              </Col> :
+              data.map((item, key) => (
+                <Col
+                  xs='12'
+                  sm='6'
+                  md='4'
+                  xl='3'
+                  key={key}
+                  className='mb-4'>
+                  <ProductMiniature item={item} active={active} />
+                </Col>
+              ))}
       </Row>
     )
   }
 }
 
-function mapStateToProps ({ productlist }) {
+function mapStateToProps({ productlist, languages }) {
   return {
-    productlist: productlist
+    productlist: productlist,
+    languages: languages
   }
 }
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     fetchRequest: bindActionCreators(fetchRequest, dispatch)
   }

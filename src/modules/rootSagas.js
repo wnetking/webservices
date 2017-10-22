@@ -6,6 +6,7 @@ import productlist from './productlist';
 import manufacturers from './manufacturers';
 import combinations from './combinations';
 import currencies from './currencies';
+import languages from './languages';
 import product from './product';
 
 export default function* rootSagas() {
@@ -17,5 +18,6 @@ export default function* rootSagas() {
       fork(manufacturers.saga),
       fork(currencies.saga),
       fork(product.saga),
+      fork(languages.saga),
   ]);
 }
