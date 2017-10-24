@@ -34,3 +34,30 @@ export const featuresFailed = (err) => ({
 
   }
 })
+
+export const fetchAccessoriesRequest = (array) => ({
+  type: t.FETCH_ACCESSORIES_REQUESTED,
+  payload: {
+    array: array
+  }
+})
+
+export const accessoriesSsuccess = (d) => ({
+  type: t.FETCH_ACCESSORIES_REQUESTED_SUCCEEDED,
+  payload: {
+    accessories: {
+      data: d,
+      fetching: false
+    }
+  }
+})
+
+export const accessoriesFailed = (err) => ({
+  type: t.FETCH_ACCESSORIES_REQUESTED_FAILED,
+  payload: {
+    error: {
+      status: true,
+      message: err
+    }
+  }
+})

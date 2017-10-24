@@ -14,7 +14,11 @@ const initState = {
       error: {
         status: false,
         message: null
+      },
     },
+    accessories: {
+        data: null,
+        fetching: true,
     }
 }
 
@@ -40,6 +44,27 @@ export default function reducer(state = initState, action) {
                 ...action.payload
             }
         case t.FETCH_FEATURES_REQUESTED_FAILED:
+            return {
+                ...state,
+                ...action.payload
+            }
+        
+        case t.FETCH_ACCESSORIES_REQUESTED:
+            return {
+                ...state,
+                ...{
+                    accessories: {
+                        data: null,
+                        fetching: true,
+                    }
+                }
+            }
+        case t.FETCH_ACCESSORIES_REQUESTED_SUCCEEDED:
+            return {
+                ...state,
+                ...action.payload
+            }
+        case t.FETCH_ACCESSORIES_REQUESTED_FAILED:
             return {
                 ...state,
                 ...action.payload
