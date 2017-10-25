@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Link } from 'react-router-dom'
-import { ListGroupItem, ListGroup } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 import { fetchAccessoriesRequest } from '../actions'
-import Api from 'api'
+import {ProductMiniature} from 'modules/productlist/components'
 
 class Accessories extends Component {
   componentDidMount () {
@@ -24,23 +23,20 @@ class Accessories extends Component {
       <div>
         {fetching || !Array.isArray(products) ? null :
            <div>
-             <h5>Product in pack</h5>
-             <ListGroup className='mb-2'>
+             <h5>You might also like</h5>
+             <Row>             
                {data.map((item, key) => (
-                  <ListGroupItem key={key}>
-                    <img
-                      style={{maxWidth: 50, float: 'left'}}
-                      className='mr-2'
-                      src={Api.images.productImage(item.id, item.id_default_image)}
-                      alt={item.name[active].value} />
-                    <div style={{float: 'left'}} className='mt-2'>
-                      <Link to={`/product/${item.id}-${item.link_rewrite[0].value}`}>
-                      {item.name[active].value}
-                      </Link>
-                    </div>
-                  </ListGroupItem>
+                  <Col
+                  xs='12'
+                  sm='6'
+                  md='4'
+                  xl='3'
+                  key={key}
+                  className='mb-4'>
+                  <ProductMiniature item={item} active={active} />
+                </Col>
                 ))}
-             </ListGroup>
+            </Row>
            </div>}
       </div>
     )

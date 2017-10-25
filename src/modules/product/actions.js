@@ -61,3 +61,30 @@ export const accessoriesFailed = (err) => ({
     }
   }
 })
+
+export const fetchBundleRequest = (array) => ({
+  type: t.FETCH_BUNDLE_REQUESTED,
+  payload: {
+    array: array
+  }
+})
+
+export const bundleSsuccess = (d) => ({
+  type: t.FETCH_BUNDLE_REQUESTED_SUCCEEDED,
+  payload: {
+    bundle: {
+      data: d,
+      fetching: false
+    }
+  }
+})
+
+export const bundleFailed = (err) => ({
+  type: t.FETCH_BUNDLE_REQUESTED_FAILED,
+  payload: {
+    error: {
+      status: true,
+      message: err
+    }
+  }
+})

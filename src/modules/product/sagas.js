@@ -20,15 +20,26 @@ function * fetchAccessories (action) {
 
     yield put(actions.accessoriesSsuccess(data))
     
-    console.log(data)
   } catch (e) {
     yield put(actions.accessoriesFailed(e.message))
+  }
+}
+
+function * fetchBundle (action) {
+  try {
+    const data =  yield call(Api.products.getFilterProductsList,
+      null,null,null,action.payload.array)
+
+    yield put(actions.bundleSsuccess(data))    
+  } catch (e) {
+    yield put(actions.bundleFailed(e.message))
   }
 }
 
 function * saga () {
   yield takeLatest(t.FETCH_FEATURES_REQUESTED, fetchFeatures)
   yield takeLatest(t.FETCH_ACCESSORIES_REQUESTED, fetchAccessories)
+  yield takeLatest(t.FETCH_BUNDLE_REQUESTED, fetchBundle)
 }
 
 export default saga

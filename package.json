@@ -15,6 +15,7 @@
     "react-scripts": "1.0.13",
     "reactstrap": "^5.0.0-alpha.3",
     "redux": "^3.7.2",
+    "redux-form": "^7.1.1",
     "redux-saga": "^0.15.6",
     "redux-thunk": "^2.2.0",
     "siema": "^1.4.6"

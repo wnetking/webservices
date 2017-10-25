@@ -8,6 +8,7 @@ import currencies from './currencies'
 import languages from './languages'
 import product from './product'
 import productlist from './productlist'
+import cms from './cms'
 
 export default combineReducers({
   [category.constants.NAME]: category.reducer,
@@ -19,4 +20,5 @@ export default combineReducers({
   [currencies.constants.NAME]: currencies.reducer,
   [product.constants.NAME]: product.reducer,
   [languages.constants.NAME]: languages.reducer,
+  [cms.constants.NAME]: cms.reducer,
 });

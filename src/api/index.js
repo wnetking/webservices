@@ -1,6 +1,7 @@
 import category from './category'
 import user from './user'
 import cart from './cart'
+import cms from './cms'
 import products from './products'
 import images from './images'
 import helper from './helper'
@@ -15,6 +16,7 @@ export default {
   category,
   user,
   cart,
+  cms,
   localStorage,
   products,
   images,

@@ -1,5 +1,5 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
 require_once _PS_MODULE_DIR_.'pwa/pwa.php';
 require_once _PS_MODULE_DIR_.'pwa/libs/config.php';
 require_once _PS_MODULE_DIR_.'pwa/libs/PSWebServiceLibrary.php';
@@ -38,7 +38,6 @@ class PwaAjaxModuleFrontController extends ModuleFrontController
                         break;
 
                     case 'add_customer':
-
                         $response = addCustomer($webService);
                         break;
 

@@ -4,7 +4,7 @@ let get = new GET('content_management_system');
 
 const cms = {
   getCmsData(id) {
-    return get.one(id);
+    return get.one(id).then(d => d.content);
   },
 
   getCmsList(){

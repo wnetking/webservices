@@ -5,6 +5,6 @@
   "dataType": "output_format=JSON",
   "routeSuffix": "",
   "postRequest" : {
-    "url" : "http://192.168.9.37/prestashop_react/en/module/pwa/ajax?"
+    "url" : "http://192.168.9.37/prestashop_react/en/module/pwa/ajax"
   }
 }

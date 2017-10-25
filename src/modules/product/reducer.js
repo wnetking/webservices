@@ -19,6 +19,10 @@ const initState = {
     accessories: {
         data: null,
         fetching: true,
+    },
+    bundle: {
+        data: null,
+        fetching: true,
     }
 }
 
@@ -69,6 +73,28 @@ export default function reducer(state = initState, action) {
                 ...state,
                 ...action.payload
             }
+
+
+        case t.FETCH_BUNDLE_REQUESTED:
+            return {
+                ...state,
+                ...{
+                    bundle: {
+                        data: null,
+                        fetching: true
+                    }
+                }
+            }
+        case t.FETCH_BUNDLE_REQUESTED_SUCCEEDED:
+            return {
+                ...state,
+                ...action.payload
+            }
+        case t.FETCH_BUNDLE_REQUESTED_FAILED:
+            return {
+                ...state,
+                ...action.payload
+            }    
         default:
             return state
     }

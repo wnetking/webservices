@@ -6,10 +6,10 @@ import {connect} from 'react-redux'
 
 class LoginLink extends Component {
   render() {
-    let {login} = this.props.user
+    let {login,isLogin} = this.props.user
     return (
       <NavItem>
-        {login.isLogin ?
+        {isLogin ?
           <Link className="nav-link" to='/user'>{login.data.firstname} {login.data.lastname}</Link>
           :
           <Link className="nav-link" to='/login'>Login</Link>

@@ -8,6 +8,7 @@ import combinations from './combinations';
 import currencies from './currencies';
 import languages from './languages';
 import product from './product';
+import cms from './cms';
 
 export default function* rootSagas() {
   yield all([
@@ -19,5 +20,6 @@ export default function* rootSagas() {
       fork(currencies.saga),
       fork(product.saga),
       fork(languages.saga),
+      fork(cms.saga),
   ]);
 }

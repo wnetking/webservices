@@ -1,32 +1,47 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-// import {bindActionCreators} from 'redux'
+import {bindActionCreators} from 'redux'
 import {Link, Redirect} from 'react-router-dom'
 import {Col, Button, Form, FormGroup, Label, Input, FormText, Alert} from 'reactstrap';
 
-// import {registrationUser} from '../../actions/userActions'
+import {fetchRegistrationRequest,resetError} from '../actions'
 
 class Registration extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
-    let {registrationUser} = this.props
+    let {fetchRegistrationRequest} = this.props
     let data = new FormData(document.querySelector('#registration-form'));
+    
+    data.append('action', 'add_customer')
 
-    registrationUser(data);
+    fetchRegistrationRequest(data);
+
+    // for(var pair of data.entries()) {
+      // console.log(pair[0]+ ', '+ pair[1]); 
+  //  }
+  
+    // registrationUser(data);
   }
 
   render() {
-    let {login, registration} = this.props.user
+    let {data, error} = this.props.user
 
     return (
       <Form onSubmit={this.handleSubmit} id="registration-form" style={{ "maxWidth": 500 }} className="mx-auto">
-        {login.isLogin ? <Redirect to='/'/> : null}
+        {/*login.isLogin ? <Redirect to='/'/> : null*/}
         <h2 className="text-center mb-4">Registration</h2>
         <FormGroup row>
           <Col sm={12} className="text-center">
             <p>Already have an account? <Link to="/login">Log in instead!</Link></p>
           </Col>
         </FormGroup>
+        {!error.status ? null :
+          <Alert color="danger">
+            {error.message}  
+            <Button style={{float : 'right'}} size="sm" outline color="secondary" 
+                  onClick={this.props.resetError.bind(null)}>x</Button>
+          </Alert>
+         }
         <FormGroup row>
           <Col sm={3}>
             Social title
@@ -90,18 +105,18 @@ class Registration extends Component {
             <Button type="submit">Registration</Button>
           </Col>
         </FormGroup>
-        {registration.fetching ?
+        {/*registration.fetching ?
           <Alert color="info" className="mt-4">
             Loading... Registration in progress.
           </Alert>
           : null
-        }
-        {registration.message.show ?
+        */}
+        {/*registration.message.show ?
           <Alert color="warning" className="mt-4">
             {registration.message.text}
           </Alert>
           : null
-        }
+        */}
       </Form>
     );
   }
@@ -114,7 +129,8 @@ function mapStateToProps({user}) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    // registrationUser: bindActionCreators(registrationUser, dispatch),
+    fetchRegistrationRequest: bindActionCreators(fetchRegistrationRequest, dispatch),
+    resetError: bindActionCreators(resetError, dispatch),
   }
 }
 

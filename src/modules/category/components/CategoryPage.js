@@ -54,7 +54,7 @@ class CategoryPage extends Component {
                 Array.isArray(data.associations.categories) ?
                   <SubCat /> : null
               }
-              <h3>Products</h3>
+              <h3 className="mt-3">Products</h3>
               <ProductList limit={null} categoryID={null} manufacturerID={null}
                 products={data.associations.products.map((item) => item.id)} />
             </div>}

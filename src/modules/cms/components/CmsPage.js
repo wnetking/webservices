@@ -1,59 +1,61 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import renderHTML from 'react-render-html'
 
-import {getCmsData} from '../../actions/cmsActions'
+import { fetchOneRequest } from '../actions'
 
 class CmsPage extends Component {
-  componentDidMount() {
-    let {getCmsData} = this.props
+  componentDidMount () {
+    let {fetchOneRequest} = this.props
 
-    getCmsData(this.props.match.params.id);
+    fetchOneRequest(this.props.match.params.id)
   }
 
-  componentDidUpdate() {
+  componentDidUpdate () {
     let {fetching, data} = this.props.cms
-    let {getCmsData} = this.props
+    let {fetchOneRequest} = this.props
 
     if (!fetching) {
       if (parseInt(this.props.match.params.id, 10) !== parseInt(data.id, 10)) {
-        getCmsData(this.props.match.params.id);
+        fetchOneRequest(this.props.match.params.id)
       }
     }
-
     window.scrollTo(0, 0)
   }
 
-  render() {
+  render () {
     let {fetching, data} = this.props.cms
+    let { active } = this.props.languages
 
     return (
       <div>
         {fetching ?
-          <div>Loading ...</div>
-          :
-          <section>
-            <h1>{data.meta_title}</h1>
-            <arcticle>
-              {renderHTML(data.content)}
-            </arcticle>
-          </section>
-        }
+           <div>
+             Loading ...
+           </div>
+           :
+           <section>
+             <h1>{data.meta_title[active].value}</h1>
+             <arcticle>
+               {renderHTML(data.content[active].value)}
+             </arcticle>
+           </section>}
       </div>
     )
   }
 }
 
-function mapStateToProps({cmsReducer}) {
+function mapStateToProps ({ cms, languages }) {
   return {
-    cms: cmsReducer,
+    cms: cms,
+    languages: languages
   }
 }
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
-    getCmsData: bindActionCreators(getCmsData, dispatch),
+    fetchOneRequest: bindActionCreators(fetchOneRequest, dispatch)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CmsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CmsPage)

@@ -1,16 +1,14 @@
 <?php
 
-function addCustomer(&$webService){
+function addCustomer(&$webService){   
+     
     $existCustomer = $webService->get(array('url' => PS_WS_SHOP_PATH . 
       '/api/customers/?display=[email]&filter[email]=' .  Tools::getValue('email')));
   
     if (count($existCustomer->customers->customer) > 0) {
       return array(
       'isLogin' => false,
-      'message' => array(
-        'show' => true,
-        'text' => 'User with email ' . Tools::getValue('email') . ' exist'
-      ));  
+      'message' => 'User with email ' . Tools::getValue('email') . ' exist');  
     }
   
     $xml = $webService->get(array('url' => PS_WS_SHOP_PATH . '/api/customers?schema=blank'));
@@ -38,6 +36,9 @@ function addCustomer(&$webService){
     }
     if (Tools::isSubmit('id_group')) {
       $xml->customer->id_default_group = Tools::getValue('id_group'); // Customers
+    }
+    if (Tools::isSubmit('optin')) {
+      $xml->customer->optin = Tools::getValue('optin');
     }
     
     $xml->customer->active = 1;

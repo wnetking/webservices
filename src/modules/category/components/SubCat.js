@@ -24,7 +24,7 @@ class SubCat extends Component {
         {fetching || data === null  ? null :
           <div>
             <h4 className="mt-3">Sub categories</h4>
-            <CardGroup className="mb-3">
+            <CardGroup>
               {data.map((item, key) => (
                 <Card key={key} style={{ maxWidth: 120 }}>
                   <CardImg top width="50" src={Api.images.getCategoryImage(item.id)} alt={item.name[active].value} />

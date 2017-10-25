@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 // import ProductsOnCategory from '../../components/ProductsOnCategory'
 import { Combinations, ImageSlider } from 'modules/combinations/components'
-import { Badges, Name, Description, ProductTabs, Price, Accessories } from 'modules/product/components'
+import { Badges, Name, Description, ProductTabs, Price, Bundle, Reference, Accessories } from 'modules/product/components'
 // import AddToCart from '../../components/cart/AddToCart'
 
 class Product extends Component {
@@ -19,6 +19,7 @@ class Product extends Component {
           <ImageSlider />
           </Col>
           <Col xs='12' sm='6'>
+          <Reference data={product.data} />
           <Name data={product.data} active={active} />
           <Badges data={product.data} active={active} />
           <h2><Price /></h2>
@@ -26,11 +27,12 @@ class Product extends Component {
           <Combinations id={this.props.match.params.id} />
           {/* <AddToCart product_id={data.id} /> */}
           {product.data === null ? null :
-             <Accessories products={product.data.associations.accessories} />}
+             <Bundle products={product.data.associations.product_bundle} />}
           <ProductTabs />
           </Col>
           <Col xs='12' className='mt-5'>
-          
+          {product.data === null ? null :
+             <Accessories products={product.data.associations.accessories} />}
           </Col>
         </Row>
         </Col>

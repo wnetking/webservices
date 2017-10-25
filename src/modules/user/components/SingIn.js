@@ -16,16 +16,16 @@ class SingIn extends Component {
   }
 
   render() {
-    let { login } = this.props.user
+    let { data, isLogin,  error } = this.props.user
 
     return (
       <Form onSubmit={this.handleSubmit} id="login-form" style={{ "maxWidth": 500 }} className="mx-auto">
-        {login.isLogin ? <Redirect to='/' /> : null}
+        {isLogin ? <Redirect to='/' /> : null}
         <h2 className="text-center mb-4">Login</h2>
         <FormGroup row>
           <Label for="exampleEmail" sm={2}>Email</Label>
           <Col sm={10}>
-            <Input type="email" name="email" id="exampleEmail" placeholder="User email" required />
+            {<Input type="email" name="email" id="exampleEmail" placeholder="User email" required />}
           </Col>
         </FormGroup>
         <FormGroup row>
@@ -39,9 +39,9 @@ class SingIn extends Component {
             <Button type="submit">Sing In</Button>
           </Col>
         </FormGroup>
-        {login.message.show ?
+        {error.status ?
           <Alert color="warning" className="mt-4">
-            {login.message.text}
+            {error.message}
           </Alert>
           : null
         }
