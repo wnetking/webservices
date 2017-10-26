@@ -11,6 +11,7 @@ import currencies from './currencies'
 import languages from './languages'
 import features from './features'
 import localStorage from './localStorage'
+import cookie from './cookie'
 
 export default {
   category,
@@ -18,6 +19,7 @@ export default {
   cart,
   cms,
   localStorage,
+  cookie,
   products,
   images,
   manufacturer,

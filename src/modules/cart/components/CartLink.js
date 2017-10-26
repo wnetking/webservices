@@ -13,13 +13,13 @@ class CartLink extends Component {
   }
 
   render() {
-    let {data} = this.props.cart
+    let {data, fetching} = this.props.cart
 
     return (
       <NavItem>
         {data === null ?
           <span className="nav-link">Cart: 0</span> :
-          <Link className="nav-link" to='/cart'>Cart: {data.associations.cart_rows.length}</Link>
+          <Link className="nav-link" to='/cart'>Cart: {/*data.associations.cart_rows.length*/}</Link>
         }
       </NavItem>
     )

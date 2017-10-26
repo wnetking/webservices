@@ -3,8 +3,8 @@
 function updateCart(&$webService){
     $opt = array('resource' => 'carts');
   
-    if (Tools::isSubmit('update_cart')) {
-      $opt['id'] = Tools::getValue('update_cart');
+    if (Tools::isSubmit('id_cart')) {
+      $opt['id'] = Tools::getValue('id_cart');
     }
   
     $xml = $webService->get($opt);
@@ -43,10 +43,13 @@ function updateCart(&$webService){
   
     $opt = array('resource' => 'carts');
     $opt['putXml'] = $xml->asXML();
-    $opt['id'] = Tools::getValue('update_cart');
+    $opt['id'] = Tools::getValue('id_cart');
     $xml = $webService->edit($opt);
   
-    return array('id_cart' => Tools::getValue('update_cart'), 'id_product' => Tools::getValue('id_product'));
+    return array(
+      'id_cart' => Tools::getValue('id_cart'), 
+      'id_product' => Tools::getValue('id_product')
+    );
   
 }
 

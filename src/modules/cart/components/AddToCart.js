@@ -1,28 +1,52 @@
 import React, { Component } from 'react'
-// import {connect} from 'react-redux'
-// import {bindActionCreators} from 'redux'
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
-
-// import {addProductToCart} from '../../actions/cartActions'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { Button, Form, FormGroup, Input } from 'reactstrap'
+import { addToCartRequest } from '../actions'
 
 class AddToCart extends Component {
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let {addToCartRequest, product_id, cart,user, 
+         currencies, languages, combinations} = this.props
+    let data = new FormData(document.querySelector(`#add-to-cart-${product_id}`));
+    
+    data.append('id_product', product_id)
+    data.append('id_product_attribute', combinations.data.id)
+    data.append('id_address_delivery', product_id)
+    data.append('id_currency', currencies.data[currencies.active].id)
+    data.append('id_lang', languages.data[languages.active].id)
+
+    if(user.user_id !== null){
+      data.append('id_customer', user.user_id)
+    }
+
+    if(cart.cart_id === null){
+      data.append('action', "add_cart")
+    }else{
+      data.append("action", "update_cart")
+      data.append("id_cart", cart.cart_id)
+    }
+
+    addToCartRequest(data); 
+  }
+
   render () {
-    let {addProductToCart, product_id} = this.props
+    let {product_id} = this.props
 
     return (
-      <Form onSubmit={addProductToCart.bind(null, product_id)}  >
-        <FormGroup>
-          <Label for='quantity'>
-            Email
-          </Label>
+      <Form onSubmit={this.handleSubmit} inline className='mb-4' id={`add-to-cart-${product_id}`}>
+        <FormGroup className='mr-2' style={{maxWidth: 100}}>
           <Input
             type='number'
             name='quantity'
-            id='quantity'
-            placeholder='Quantity' />
+            defaultValue="1"
+            min="1"
+            placeholder="1"
+            style={{width: '100%'}} />
         </FormGroup>
         <FormGroup>
-          <Button>
+          <Button type="submit">
             Add to cart
           </Button>
         </FormGroup>
@@ -31,14 +55,18 @@ class AddToCart extends Component {
   }
 }
 
-function mapStateToProps ({userReducer}) {
+function mapStateToProps ({user, cart, currencies, languages, combinations}) {
   return {
-    userState: userReducer
+    user: user,
+    cart: cart,
+    currencies: currencies,
+    languages: languages,
+    combinations: combinations 
   }
 }
 function mapDispatchToProps (dispatch) {
   return {
-    // addProductToCart: bindActionCreators(addProductToCart, dispatch),
+    addToCartRequest: bindActionCreators(addToCartRequest, dispatch)
   }
 }
 

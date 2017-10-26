@@ -1,27 +1,43 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux'
 import { Link, Redirect } from 'react-router-dom'
 import { Col, Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
 
-// import { loginUser } from '../../actions/userActions'
+import { fetchLoginRequest, resetError } from '../actions'
 
 class SingIn extends Component {
+  componentDidMount () {
+    this.props.resetError()
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
-    let { loginUser } = this.props
+    let { fetchLoginRequest } = this.props
     let data = new FormData(document.querySelector('#login-form'));
 
-    loginUser(data);
+    data.append('action', 'login')
+
+    fetchLoginRequest(data);
   }
 
   render() {
-    let { data, isLogin,  error } = this.props.user
+    let { error,isLogin, fetching} = this.props.user
 
     return (
-      <Form onSubmit={this.handleSubmit} id="login-form" style={{ "maxWidth": 500 }} className="mx-auto">
+      <Form onSubmit={this.handleSubmit} 
+        id="login-form" style={{ "maxWidth": 500 }} className="mx-auto">
         {isLogin ? <Redirect to='/' /> : null}
         <h2 className="text-center mb-4">Login</h2>
+
+        {!error.status ? null :
+          <Alert color="danger">
+            {error.message}  
+            <Button style={{float : 'right', lineHeight: 1}} size="sm" outline color="secondary" 
+                  onClick={this.props.resetError.bind(null)}>x</Button>
+          </Alert>
+         }
+
         <FormGroup row>
           <Label for="exampleEmail" sm={2}>Email</Label>
           <Col sm={10}>
@@ -36,15 +52,11 @@ class SingIn extends Component {
         </FormGroup>
         <FormGroup check row>
           <Col sm={{ size: 10, offset: 2 }}>
-            <Button type="submit">Sing In</Button>
+            <Button type="submit">
+              {fetching ? 'Loading...': 'Sing In'} 
+            </Button>
           </Col>
         </FormGroup>
-        {error.status ?
-          <Alert color="warning" className="mt-4">
-            {error.message}
-          </Alert>
-          : null
-        }
         <p className="text-center mt-3">
           <Link to="registration">No account? Create one here</Link>
         </p>
@@ -61,7 +73,8 @@ function mapStateToProps({ user }) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    // loginUser: bindActionCreators(loginUser, dispatch),
+    fetchLoginRequest: bindActionCreators(fetchLoginRequest, dispatch),
+    resetError: bindActionCreators(resetError, dispatch),
   }
 }
 

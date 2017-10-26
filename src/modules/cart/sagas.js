@@ -3,17 +3,20 @@ import * as t from './actionTypes';
 import * as actions from './actions'
 import Api from 'api'
 
-function* userLogin() {
+function* addToCart(action) {
   try {
-    const data = yield call(Api.category.getCategoryList, null);
-    yield put(actions.categoryListSuccess(data));
+    const data = yield call(Api.cart.addProduct,action.payload.data);
+    
+    // yield put(actions.addToCartSucceess(data));
+    console.log(data);
   } catch (e) {
-    yield put(actions.categoryListFailed(e.message));
+    console.log(e)
+    // yield put(actions.addToCartFailed(e.message));
   }
 }
 
 function* saga() {
-  yield takeLatest(t.LOGIN_REQUESTED, userLogin);
+  yield takeLatest(t.ADD_TO_CART_REQUESTED, addToCart);
 }
 
 export default saga;

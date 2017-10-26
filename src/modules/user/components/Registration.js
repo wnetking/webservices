@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Link, Redirect} from 'react-router-dom'
-import {Col, Button, Form, FormGroup, Label, Input, FormText, Alert} from 'reactstrap';
+import {Col, Button, Form, FormGroup, Label, Input, Alert} from 'reactstrap';
 
 import {fetchRegistrationRequest,resetError} from '../actions'
 
@@ -14,21 +14,15 @@ class Registration extends Component {
     
     data.append('action', 'add_customer')
 
-    fetchRegistrationRequest(data);
-
-    // for(var pair of data.entries()) {
-      // console.log(pair[0]+ ', '+ pair[1]); 
-  //  }
-  
-    // registrationUser(data);
+    fetchRegistrationRequest(data); 
   }
 
   render() {
-    let {data, error} = this.props.user
+    let { error,isLogin, fetching} = this.props.user
 
     return (
       <Form onSubmit={this.handleSubmit} id="registration-form" style={{ "maxWidth": 500 }} className="mx-auto">
-        {/*login.isLogin ? <Redirect to='/'/> : null*/}
+        {isLogin ? <Redirect to='/'/> : null}
         <h2 className="text-center mb-4">Registration</h2>
         <FormGroup row>
           <Col sm={12} className="text-center">
@@ -38,7 +32,7 @@ class Registration extends Component {
         {!error.status ? null :
           <Alert color="danger">
             {error.message}  
-            <Button style={{float : 'right'}} size="sm" outline color="secondary" 
+            <Button style={{float : 'right', lineHeight: 1}} size="sm" outline color="secondary" 
                   onClick={this.props.resetError.bind(null)}>x</Button>
           </Alert>
          }
@@ -79,13 +73,13 @@ class Registration extends Component {
             <Input type="password" name="passwd" id="examplePassword" placeholder="you password" required/>
           </Col>
         </FormGroup>
-        <FormGroup row>
+        {/* <FormGroup row>
           <Label for="Birthdate" sm={3}>Birthdate</Label>
           <Col sm={9}>
             <Input type="text" name="birthday" id="Birthdate" placeholder="you birthday"/>
             <FormText color="muted">Optional.</FormText>
           </Col>
-        </FormGroup>
+        </FormGroup> */}
         <FormGroup row>
           <Col sm={{ size: 9, offset: 3 }}>
             <Label check>
@@ -102,21 +96,11 @@ class Registration extends Component {
         </FormGroup>
         <FormGroup check row>
           <Col sm={{ size: 9, offset: 3 }}>
-            <Button type="submit">Registration</Button>
+            <Button type="submit">
+              {fetching ? 'Loading...': 'Registration'}
+            </Button>
           </Col>
         </FormGroup>
-        {/*registration.fetching ?
-          <Alert color="info" className="mt-4">
-            Loading... Registration in progress.
-          </Alert>
-          : null
-        */}
-        {/*registration.message.show ?
-          <Alert color="warning" className="mt-4">
-            {registration.message.text}
-          </Alert>
-          : null
-        */}
       </Form>
     );
   }

@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
 import { Row, Col } from 'reactstrap'
-// import ProductsOnCategory from '../../components/ProductsOnCategory'
 import { Combinations, ImageSlider } from 'modules/combinations/components'
+import { AddToCart } from 'modules/cart/components'
 import { Badges, Name, Description, ProductTabs, Price, Bundle, Reference, Accessories } from 'modules/product/components'
-// import AddToCart from '../../components/cart/AddToCart'
 
 class Product extends Component {
   render () {
@@ -25,7 +23,8 @@ class Product extends Component {
           <h2><Price /></h2>
           <Description data={product.data} type='short' active={active} />
           <Combinations id={this.props.match.params.id} />
-          {/* <AddToCart product_id={data.id} /> */}
+          {product.data === null ? null :
+             <AddToCart product_id={product.data.id} />}
           {product.data === null ? null :
              <Bundle products={product.data.associations.product_bundle} />}
           <ProductTabs />

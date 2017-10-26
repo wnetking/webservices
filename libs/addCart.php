@@ -24,5 +24,8 @@ function addCart(&$webService){
   $xml = $webService->add($opt);
   $id_cart = $xml->cart->id;
   
-  return array('id_cart' => (int)$id_cart); 
+  return array(
+    'id_cart' => (int)$id_cart,
+    'id_product' => Tools::getValue('id_product')
+  ); 
 }

@@ -3,7 +3,7 @@ import * as t from './actionTypes';
 const initState = {
   user_id : null,
   data    : null,
-  fetching: true,
+  fetching: false,
   isLogin : false,
   error: {
     status: false,
@@ -13,17 +13,23 @@ const initState = {
 
 export default function reducer(state = initState, action) {
   switch (action.type) {
-    case t.FETCH_REQUESTED:
+    case t.FETCH_LOGIN_REQUESTED:
+      return {
+        ...state,
+        ...{
+          fetching: true,
+          error: {
+            status: false,
+            message: null
+          }
+        }
+      }
+    case t.FETCH_LOGIN_REQUESTED_SUCCEEDED:
       return {
         ...state,
         ...action.payload
       }
-    case t.FETCH_REQUESTED_SUCCEEDED:
-      return {
-        ...state,
-        ...action.payload
-      }
-    case t.FETCH_REQUESTED_FAILED:
+    case t.FETCH_LOGIN_REQUESTED_FAILED:
       return {
         ...state,
         ...action.payload
@@ -40,6 +46,7 @@ export default function reducer(state = initState, action) {
           }
         }
       }
+
     case t.FETCH_REGISTRATION_REQUESTED_SUCCEEDED:
       return {
         ...state,
@@ -56,6 +63,22 @@ export default function reducer(state = initState, action) {
         ...state,
         ...action.payload
       }
+
+    case t.FETCH_LOGOUT_REQUESTED:
+      return {
+        ...state,
+        ...action.payload
+      }
+    case t.FETCH_LOGOUT_REQUESTED_SUCCEEDED:
+      return {
+        ...state,
+        ...action.payload
+      }
+    case t.FETCH_LOGOUT_REQUESTED_FAILED:
+      return {
+        ...state,
+        ...action.payload
+      }  
     default:
       return state
   }

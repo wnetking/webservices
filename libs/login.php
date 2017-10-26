@@ -6,21 +6,24 @@ function loginUser(&$webService){
   if (count($existCustomer->customers->customer) > 0) {
     if (password_verify(Tools::getValue('passwd'), $existCustomer->customers->customer[0]->passwd)) {
       
-      return array('isLogin' => true, 'user_id' => (int)$existCustomer->customers->customer[0]->id);
+      return array(
+        'isLogin' => true, 
+        'user_id' => (int)$existCustomer->customers->customer[0]->id
+      );
 
     } else {
 
       return array(
         'isLogin' => false, 
-        'message' => array( 'show' => true,'text' => 'Sorry! Password do not correct.'
-      ));   
+        'message' => 'Sorry! Password do not correct.'
+      );   
     }
   } else {
     
-    return array('isLogin' => false,'message' => array(
-    'show' => true,
-    'text' => 'Sorry, not register user with email ' . Tools::getValue('email') . '.'
-    ));
+    return array(
+      'isLogin' => false,
+      'message'=> 'Sorry, not register user with email ' . Tools::getValue('email') . '.'
+    );
   
   }
 }

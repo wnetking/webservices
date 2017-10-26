@@ -7,8 +7,9 @@ function addCustomer(&$webService){
   
     if (count($existCustomer->customers->customer) > 0) {
       return array(
-      'isLogin' => false,
-      'message' => 'User with email ' . Tools::getValue('email') . ' exist');  
+        'isLogin' => false,
+        'message' => 'User with email ' . Tools::getValue('email') . ' exist'
+      );  
     }
   
     $xml = $webService->get(array('url' => PS_WS_SHOP_PATH . '/api/customers?schema=blank'));
