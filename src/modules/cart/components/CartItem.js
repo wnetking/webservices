@@ -1,61 +1,46 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
-import { Media } from 'reactstrap';
-// import Api from 'api'
-// import {getCartItemData} from '../../actions/cartActions'
+import { Link } from 'react-router-dom'
+import { Media, ListGroupItem } from 'reactstrap'
+import Api from 'api'
 
+const CartItem = ({product, languages}) => {
+  let item = product
+  let { active } = languages
 
-class CartItem extends Component {
-  // componentDidMount(){
-  //   let {getCartItemData} = this.props;
-  //   let {id_product, id_product_attribute, quantity} = this.props.product;
-
-  //   getCartItemData(id_product, id_product_attribute, quantity);
-  // }
-  // <div>
-  //   {/* {item.id_product} */}
-  //   {/* {item.id_product_attribute} */}
-  //   {/* {item.id_address_delivery} */}
-  //   {item.quantity}
-  // </div>
-
-  render() {
-    let item = this.props.product
-
-    return (
+  return (
+    <ListGroupItem>
       <Media>
-        <Media left href="#">
-          {/* <Media object
-            src={images.productImage(item.id_product, item.images[0].id)} data-src="holder.js/100x100"
-            alt={item.product_info[0].name[0].value} width='100' /> */}
+        <Media left>
+          <Media
+            object
+            src={Api.images.productImage(item.id_product, item.images[0].id)}
+            data-src='holder.js/100x100'
+            alt={item.product_info[0].name[active].value}
+            width='80' />
         </Media>
         <Media body>
-          <Media heading>
-            {item.product_info[0].name[0].value}
+          <Media>
+            <Link to={`/product/${item.id_product}-${item.product_info[0].link_rewrite[0].value}`}>
+            {item.product_info[0].name[active].value}
+            </Link>
           </Media>
           {item.product_option_values.map((item, key) => (
-            <span key={key}>
-              {item.name[0].value}&nbsp;&nbsp;
-            </span>
-          ))}
+             <span key={key}>{item.name[active].value} </span>
+           ))}
+           <p>
+             Quantity : {item.quantity}
+           </p>
         </Media>
       </Media>
-    )
-  }
+    </ListGroupItem>
+  )
 }
 
-function mapStateToProps({ cart }) {
+function mapStateToProps ({ languages }) {
   return {
-    // userState: userReducer,
-    // cart: cartReducer
+    languages: languages
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    // getCartItemData: bindActionCreators(getCartItemData, dispatch),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartItem);
+export default connect(mapStateToProps)(CartItem)

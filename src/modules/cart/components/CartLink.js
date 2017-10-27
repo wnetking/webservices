@@ -1,25 +1,25 @@
 import React, {Component} from 'react';
 import {NavItem} from 'reactstrap';
 import {Link} from 'react-router-dom'
-// import {bindActionCreators} from 'redux'
+import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-// import {fetchCartOnLoad} from '../../actions/cartActions'
+import {getCartIdRequest} from '../actions'
 
 
 class CartLink extends Component {
   componentWillMount() {
-    // let {fetchCartOnLoad} =this.props
-    // fetchCartOnLoad()
+    let {getCartIdRequest} =this.props
+    getCartIdRequest()
   }
 
   render() {
-    let {data, fetching} = this.props.cart
+    let {data} = this.props.cart
 
     return (
       <NavItem>
         {data === null ?
           <span className="nav-link">Cart: 0</span> :
-          <Link className="nav-link" to='/cart'>Cart: {/*data.associations.cart_rows.length*/}</Link>
+          <Link className="nav-link" to='/cart'>Cart: {data.associations.cart_rows.length}</Link>
         }
       </NavItem>
     )
@@ -35,7 +35,7 @@ function mapStateToProps({cart}) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    // fetchCartOnLoad: bindActionCreators(fetchCartOnLoad, dispatch)
+    getCartIdRequest: bindActionCreators(getCartIdRequest, dispatch)
   }
 }
 

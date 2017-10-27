@@ -16,7 +16,6 @@ function* fetchOne(action) {
   try {
     const data = yield call(Api.cms.getCmsData, action.payload.id)
     yield put(actions.fetchOneSuccess(data))
-    console.log(data)
   } catch (e) {
     yield put(actions.fetchOneFailed(e.message))
   }

@@ -1,69 +1,77 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
-// import { Link, Redirect } from 'react-router-dom'
-// import { Col, Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap';
+import { bindActionCreators } from 'redux'
+import { Col, Row, ListGroup } from 'reactstrap'
 import CartItem from './CartItem'
-// import Api from 'api'
-// import { addProductToCart } from '../../actions/cartActions'
-// import { getCartItemData } from '../../actions/cartActions'
+import { addCartItemRequest } from '../actions'
 
 class CartPage extends Component {
-    // componentDidMount() {
-    //     let { getCartItemData, cart } = this.props;
-    //     // let { id_product, id_product_attribute, quantity } = this.props.product;
+  componentDidMount () {
+    let { addCartItemRequest, cart } = this.props
 
-    //     if (cart.data !== null && cart.cartItems.length < 1) {
-    //         if (cart.data.associations.cart_rows.length &&
-    //             cart.data.associations.cart_rows.length >= cart.cartItems.length) {
-    //             cart.data.associations.cart_rows.map((item, key) => {
-    //                 getCartItemData(item.id_product, item.id_product_attribute, item.quantity);
-    //             })
-    //         }
+    if (cart.data !== null) {
+      if (cart.data.associations.cart_rows.length) {
+        cart.data.associations.cart_rows.forEach(item => {
+          addCartItemRequest(item)
+        })
+      }
+    }
+  }
+
+  componentDidUpdate () {
+    // let { getCartItemData, cart } = this.props
+
+    // if (cart.data !== null && cart.cartItems.length === 0) {
+    //     if (cart.data.associations.cart_rows.length && cart.cartItems.length === 0) {
+    //         cart.data.associations.cart_rows.map((item, key) => {
+    //             getCartItemData(item.id_product, item.id_product_attribute, item.quantity)
+    //             return true
+    //         })
     //     }
     // }
+  }
 
-    componentDidUpdate() {
-        let { getCartItemData, cart } = this.props;
+  render () {
+    let { cartItems, data, fetching } = this.props.cart
 
-        if (cart.data !== null && cart.cartItems.length === 0) {
-            if (cart.data.associations.cart_rows.length && cart.cartItems.length === 0) {
-                cart.data.associations.cart_rows.map((item, key) => {
-                    getCartItemData(item.id_product, item.id_product_attribute, item.quantity);
-                    return true;
-                })
-            }
-        }
-    }
-
-    render() {
-        let { cart } = this.props
-
-        return (
-            <div> {
-                cart.data === null ?
-                    'Sorry, in you cart did not products' :
-                    cart.cartItems.length ?
-                        cart.cartItems.map((item, key) => (
-                            <CartItem key={key} product={item} />
-                        )) :
-                        null
-            } </div>
-        );
-    }
+    return (
+      <div>
+        {data === null ?
+           'Sorry, in you cart did not products' :
+         
+           cartItems.length ?
+             <Row>
+               <Col sm={6}>
+               <ListGroup>
+                 {cartItems.map((item, key) => (
+                    <CartItem key={key} product={item} />
+                  ))}
+               </ListGroup>
+               </Col>
+               <Col sm={6}>
+                <h2>Products in carts {cartItems.length}</h2>
+               {fetching ? 'loading...' : null}
+               </Col>
+             </Row>
+         
+             :
+             null}
+      </div>
+    )
+  }
 }
 
-function mapStateToProps({ user, cart }) {
-    return {
-        user: user,
-        cart: cart
-    }
+function mapStateToProps ({ user, cart }) {
+  return {
+    user: user,
+    cart: cart
+  }
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        // getCartItemData: bindActionCreators(getCartItemData, dispatch),
-    }
+function mapDispatchToProps (dispatch) {
+  return {
+    addCartItemRequest: bindActionCreators(addCartItemRequest, dispatch)
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CartPage)

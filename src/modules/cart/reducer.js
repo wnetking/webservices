@@ -36,18 +36,45 @@ export default function reducer(state = initState, action) {
         ...action.payload
       }
     
-    //////////////// CREATE CART ///////////////////
-    case t.CREATE_CART_REQUESTED:
+    case t.GET_CART_ID_REQUESTED:
       return {
         ...state,
         ...action.payload
       }
-    case t.CREATE_CART_REQUESTED_SUCCEEDED:
+    case t.GET_CART_ID_REQUESTED_SUCCEEDED:
       return {
         ...state,
         ...action.payload
       }
-    case t.CREATE_CART_REQUESTED_FAILED:
+    case t.GET_CART_ID_REQUESTED_FAILED:
+      return {
+        ...state,
+        ...action.payload
+      }  
+
+    case t.ADD_CART_ITEM_REQUESTED:
+    return {
+      ...state,
+      ...{
+        fetching: true
+      }
+    }
+    
+    case t.ADD_CART_ITEM_REQUESTED_SUCCEEDED:
+      return {
+        ...state,
+        ...{
+          cartItems: [].concat(state.cartItems.filter(item => {
+            if(JSON.stringify(item.product_option_values) === JSON.stringify(action.payload.cartItems[0].product_option_values) &&
+              item.id_product === action.payload.cartItems[0].id_product){
+                return false
+            }
+            return true
+          }), action.payload.cartItems),
+          fetching: false
+        }
+      }
+    case t.ADD_CART_ITEM_REQUESTED_FAILED:
       return {
         ...state,
         ...action.payload

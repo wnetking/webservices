@@ -12,10 +12,13 @@ class AddToCart extends Component {
     let data = new FormData(document.querySelector(`#add-to-cart-${product_id}`));
     
     data.append('id_product', product_id)
-    data.append('id_product_attribute', combinations.data.id)
     data.append('id_address_delivery', product_id)
     data.append('id_currency', currencies.data[currencies.active].id)
     data.append('id_lang', languages.data[languages.active].id)
+
+    if(combinations.data !== null && typeof combinations.data !== "undefined"){
+      data.append('id_product_attribute', combinations.data.id)
+    }
 
     if(user.user_id !== null){
       data.append('id_customer', user.user_id)
