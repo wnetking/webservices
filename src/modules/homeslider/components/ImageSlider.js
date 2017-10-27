@@ -1,41 +1,43 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {getAll} from '../../actions/imagesliderActions'
+import {request} from '../actions'
 import Slides from './Slides'
 
 class ImageSlider extends Component {
   componentDidMount() {
-    let {getAll} = this.props
-    let {data} = this.props.imageslider
+    let {request} = this.props
+    let {data} = this.props.homeslider
 
     if (data === null) {
-      getAll();
+      request();
     }
   }
 
   render() {
-    let {fetching, data} = this.props.imageslider
+    let {fetching, data} = this.props.homeslider
+    let {active} = this.props.languages
     return (
       <div className="image-slider mb-5">
         {fetching ?
           <div>Loading ...</div>
           :
-          <Slides data={data}/>
+          <Slides data={data} active={active}/>
         }
       </div>
     )
   }
 }
 
-function mapStateToProps({imagesliderReducer}) {
+function mapStateToProps({homeslider,languages}) {
   return {
-    imageslider: imagesliderReducer
+    homeslider: homeslider,
+    languages: languages
   }
 }
 function mapDispatchToProps(dispatch) {
   return {
-    getAll: bindActionCreators(getAll, dispatch)
+    request: bindActionCreators(request, dispatch)
   }
 }
 

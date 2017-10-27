@@ -1,16 +1,9 @@
 import React, {Component} from 'react';
 import {compose} from "recompose";
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker,
-  InfoWindow,
-} from "react-google-maps";
-
+import {withScriptjs,withGoogleMap,GoogleMap,Marker,InfoWindow} from "react-google-maps";
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {getAll} from '../actions/storesActions'
+import {request} from '../actions'
 
 class Stores extends Component {
   state = {
@@ -18,11 +11,11 @@ class Stores extends Component {
   }
 
   componentDidMount() {
-    let {getAll} = this.props
+    let {request} = this.props
     let {data} = this.props.stores
 
     if (data === null) {
-      getAll();
+      request();
     }
   }
 
@@ -74,14 +67,14 @@ class Stores extends Component {
 }
 
 
-function mapStateToProps({storesReducer}) {
+function mapStateToProps({stores}) {
   return {
-    stores: storesReducer
+    stores: stores
   }
 }
 function mapDispatchToProps(dispatch) {
   return {
-    getAll: bindActionCreators(getAll, dispatch)
+    request: bindActionCreators(request, dispatch)
   }
 }
 

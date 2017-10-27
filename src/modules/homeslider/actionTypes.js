@@ -1,0 +1,3 @@
+export const FETCH_REQUESTED = 'homeslider/FETCH_REQUESTED';
+export const FETCH_REQUESTED_SUCCEEDED = 'homeslider/FETCH_REQUESTED_SUCCEEDED';
+export const FETCH_REQUESTED_FAILED = 'homeslider/FETCH_REQUESTED_FAILED';

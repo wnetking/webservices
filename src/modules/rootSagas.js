@@ -10,6 +10,8 @@ import languages from './languages';
 import product from './product';
 import cms from './cms';
 import cart from './cart';
+import stores from './stores';
+import homeslider from './homeslider';
 
 export default function* rootSagas() {
   yield all([
@@ -23,5 +25,7 @@ export default function* rootSagas() {
       fork(languages.saga),
       fork(cms.saga),
       fork(cart.saga),
+      fork(stores.saga),
+      fork(homeslider.saga),
   ]);
 }

@@ -9,6 +9,8 @@ import languages from './languages'
 import product from './product'
 import productlist from './productlist'
 import cms from './cms'
+import stores from './stores'
+import homeslider from './homeslider'
 
 export default combineReducers({
   [category.constants.NAME]: category.reducer,
@@ -21,4 +23,6 @@ export default combineReducers({
   [product.constants.NAME]: product.reducer,
   [languages.constants.NAME]: languages.reducer,
   [cms.constants.NAME]: cms.reducer,
+  [stores.constants.NAME]: stores.reducer,
+  [homeslider.constants.NAME]: homeslider.reducer,
 });

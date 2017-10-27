@@ -4,6 +4,8 @@ import cart from './cart'
 import cms from './cms'
 import products from './products'
 import images from './images'
+import imageslider from './imageslider'
+import stores from './stores'
 import helper from './helper'
 import combinations from './combinations'
 import manufacturer from './manufacturers'
@@ -27,5 +29,7 @@ export default {
   combinations,
   currencies,
   features,
-  languages
+  languages,
+  stores,
+  imageslider
 }

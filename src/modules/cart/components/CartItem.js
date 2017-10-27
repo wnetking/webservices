@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Media, ListGroupItem } from 'reactstrap'
@@ -11,7 +11,7 @@ const CartItem = ({product, languages}) => {
   return (
     <ListGroupItem>
       <Media>
-        <Media left>
+        <Media className="mr-2" left>
           <Media
             object
             src={Api.images.productImage(item.id_product, item.images[0].id)}
