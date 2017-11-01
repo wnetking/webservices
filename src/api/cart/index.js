@@ -1,4 +1,4 @@
-import config from '../config.json'
+import config from '../config.js'
 import combinations from '../combinations'
 import products from '../products/'
 import cookie from '../cookie'

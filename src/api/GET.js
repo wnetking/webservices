@@ -1,4 +1,4 @@
-import config from "./config.json"
+import config from "./config.js"
 
 export default class GET {
   constructor(name) {
@@ -59,5 +59,5 @@ export default class GET {
   }
 
 
-  
+
 }

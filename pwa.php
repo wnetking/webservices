@@ -34,8 +34,9 @@ class Pwa extends Module
   
     if (!parent::install() ||
       !$this->registerHook('leftColumn') ||
+      !$this->registerHook('backOfficeHeader') ||
       !$this->registerHook('header') || !$this->registerHook('footer') ||
-      !Configuration::updateValue('PWA', 'my friend')
+      !Configuration::updateValue('PWA', ' ')
     )
       return false;
   
@@ -113,27 +114,65 @@ class Pwa extends Module
   
       // Init Fields form array
       $fields_form[0]['form'] = array(
-          'input' => array(
-              array(
-                  'type' => 'button',
-                  'label' => $this->l('Api key from WEBSERVICE'),
-                  'name' => 'PWA',
-              )
-          )
+        'tabs' => array(
+
+        ),
+        'buttons' => array(
+            array(
+                'class' => 'btn btn-primary',
+                'title' => $this->l('Configurations'),
+                'type' => 'button',
+                'name' => 'pwa_conf',
+                'id' => 'pwa_config'
+            ),
+            array(
+                'class' => 'btn btn-primary',
+                'title' => $this->l('Layout'),
+                'type' => 'button',
+                'name' => 'pwa_layout',
+            ),
+            array(
+                'class' => 'btn btn-primary',
+                'title' => $this->l('Themes'),
+                'type' => 'button',
+                'name' => 'pwa_themes',
+            ),
+        )
       );
 
       $fields_form[1]['form'] = array(
+        
         'legend' => array(
-            'title' => $this->l('Settings'),
+            'title' => $this->l('Configurations'),
         ),
         'input' => array(
             array(
                 'type' => 'text',
-                'label' => $this->l('Api key from WEBSERVICE'),
+                'label' => $this->l('Api key from Prestashop Webservice'),
                 'name' => 'PWA',
                 'size' => 20,
                 'required' => true
             )
+        ),
+        'submit' => array(
+            'title' => $this->l('Save'),
+            'class' => 'btn btn-default pull-right'
+        )
+    );
+
+    $fields_form[2]['form'] = array(
+        'legend' => array(
+            'title' => $this->l('Layout'),
+        ),
+        'submit' => array(
+            'title' => $this->l('Save'),
+            'class' => 'btn btn-default pull-right'
+        )
+    );
+    
+    $fields_form[3]['form'] = array(
+        'legend' => array(
+            'title' => $this->l('Themes'),
         ),
         'submit' => array(
             'title' => $this->l('Save'),
@@ -175,5 +214,16 @@ class Pwa extends Module
       $helper->fields_value['PWA'] = Configuration::get('PWA');
   
       return $helper->generateForm($fields_form);
+  }
+
+  public function hookBackOfficeHeader()
+  {
+      $this->context->controller->addJquery();
+    //   $this->context->controller->addJqueryUI('ui.sortable');
+    //   $this->context->controller->addJqueryUi('ui.widget');
+    //   $this->context->controller->addJqueryPlugin('tagify');
+    //   $this->context->controller->addJqueryPlugin('colorpicker');
+      $this->context->controller->addJS($this->_path.'views/js/admin.js');
+      $this->context->controller->addCSS($this->_path.'views/css/admin.css');
   }
 }

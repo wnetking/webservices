@@ -7,7 +7,7 @@ try
   $webService = new PrestaShopWebservice(PS_SHOP_PATH, PS_WS_AUTH_KEY, DEBUG);
 
     // Getting the empty XML document to send back completed
-    $xml = $webService->get( array( 'url' => PS_SHOP_PATH .'/api/addresses?schema=blank' ) );
+    $xml = $webService->get( array( 'url' => PS_SHOP_PATH .'api/addresses?schema=blank' ) );
 
     // Adding dinamic and mandatory fields
     // Required
@@ -28,12 +28,12 @@ try
     $opt = array( 'resource' => 'addresses' );
     $opt['postXml'] = $xml->asXML();
     $xml = $webService->add($opt);
-    $id_address = $xml->address->id;   
+    $id_address = $xml->address->id;
 
   $jsonstring = json_encode(array(
     'id_customer' => (int)$id_customer
   ),JSON_PRETTY_PRINT);
-  
+
   echo $jsonstring;
 }
 catch (PrestaShopWebserviceException $e)

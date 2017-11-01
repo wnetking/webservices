@@ -1,5 +1,5 @@
 import GET from '../GET'
-import config from "../config.json"
+import config from "../config.js"
 let get = new GET('products');
 let getCategory = new GET('categories');
 

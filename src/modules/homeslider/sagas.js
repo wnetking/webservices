@@ -7,8 +7,6 @@ function* fetch() {
   try {
     const data = yield call(Api.imageslider.all, null);
     yield put(actions.success(data));
-
-    console.log(data)
   } catch (e) {
     yield put(actions.failed(e.message));
   }

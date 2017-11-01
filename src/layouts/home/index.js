@@ -10,7 +10,7 @@ class Home extends Component {
   render () {
     return (
       <div className='flex-grow-1'>
-        <ImageSlider />
+        {/* <ImageSlider /> */}
         <Container className='flex-grow-1 mb-5'>
           <h2 className="text-center mb-4">Best Sellers</h2>
           {<ProductList

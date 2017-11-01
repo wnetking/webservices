@@ -13,12 +13,15 @@ class PwaAjaxModuleFrontController extends ModuleFrontController
 {
     public function initContent()
     {
-    
+
         $module = new Pwa;
 
         try {
-            $webService = new PrestaShopWebservice(PS_WS_SHOP_PATH, PS_WS_AUTH_KEY, WS_DEBUG);
-        
+            $base_link = Context::getContext()->shop->getBaseURL(true);
+            $api_key = Configuration::get('PWA');
+
+            $webService = new PrestaShopWebservice($base_link,  $api_key, WS_DEBUG);
+
             if (Tools::isSubmit('action')) {
 
                 // Usefull vars derivated from getContext
@@ -27,7 +30,7 @@ class PwaAjaxModuleFrontController extends ModuleFrontController
                 $customer = $context->customer;
                 $cookie = $context->cookie;
                 $id_lang = $cookie->id_lang;
-                
+
                 // Default response with translation from the module
                 $response = array('status' => false, "message" => $module->l('Nothing here.'));
 
@@ -42,18 +45,18 @@ class PwaAjaxModuleFrontController extends ModuleFrontController
                         break;
 
                     case 'add_cart':
-                    
+
                         $response = addCart($webService);
                         break;
-                 
+
                     case 'update_cart':
                         $response = updateCart($webService);
                         break;
-                
+
                     case 'add_address':
                         $response = array('status' => true, "message" => $module->l('add_address'));
-                        break;    
-                    
+                        break;
+
                     default:
                         break;
 

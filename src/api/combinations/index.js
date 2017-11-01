@@ -1,10 +1,10 @@
-import config from '../config.json'
+import config from '../config.js'
 
 const combinations = {
   getAll(array) {
     if (Array.isArray(array)) {
       var combinationsRequestString = array.map(item => item.id).join('|')
-    
+
       return fetch(`${config.apiUrl}combinations/?display=full` +
       `${Array.isArray(array) ? `&filter[id]=[${combinationsRequestString}]` : ``}` +
       `&ws_key=${config.apiKey}&${config.dataType}`)
@@ -13,7 +13,7 @@ const combinations = {
       }).then(data => data.combinations)
     }
 
-    
+
   },
 
   getCombination(id) {

@@ -1,6 +1,6 @@
 import products from '../products/'
 import GET from '../GET'
-import config from '../config.json'
+import config from '../config.js'
 let get = new GET('categories')
 let P = Promise
 
@@ -72,7 +72,7 @@ const category = {
       })
     }
 
-   
+
   }
 }
 

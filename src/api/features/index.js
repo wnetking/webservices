@@ -1,4 +1,4 @@
-import config from '../config.json'
+import config from '../config.js'
 let P = Promise
 
 const features = {
