@@ -1,14 +1,11 @@
-import React, {Component} from 'react';
-import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav} from 'reactstrap';
-import {Link} from 'react-router-dom'
+import React, { Component } from 'react';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { CategoryNavTree } from 'modules/category/components';
+import { CurrrenciesSelector } from 'modules/currencies/components';
+import { LanguagesSelector } from 'modules/languages/components';
 
-import {CategoryNavTree} from 'modules/category/components'
-import {LoginLink} from 'modules/user/components'
-import {CartLink} from 'modules/cart/components'
-import {CurrrenciesSelector} from 'modules/currencies/components'
-import {LanguagesSelector} from 'modules/languages/components'
-
-import Api from 'api'
+import Api from 'api';
 
 export default class NavBar extends Component {
   constructor(props) {
@@ -29,19 +26,16 @@ export default class NavBar extends Component {
   render() {
     return (
       <Navbar className="px-5" color="faded" light expand>
-        <NavbarToggler onClick={this.toggle}/>
+        <NavbarToggler onClick={this.toggle} />
         <Link to="/" className="navbar-brand">
-          <img src={Api.images.getLogo()} alt="logo"/>
+          <img src={Api.images.getLogo()} alt="logo" />
         </Link>
-        <NavbarBrand href="/">
-        </NavbarBrand>
+        <NavbarBrand href="/" />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
-            <CategoryNavTree /> 
+            <CategoryNavTree />
             <CurrrenciesSelector />
-            <LanguagesSelector/>
-            <LoginLink /> 
-            <CartLink />
+            <LanguagesSelector />
           </Nav>
         </Collapse>
       </Navbar>

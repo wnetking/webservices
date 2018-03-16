@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { Link } from 'react-router-dom'
-import { NavDropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
+import {
+  NavDropdown,
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu
+} from 'reactstrap';
 
-import { getCategoryList } from '../actions'
-
+import { getCategoryList } from '../actions';
+import Tools from 'utils';
 
 class CategoryNavTree extends Component {
   constructor(props) {
@@ -18,8 +23,7 @@ class CategoryNavTree extends Component {
   }
 
   componentWillMount() {
-    let { getCategoryList } = this.props
-    getCategoryList()
+    this.props.getCategoryList();
   }
 
   toggle() {
@@ -29,47 +33,56 @@ class CategoryNavTree extends Component {
   }
 
   render() {
-    let { data, fetching } = this.props.category.categoryList
+    let { data, fetching } = this.props.category.categoryList;
 
     return (
       <div>
-        {fetching || data === null ?
-          <div className='nav-item'>
-            <span className='nav-link'>Categorys</span>
+        {fetching || data === null ? (
+          <div className="nav-item">
+            <span className="nav-link">Category</span>
           </div>
-          :
-          <NavDropdown className="left-auto mr-1" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+        ) : (
+          <NavDropdown
+            className="left-auto mr-1"
+            isOpen={this.state.dropdownOpen}
+            toggle={this.toggle}
+          >
             <DropdownToggle nav caret>
               Category
             </DropdownToggle>
             <DropdownMenu>
-              {
-                data.map((item, key) => (
-                  <DropdownItem key={key}>
-                    <Link className="nav-link" to={`/category/${item.id}-${item.link_rewrite[0].value}`}>
-                      {item.name[0].value}
-                    </Link>
-                  </DropdownItem>
-                ))
-              }
+              {data.map((item, key) => (
+                <DropdownItem key={key}>
+                  <Link
+                    className="nav-link"
+                    to={`/category/${item.id}-${Tools.l(
+                      item.link_rewrite,
+                      this.props.lang
+                    )}`}
+                  >
+                    {Tools.l(item.name, this.props.lang)}
+                  </Link>
+                </DropdownItem>
+              ))}
             </DropdownMenu>
           </NavDropdown>
-        }
+        )}
       </div>
-    )
+    );
   }
 }
 
-function mapStateToProps({ category }) {
+function mapStateToProps({ category, languages }) {
   return {
     category: category,
-  }
+    lang: languages
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     getCategoryList: bindActionCreators(getCategoryList, dispatch)
-  }
+  };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryNavTree); 
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryNavTree);

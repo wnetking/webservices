@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { ButtonDropdown, Alert } from 'reactstrap';
-import { Dropdown, Placeholder, Toggle } from 'modules/combinations/components'
-import { fetchProductRequest, fetchCombinationRequest } from '../actions'
+import { Dropdown, Placeholder, Toggle } from 'modules/combinations/components';
+import { fetchProductRequest, fetchCombinationRequest } from '../actions';
 
 class Combinations extends Component {
   constructor(props) {
@@ -16,20 +16,20 @@ class Combinations extends Component {
   }
 
   componentDidMount() {
-    let { id, fetchProductRequest } = this.props
+    let { id, fetchProductRequest } = this.props;
 
-    fetchProductRequest(id)
+    fetchProductRequest(id);
   }
 
   componentDidUpdate() {
-    let {fetching} = this.props.combinations
-    let {id, fetchProductRequest} = this.props
-    let {data} =this.props.combinations.product
+    let { fetching } = this.props.combinations;
+    let { id, fetchProductRequest } = this.props;
+    let { data } = this.props.combinations.product;
 
     if (!fetching) {
       if (parseInt(id, 10) !== parseInt(data.id, 10)) {
         fetchProductRequest(id);
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
       }
     }
   }
@@ -40,54 +40,70 @@ class Combinations extends Component {
     });
   }
 
-  onClick = (id) => {
-    let { fetchCombinationRequest } = this.props
+  onClick = id => {
+    let { fetchCombinationRequest } = this.props;
     fetchCombinationRequest(id);
-  }
+  };
 
   render() {
-    let { fetching, data, all, product, options, error } = this.props.combinations
-    let {active} = this.props.languages 
+    let {
+      fetching,
+      data,
+      all,
+      product,
+      options,
+      error
+    } = this.props.combinations;
+    let { lang } = this.props;
     return (
       <div>
-        {error.status ?
-          <Alert color='danger'>
-          {error.message}
-        </Alert>:
-        fetching  ?
+        {error.status ? (
+          <Alert color="danger">{error.message}</Alert>
+        ) : fetching ? (
           <Placeholder isOpen={this.state.dropdownOpen} toggle={this.toggle} />
-          :
-          parseInt(product.data.is_virtual, 10) || product.data.type === 'pack'  ? null:
+        ) : parseInt(product.data.is_virtual, 10) ||
+        product.data.type === 'pack' ? null : (
           <div>
-            <p>Quantity: { parseInt(product.data.is_virtual, 10) ? 
-            product.data.quantity : data.quantity}</p>
-            <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className="mb-4">
-              <Toggle data={data} options={options} active={active} />
-              {
-                all.fetching ? null :
-                  <Dropdown active={active} product={product} options={options} all={all} onClick={this.onClick} />
-              }
+            <p>
+              {/* Quantity:{' '} */}
+              {/* {parseInt(product.data.is_virtual, 10)
+                ? product.data.quantity
+                : data.quantity} */}
+            </p>
+            <ButtonDropdown
+              isOpen={this.state.dropdownOpen}
+              toggle={this.toggle}
+              className="mb-4"
+            >
+              <Toggle data={data} options={options} lang={lang} />
+              {all.fetching ? null : (
+                <Dropdown
+                  lang={lang}
+                  product={product}
+                  options={options}
+                  all={all}
+                  onClick={this.onClick}
+                />
+              )}
             </ButtonDropdown>
           </div>
-        }
+        )}
       </div>
-    )
+    );
   }
 }
 
+let mapStateToProps = ({ combinations, languages }) => ({
+  combinations: combinations,
+  lang: languages
+});
 
-function mapStateToProps({ combinations, languages }) {
-  return {
-    combinations: combinations, 
-    languages: languages
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchCombinationRequest: bindActionCreators(fetchCombinationRequest, dispatch),
-    fetchProductRequest: bindActionCreators(fetchProductRequest, dispatch),
-  }
-}
+let mapDispatchToProps = dispatch => ({
+  fetchCombinationRequest: bindActionCreators(
+    fetchCombinationRequest,
+    dispatch
+  ),
+  fetchProductRequest: bindActionCreators(fetchProductRequest, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Combinations);

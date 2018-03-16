@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { NavDropdown, DropdownItem, DropdownToggle, DropdownMenu } from 'reactstrap';
-import {fetchRequest,setActive} from '../actions'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {
+  NavDropdown,
+  DropdownItem,
+  DropdownToggle,
+  DropdownMenu
+} from 'reactstrap';
+import { fetchRequest, setActive } from '../actions';
 
-class LanguagesSelector extends Component{
+class LanguagesSelector extends Component {
   constructor(props) {
     super(props);
 
@@ -15,9 +20,9 @@ class LanguagesSelector extends Component{
   }
 
   componentDidMount() {
-    let { fetchRequest } = this.props
+    let { fetchRequest } = this.props;
 
-    fetchRequest()
+    fetchRequest();
   }
 
   toggle() {
@@ -26,53 +31,53 @@ class LanguagesSelector extends Component{
     });
   }
 
-  onClick = (id) => {
-    let { fetchCombinationRequest } = this.props
+  onClick = id => {
+    let { fetchCombinationRequest } = this.props;
     fetchCombinationRequest(id);
-  }
+  };
 
-  render(){
-    let { data, fetching, active } = this.props.languages
+  render() {
+    let { data, fetching, active } = this.props.languages;
 
-    return(
+    return (
       <div>
-         {fetching ?
-          <div className='nav-item'>
-            <span className='nav-link'>languages</span>
+        {fetching ? (
+          <div className="nav-item">
+            <span className="nav-link">en</span>
           </div>
-          :
-          <NavDropdown className="left-auto mr-1" isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+        ) : (
+          <NavDropdown
+            className="left-auto mr-1"
+            isOpen={this.state.dropdownOpen}
+            toggle={this.toggle}
+          >
             <DropdownToggle nav caret>
               {data[active].iso_code}
             </DropdownToggle>
             <DropdownMenu>
-              {
-                data.map((item, key) => (
-                  <DropdownItem key={key} onClick={this.props.setActive.bind(null, key)}>
-                      {item.iso_code}
-                  </DropdownItem>
-                ))
-              }
+              {data.map((item, key) => (
+                <DropdownItem
+                  key={key}
+                  onClick={this.props.setActive.bind(null, key)}
+                >
+                  {item.iso_code}
+                </DropdownItem>
+              ))}
             </DropdownMenu>
           </NavDropdown>
-         }
+        )}
       </div>
-    )
+    );
   }
 }
 
+let mapStateToProps = ({ languages }) => ({
+  languages: languages
+});
 
-function mapStateToProps ({languages}) {
-  return {
-    languages: languages
-  }
-}
+let mapDispatchToProps = dispatch => ({
+  fetchRequest: bindActionCreators(fetchRequest, dispatch),
+  setActive: bindActionCreators(setActive, dispatch)
+});
 
-function mapDispatchToProps (dispatch) {
-  return {
-    fetchRequest: bindActionCreators(fetchRequest, dispatch),
-    setActive: bindActionCreators(setActive, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LanguagesSelector)
+export default connect(mapStateToProps, mapDispatchToProps)(LanguagesSelector);

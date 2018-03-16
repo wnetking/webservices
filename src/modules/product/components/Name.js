@@ -1,10 +1,8 @@
-import React from 'react'
+import React from 'react';
+import Tools from 'utils';
 
-const Name = ({data, active}) => {
-  return(
-    <h2>{data === null ? 'Product name' : 
-    data.name[active].value}</h2>
-  )
-}
+const Name = ({ data, lang }) => (
+  <h2>{data === null ? 'Product name' : Tools.l(data.name, lang)}</h2>
+);
 
-export default Name
+export default Name;
