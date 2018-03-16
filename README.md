@@ -1,6 +1,7 @@
 Web Services + React JS App
 ------
-This is simple module what have silly settings(only one)
+This is simple module what have silly settings(only one). This module get data from Prestashop webservice and shows it in fast interfaces.
+About Web service you can read more follow this link  [http://doc.prestashop.com/display/PS16/Using+the+PrestaShop+Web+Service](http://doc.prestashop.com/display/PS16/Using+the+PrestaShop+Web+Service)
 
 
 How to use
