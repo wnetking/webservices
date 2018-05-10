@@ -12,20 +12,20 @@ After instalation you can go to module setting and click link `Module Page` and 
 Index page
 -------
 
-![index](https://cdn.pixabay.com/photo/2018/03/16/15/23/15-23-55-583_960_720.png)
+![index](https://firebasestorage.googleapis.com/v0/b/my-cv-de1f1.appspot.com/o/home.png?alt=media&token=67452e6c-0a32-496a-81aa-98911a8a3c67)
 
 
 Product page
 -------
 
-![product page](https://cdn.pixabay.com/photo/2018/03/16/15/29/15-29-58-670_960_720.png)
+![product page](https://firebasestorage.googleapis.com/v0/b/my-cv-de1f1.appspot.com/o/product.png?alt=media&token=97192de8-7dd8-4368-9e0e-513df564364a)
 
 Category page
 -------
 
-![Category page](https://cdn.pixabay.com/photo/2018/03/16/15/30/15-30-00-744_960_720.png)
+![Category page](https://firebasestorage.googleapis.com/v0/b/my-cv-de1f1.appspot.com/o/category.png?alt=media&token=60912216-87f5-4cfd-a0d2-f45c737fa1d8)
 
 Brand page
 -------
 
-![Category page](https://cdn.pixabay.com/photo/2018/03/16/15/30/15-30-04-904_960_720.png)
+![Category page](https://firebasestorage.googleapis.com/v0/b/my-cv-de1f1.appspot.com/o/category.png?alt=media&token=60912216-87f5-4cfd-a0d2-f45c737fa1d8)
