@@ -64,6 +64,7 @@ class Webservices extends Module
         Configuration::updateValue('WEBSERVICES_LIVE_MODE', false);
 
         return parent::install() &&
+            $this->registerHook('moduleRoutes') &&
             $this->registerHook('header') &&
             $this->registerHook('backOfficeHeader');
     }
@@ -194,5 +195,74 @@ class Webservices extends Module
     {
         $this->context->controller->addJS($this->_path.'/views/js/front.js');
         $this->context->controller->addCSS($this->_path.'/views/css/front.css');
+    }
+
+
+    /**
+     * Add custom module routes for nice and clean urls
+     *
+     * @return array
+     */
+    public function hookModuleRoutes()
+    {
+        return [
+            "module-{$this->name}-manufacturer" => [
+                'controller' => 'manufacturer',
+                'rule' => 'react/manufacturer/{:id}-{:name}',
+                'keywords' => [
+                    'id' => ['regexp' => '[0-9]+'],
+                    'name' => ['regexp' => '[_a-zA-Z0-9\pL\pS-]*'],
+                ],
+                'params' => [
+                    'fc' => 'module',
+                    'module' => 'webservices',
+                ],
+            ],
+            "module-{$this->name}-cms" => [
+                'controller' => 'cms',
+                'rule' => 'react/cms/{:id}-{:name}',
+                'keywords' => [
+                    'id' => ['regexp' => '[0-9]+'],
+                    'name' => ['regexp' => '[_a-zA-Z0-9\pL\pS-]*'],
+                ],
+                'params' => [
+                    'fc' => 'module',
+                    'module' => 'webservices',
+                ],
+            ],
+            "module-{$this->name}-category" => [
+                'controller' => 'category',
+                'rule' => 'react/category/{:id}-{:name}',
+                'keywords' => [
+                    'id' => ['regexp' => '[0-9]+'],
+                    'name' => ['regexp' => '[_a-zA-Z0-9\pL\pS-]*'],
+                ],
+                'params' => [
+                    'fc' => 'module',
+                    'module' => 'webservices',
+                ],
+            ],
+            "module-{$this->name}-product" => [
+                'controller' => 'product',
+                'rule' => 'react/product/{:id}-{:name}',
+                'keywords' => [
+                    'id' => ['regexp' => '[0-9]+'],
+                    'name' => ['regexp' => '[_a-zA-Z0-9\pL\pS-]*'],
+                ],
+                'params' => [
+                    'fc' => 'module',
+                    'module' => 'webservices',
+                ],
+            ],
+            "module-{$this->name}-display" => [
+                'controller' => 'display',
+                'rule' => 'react',
+                'keywords' => [],
+                'params' => [
+                    'fc' => 'module',
+                    'module' => 'webservices',
+                ],
+            ],
+        ];
     }
 }
