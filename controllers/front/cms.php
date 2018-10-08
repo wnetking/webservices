@@ -24,12 +24,25 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 
-header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-header('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT');
+class webservicescmsModuleFrontController extends ModuleFrontController
+{
+  public function initContent()
+  {
+    $module_name = 'webservices';
+    $link = new Link;
+    $base_link = Context::getContext()->shop->getBaseURL(true);
 
-header('Cache-Control: no-store, no-cache, must-revalidate');
-header('Cache-Control: post-check=0, pre-check=0', false);
-header('Pragma: no-cache');
+    $module_link_display = $link->getModuleLink($module_name,'display');
+    $api_key = Configuration::get('WEBSERVICES_API_KEY');
+    $pwa_module_config = array(
+      'base_url' => $base_link,
+      'api_key' => $api_key,
+      'module_link_display' => $module_link_display
+    );
+    self::$smarty->assign('pwa_module_config_json', Tools::jsonEncode($pwa_module_config));
+    self::$smarty->assign('base_link', $base_link);
+    parent::initContent();
 
-header('Location: ../');
-exit;
+    $this->setTemplate('module:webservices/views/templates/front/display.tpl');
+  }
+}
