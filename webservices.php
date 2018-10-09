@@ -1,28 +1,28 @@
 <?php
 /**
-* 2007-2018 PrestaShop
-*
-* NOTICE OF LICENSE
-*
-* This source file is subject to the Academic Free License (AFL 3.0)
-* that is bundled with this package in the file LICENSE.txt.
-* It is also available through the world-wide-web at this URL:
-* http://opensource.org/licenses/afl-3.0.php
-* If you did not receive a copy of the license and are unable to
-* obtain it through the world-wide-web, please send an email
-* to license@prestashop.com so we can send you a copy immediately.
-*
-* DISCLAIMER
-*
-* Do not edit or add to this file if you wish to upgrade PrestaShop to newer
-* versions in the future. If you wish to customize PrestaShop for your
-* needs please refer to http://www.prestashop.com for more information.
-*
-*  @author    PrestaShop SA <contact@prestashop.com>
-*  @copyright 2007-2018 PrestaShop SA
-*  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
-*  International Registered Trademark & Property of PrestaShop SA
-*/
+ * 2007-2018 PrestaShop
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@prestashop.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
+ * versions in the future. If you wish to customize PrestaShop for your
+ * needs please refer to http://www.prestashop.com for more information.
+ *
+ * @author    PrestaShop SA <contact@prestashop.com>
+ * @copyright 2007-2018 PrestaShop SA
+ * @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ *  International Registered Trademark & Property of PrestaShop SA
+ */
 
 if (!defined('_PS_VERSION_')) {
     exit;
@@ -46,13 +46,13 @@ class Webservices extends Module
         $this->bootstrap = true;
 
         parent::__construct();
-
+        $this->autoload();
         $this->displayName = $this->l('Web Services + React JS App');
         $this->description = $this->l('Simple module with using Web Services and React JS.');
 
         $this->confirmUninstall = $this->l('');
 
-        $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
+        $this->ps_versions_compliancy = ['min' => '1.7', 'max' => _PS_VERSION_];
     }
 
     /**
@@ -90,11 +90,11 @@ class Webservices extends Module
         $link = new Link;
 
         $this->context->smarty->assign('module_dir', $this->_path);
-        $this->context->smarty->assign('module_link_display', $link->getModuleLink('webservices','display'));
+        $this->context->smarty->assign('module_link_display', $link->getModuleLink('webservices', 'display'));
 
-        $output = $this->context->smarty->fetch($this->local_path.'views/templates/admin/configure.tpl');
+        $output = $this->context->smarty->fetch($this->local_path . 'views/templates/admin/configure.tpl');
 
-        return $output.$this->renderForm();
+        return $output . $this->renderForm();
     }
 
     /**
@@ -113,16 +113,16 @@ class Webservices extends Module
         $helper->identifier = $this->identifier;
         $helper->submit_action = 'submitWebservicesModule';
         $helper->currentIndex = $this->context->link->getAdminLink('AdminModules', false)
-            .'&configure='.$this->name.'&tab_module='.$this->tab.'&module_name='.$this->name;
+            . '&configure=' . $this->name . '&tab_module=' . $this->tab . '&module_name=' . $this->name;
         $helper->token = Tools::getAdminTokenLite('AdminModules');
 
-        $helper->tpl_vars = array(
+        $helper->tpl_vars = [
             'fields_value' => $this->getConfigFormValues(), /* Add values for your inputs */
             'languages' => $this->context->controller->getLanguages(),
             'id_language' => $this->context->language->id,
-        );
+        ];
 
-        return $helper->generateForm(array($this->getConfigForm()));
+        return $helper->generateForm([$this->getConfigForm()]);
     }
 
     /**
@@ -130,27 +130,27 @@ class Webservices extends Module
      */
     protected function getConfigForm()
     {
-        return array(
-            'form' => array(
-                'legend' => array(
-                'title' => $this->l('Settings'),
-                'icon' => 'icon-cogs',
-                ),
-                'input' => array(
-                    array(
+        return [
+            'form' => [
+                'legend' => [
+                    'title' => $this->l('Settings'),
+                    'icon' => 'icon-cogs',
+                ],
+                'input' => [
+                    [
                         'col' => 3,
                         'type' => 'text',
                         'prefix' => '<i class="icon icon-key"></i>',
                         'desc' => $this->l('Enter a Webservice API KEY'),
                         'name' => 'WEBSERVICES_API_KEY',
                         'label' => $this->l('Api Key'),
-                    )
-                ),
-                'submit' => array(
+                    ],
+                ],
+                'submit' => [
                     'title' => $this->l('Save'),
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     /**
@@ -158,11 +158,11 @@ class Webservices extends Module
      */
     protected function getConfigFormValues()
     {
-        return array(
+        return [
             'WEBSERVICES_LIVE_MODE' => Configuration::get('WEBSERVICES_LIVE_MODE', true),
             'WEBSERVICES_API_KEY' => Configuration::get('WEBSERVICES_API_KEY', null),
             'WEBSERVICES_ACCOUNT_PASSWORD' => Configuration::get('WEBSERVICES_ACCOUNT_PASSWORD', null),
-        );
+        ];
     }
 
     /**
@@ -178,13 +178,13 @@ class Webservices extends Module
     }
 
     /**
-    * Add the CSS & JavaScript files you want to be loaded in the BO.
-    */
+     * Add the CSS & JavaScript files you want to be loaded in the BO.
+     */
     public function hookBackOfficeHeader()
     {
         if (Tools::getValue('module_name') == $this->name) {
-            $this->context->controller->addJS($this->_path.'views/js/back.js');
-            $this->context->controller->addCSS($this->_path.'views/css/back.css');
+            $this->context->controller->addJS($this->_path . 'views/js/back.js');
+            $this->context->controller->addCSS($this->_path . 'views/css/back.css');
         }
     }
 
@@ -193,10 +193,19 @@ class Webservices extends Module
      */
     public function hookHeader()
     {
-        $this->context->controller->addJS($this->_path.'/views/js/front.js');
-        $this->context->controller->addCSS($this->_path.'/views/css/front.css');
+        $this->context->controller->addJS($this->_path . '/views/js/front.js');
+        $this->context->controller->addCSS($this->_path . '/views/css/front.css');
     }
 
+    /**
+     * Autoload PHP classes
+     *
+     * @todo replace with composer autoloader
+     */
+    public function autoload()
+    {
+        require_once __DIR__ . '/classes/BaseController.php';
+    }
 
     /**
      * Add custom module routes for nice and clean urls
